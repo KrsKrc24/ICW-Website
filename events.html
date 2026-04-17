@@ -390,10 +390,12 @@
 </section>
 
 <!-- CTA -->
-<section id="vol-cta">
-  <h2>Be Part of the Next Event</h2>
-  <p>Join hundreds of volunteers who have helped us raise funds, deliver care, and change lives.</p>
-  <div class="vc-btns">
+<section id="vol-cta" style="position:relative;overflow:hidden;">
+  <div style="position:absolute;width:500px;height:500px;border-radius:50%;background:rgba(14,165,233,0.07);filter:blur(80px);top:-100px;right:-80px;pointer-events:none;animation:orbDrift 12s ease-in-out infinite;"></div>
+  <div style="position:absolute;width:280px;height:280px;border-radius:50%;background:rgba(139,92,246,0.06);filter:blur(60px);bottom:-60px;left:-40px;pointer-events:none;animation:orbDrift 16s ease-in-out infinite reverse;"></div>
+  <h2 style="position:relative;z-index:1;">Be Part of the Next Event</h2>
+  <p style="position:relative;z-index:1;">Join hundreds of volunteers who have helped us raise funds, deliver care, and change lives.</p>
+  <div class="vc-btns" style="position:relative;z-index:1;">
     <a href="mailto:internationalchildrenwellness@gmail.com" class="btn btn-teal">Volunteer Now</a>
     <a href="donate.html" class="btn btn-outline-light">Donate Instead</a>
   </div>
@@ -422,8 +424,16 @@
   const btn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
   btn.addEventListener('click',()=>links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
-  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:0.08,rootMargin:'0px 0px -24px 0px'});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  /* nav scroll */
+  window.addEventListener('scroll',()=>document.querySelector('nav').classList.toggle('scrolled',window.scrollY>20));
+
+  /* staggered reveal */
+  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:0.06,rootMargin:'0px 0px -24px 0px'});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    if(el.classList.contains('tl-event')) el.style.transitionDelay=`${(i%4)*0.08}s`;
+    io.observe(el);
+  });
 </script>
 </body>
 </html>

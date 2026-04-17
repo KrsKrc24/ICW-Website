@@ -386,3 +386,143 @@ body { animation: pageFade 0.55s cubic-bezier(0.4,0,0.2,1) both; }
   .impact-bar { grid-template-columns: repeat(2,1fr); }
   section { padding: 64px 5vw; }
 }
+
+/* ══════════════════════════════════════
+   NAV SCROLL SHADOW
+══════════════════════════════════════ */
+nav { transition: box-shadow 0.3s, border-bottom-color 0.3s; }
+nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.35); border-bottom-color: rgba(255,255,255,0.12); }
+
+/* ══════════════════════════════════════
+   TIMELINE DOT PULSE
+══════════════════════════════════════ */
+@keyframes dotPulseRing {
+  0%   { box-shadow: 0 0 0 0 rgba(14,165,233,0.55), 0 0 0 2px var(--teal); }
+  70%  { box-shadow: 0 0 0 8px rgba(14,165,233,0), 0 0 0 2px var(--teal); }
+  100% { box-shadow: 0 0 0 0 rgba(14,165,233,0), 0 0 0 2px var(--teal); }
+}
+.tl-dot { animation: dotPulseRing 2.4s ease-out infinite; }
+
+/* ══════════════════════════════════════
+   PROG-STAT SPRING HOVER
+══════════════════════════════════════ */
+.prog-stat { transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.28s; }
+.prog-stat:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 14px 36px rgba(11,29,58,0.16); }
+
+/* ══════════════════════════════════════
+   PI-CELL HOVER LIFT
+══════════════════════════════════════ */
+.pi-cell { transition: background 0.25s, transform 0.28s cubic-bezier(0.34,1.56,0.64,1), border-color 0.25s; }
+.pi-cell:hover { transform: translateY(-5px) scale(1.02); }
+
+/* ══════════════════════════════════════
+   PROG-VISUAL HOVER
+══════════════════════════════════════ */
+.prog-visual { transition: transform 0.38s cubic-bezier(0.4,0,0.2,1), box-shadow 0.38s; }
+.prog-visual:hover { transform: translateY(-10px); box-shadow: 0 36px 76px rgba(11,29,58,0.22); }
+
+/* ══════════════════════════════════════
+   UP-CARD HOVER
+══════════════════════════════════════ */
+.up-card { transition: border-color 0.2s, transform 0.28s cubic-bezier(0.34,1.56,0.64,1), background 0.2s; }
+.up-card:hover { transform: translateY(-5px); background: rgba(14,165,233,0.025); }
+
+/* ══════════════════════════════════════
+   IMPACT BREAKDOWN CARD
+══════════════════════════════════════ */
+.ib-card { transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.28s; }
+.ib-card:hover { transform: translateX(8px) scale(1.01); box-shadow: 0 12px 32px rgba(11,29,58,0.13); }
+
+/* ══════════════════════════════════════
+   VALUE CARD ICON SPRING
+══════════════════════════════════════ */
+.val-num svg { transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); display: block; }
+.val-card:hover .val-num svg { transform: scale(1.22) rotate(12deg); }
+
+/* ══════════════════════════════════════
+   FOUNDER PHOTO GRADIENT OVERLAY
+══════════════════════════════════════ */
+.fc-photo-overlay-inner {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(to top, rgba(11,29,58,0.72) 0%, rgba(11,29,58,0.25) 45%, transparent 70%);
+  transition: opacity 0.35s;
+}
+.founder-card:hover .fc-photo-overlay-inner { opacity: 0.65; }
+
+/* ══════════════════════════════════════
+   STORY HIGHLIGHT ANIMATED GRADIENT
+══════════════════════════════════════ */
+@keyframes storyGrad {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.story-highlight { background-size: 220% 220% !important; animation: storyGrad 9s ease infinite; }
+
+/* ══════════════════════════════════════
+   VISION CARD ORB DRIFT
+══════════════════════════════════════ */
+.vision-card::before { animation: orbDrift 9s ease-in-out infinite; }
+
+/* ══════════════════════════════════════
+   FOOTER SOCIAL HOVER SPRING
+══════════════════════════════════════ */
+.ft-social a { transition: background 0.2s, transform 0.28s cubic-bezier(0.34,1.56,0.64,1); }
+.ft-social a:hover { transform: translateY(-4px) scale(1.12); }
+
+/* ══════════════════════════════════════
+   BUTTON FOCUS VISIBLE
+══════════════════════════════════════ */
+.btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+/* ══════════════════════════════════════
+   NAV CTA SUBTLE PULSE
+══════════════════════════════════════ */
+@keyframes navCtaPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(14,165,233,0.4); }
+  60%     { box-shadow: 0 0 0 7px rgba(14,165,233,0); }
+}
+.nav-cta { animation: navCtaPulse 3.2s ease-in-out infinite; }
+.nav-cta:hover { animation: none; }
+
+/* ══════════════════════════════════════
+   OW-CARD (DONATE PAGE) HOVER
+══════════════════════════════════════ */
+.ow-card { transition: border-color 0.2s, transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.28s; }
+.ow-card:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(11,29,58,0.1); }
+
+/* ══════════════════════════════════════
+   TEAL SECTION TITLE UNDERLINE GLOW
+══════════════════════════════════════ */
+.section-title span::after { box-shadow: 0 2px 12px rgba(14,165,233,0.4); }
+
+/* ══════════════════════════════════════
+   TEAM MEMBER CARD HOVER BORDER
+══════════════════════════════════════ */
+.member-card { border: 1px solid var(--gray-100); transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s, border-color 0.25s; }
+.member-card:hover { border-color: rgba(14,165,233,0.22); }
+
+/* ══════════════════════════════════════
+   GS-REGION LIST ANIMATED INDICATOR
+══════════════════════════════════════ */
+@keyframes dotBreath { 0%,100%{transform:scale(1)} 50%{transform:scale(1.5)} }
+.gs-dot { animation: dotBreath 2.4s ease-in-out infinite; }
+.gsd-as { animation-delay: 0.4s; }
+.gsd-af { animation-delay: 0.8s; }
+.gsd-me { animation-delay: 1.2s; }
+
+/* ══════════════════════════════════════
+   BIG QUOTE LEFT BORDER GROW
+══════════════════════════════════════ */
+.big-quote { border-left-width: 0px; transition: border-left-width 0.6s cubic-bezier(0.4,0,0.2,1) 0.3s; }
+.reveal.in .big-quote, .big-quote { border-left-width: 4px; }
+
+/* ══════════════════════════════════════
+   CTA STRIP ANIMATED GRADIENT
+══════════════════════════════════════ */
+@keyframes ctaGrad {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+#cta-strip { background-size: 200% 200% !important; animation: ctaGrad 8s ease infinite; }

@@ -134,10 +134,10 @@
       <p class="mission-body">International Children's Wellness exists because childhood cancer doesn't discriminate — but access to treatment does. Every day, children around the world face delayed diagnoses, unaffordable treatment, and a lack of emotional support — not because medicine doesn't have answers, but because those answers never reach them.</p>
       <p class="mission-body">We bridge that gap. Through community fundraising, hospital partnerships, chapter networks, and youth-driven advocacy, we ensure that the progress happening in research labs actually reaches the children who need it most.</p>
       <div class="stat-pills">
-        <div class="stat-pill"><span class="sp-num">$5K+</span><span class="sp-lbl">Donated globally</span></div>
-        <div class="stat-pill"><span class="sp-num">200+</span><span class="sp-lbl">Care packages sent</span></div>
-        <div class="stat-pill"><span class="sp-num">21+</span><span class="sp-lbl">Active chapters</span></div>
-        <div class="stat-pill"><span class="sp-num">4</span><span class="sp-lbl">Continents reached</span></div>
+        <div class="stat-pill"><span class="sp-num" data-count="5000" data-prefix="$" data-suffix="+">$5K+</span><span class="sp-lbl">Donated globally</span></div>
+        <div class="stat-pill"><span class="sp-num" data-count="200" data-suffix="+">200+</span><span class="sp-lbl">Care packages sent</span></div>
+        <div class="stat-pill"><span class="sp-num" data-count="21" data-suffix="+">21+</span><span class="sp-lbl">Active chapters</span></div>
+        <div class="stat-pill"><span class="sp-num" data-count="4">4</span><span class="sp-lbl">Continents reached</span></div>
       </div>
     </div>
     <div class="reveal">
@@ -247,8 +247,51 @@
   const btn = document.getElementById('menuBtn'), links = document.getElementById('navLinks');
   btn.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
-  const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('in'); }), { threshold:0.1, rootMargin:'0px 0px -28px 0px' });
-  document.querySelectorAll('.reveal').forEach((el,_,all) => { const p=el.parentElement; const s=[...p.children].filter(c=>c.classList.contains('reveal')); const i=s.indexOf(el); if(i>0) el.style.transitionDelay=`${i*0.09}s`; io.observe(el); });
+
+  /* nav scroll */
+  window.addEventListener('scroll',()=>document.querySelector('nav').classList.toggle('scrolled',window.scrollY>20));
+
+  /* reveal + counter */
+  function animateCount(el, target, prefix='', suffix='') {
+    let start=null;
+    const dur=1600;
+    (function step(ts){
+      if(!start)start=ts;
+      const p=Math.min((ts-start)/dur,1);
+      const v=Math.round((1-Math.pow(1-p,3))*target);
+      el.textContent=prefix+(target>=1000?v.toLocaleString():v)+suffix;
+      if(p<1)requestAnimationFrame(step);
+      else el.textContent=prefix+(target>=1000?target.toLocaleString():target)+suffix;
+    })(performance.now());
+  }
+
+  const io = new IntersectionObserver(e => e.forEach(x => {
+    if(!x.isIntersecting)return;
+    x.target.classList.add('in');
+    x.target.querySelectorAll('.sp-num[data-count]').forEach(el=>
+      animateCount(el,parseInt(el.dataset.count),el.dataset.prefix||'',el.dataset.suffix||'')
+    );
+  }), { threshold:0.1, rootMargin:'0px 0px -28px 0px' });
+  document.querySelectorAll('.reveal').forEach((el,_,all) => {
+    const p=el.parentElement; const s=[...p.children].filter(c=>c.classList.contains('reveal'));
+    const i=s.indexOf(el); if(i>0) el.style.transitionDelay=`${i*0.09}s`; io.observe(el);
+  });
+
+  /* 3D tilt on cards */
+  function addTilt(sel,deg=7){
+    document.querySelectorAll(sel).forEach(card=>{
+      card.addEventListener('mousemove',e=>{
+        const r=card.getBoundingClientRect();
+        const x=(e.clientX-r.left)/r.width-0.5;
+        const y=(e.clientY-r.top)/r.height-0.5;
+        card.style.transform=`translateY(-5px) rotateY(${x*deg}deg) rotateX(${-y*deg}deg)`;
+      });
+      card.addEventListener('mouseleave',()=>card.style.transform='');
+    });
+  }
+  addTilt('.val-card',5);
+  addTilt('.vision-card',4);
+  addTilt('.why-card',4);
 </script>
 </body>
 </html>

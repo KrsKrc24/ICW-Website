@@ -140,6 +140,7 @@
       <div class="founder-card reveal">
         <div class="fc-photo">
           <img src="https://static.wixstatic.com/media/f02e73_7260ca5a283642379b58dc58548eda66~mv2.png" alt="Aditi Kuthanoor" />
+          <div class="fc-photo-overlay-inner"></div>
           <div class="fc-photo-badge">Co-Founder</div>
         </div>
         <div class="fc-body">
@@ -151,6 +152,7 @@
       <div class="founder-card reveal">
         <div class="fc-photo">
           <img src="https://static.wixstatic.com/media/462b5a_f03c956287c5433085764ce568a0d0cd~mv2.jpeg" alt="Shritan Pothini" />
+          <div class="fc-photo-overlay-inner"></div>
           <div class="fc-photo-badge">Co-Founder</div>
         </div>
         <div class="fc-body">
@@ -281,10 +283,12 @@
 </section>
 
 <!-- JOIN CTA -->
-<section id="join-cta">
-  <h2>Want to Join the Team?</h2>
-  <p>We're always looking for passionate students who want to make a difference. Start a chapter, join the HQ team, or volunteer at events.</p>
-  <div class="jc-btns">
+<section id="join-cta" style="position:relative;overflow:hidden;">
+  <div style="position:absolute;width:500px;height:500px;border-radius:50%;background:rgba(14,165,233,0.08);filter:blur(80px);top:-120px;right:-100px;pointer-events:none;animation:orbDrift 12s ease-in-out infinite;"></div>
+  <div style="position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(139,92,246,0.07);filter:blur(60px);bottom:-80px;left:-60px;pointer-events:none;animation:orbDrift 15s ease-in-out infinite reverse;"></div>
+  <h2 style="position:relative;z-index:1;">Want to Join the Team?</h2>
+  <p style="position:relative;z-index:1;">We're always looking for passionate students who want to make a difference. Start a chapter, join the HQ team, or volunteer at events.</p>
+  <div class="jc-btns" style="position:relative;z-index:1;">
     <a href="mailto:internationalchildrenwellness@gmail.com" class="btn btn-teal">Reach Out to Us</a>
     <a href="chapters.html" class="btn btn-outline-light">Start a Chapter</a>
   </div>
@@ -313,8 +317,29 @@
   const btn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
   btn.addEventListener('click',()=>links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+
+  /* nav scroll */
+  window.addEventListener('scroll',()=>document.querySelector('nav').classList.toggle('scrolled',window.scrollY>20));
+
+  /* reveal */
   const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:0.08,rootMargin:'0px 0px -24px 0px'});
   document.querySelectorAll('.reveal').forEach((el,_,all)=>{const p=el.parentElement;const s=[...p.children].filter(c=>c.classList.contains('reveal'));const i=s.indexOf(el);if(i>0)el.style.transitionDelay=`${i*0.07}s`;io.observe(el);});
+
+  /* 3D tilt on cards */
+  function addTilt(sel,deg=8){
+    document.querySelectorAll(sel).forEach(card=>{
+      card.style.transition='transform 0.3s cubic-bezier(0.4,0,0.2,1)';
+      card.addEventListener('mousemove',e=>{
+        const r=card.getBoundingClientRect();
+        const x=(e.clientX-r.left)/r.width-0.5;
+        const y=(e.clientY-r.top)/r.height-0.5;
+        card.style.transform=`translateY(-6px) rotateY(${x*deg}deg) rotateX(${-y*deg}deg) scale(1.01)`;
+      });
+      card.addEventListener('mouseleave',()=>card.style.transform='');
+    });
+  }
+  addTilt('.founder-card',6);
+  addTilt('.member-card',5);
 </script>
 </body>
 </html>

@@ -64,7 +64,8 @@
     .pv-2 { background: linear-gradient(145deg,#F97316,#C2410C); }
     .pv-3 { background: linear-gradient(145deg,#8B5CF6,#6D28D9); }
     .pv-4 { background: linear-gradient(145deg,#10B981,#047857); }
-    .pv-emoji { font-size: 3.5rem; margin-bottom: 16px; display: block; }
+    .pv-emoji { display: block; margin-bottom: 20px; width: 52px; height: 52px; background: rgba(255,255,255,0.15); border-radius: 14px; display: flex; align-items: center; justify-content: center; }
+    .pv-emoji svg { width: 28px; height: 28px; flex-shrink: 0; }
     .pv-title  { color: white; font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.6rem; margin-bottom: 10px; }
     .pv-sub    { color: rgba(255,255,255,0.78); font-size: 0.9rem; line-height: 1.6; }
     .pv-body { background: white; padding: 32px 40px; }
@@ -309,8 +310,55 @@
   const btn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
   btn.addEventListener('click',()=>links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
-  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:0.1,rootMargin:'0px 0px -28px 0px'});
-  document.querySelectorAll('.reveal').forEach((el,_,all)=>{const p=el.parentElement;const s=[...p.children].filter(c=>c.classList.contains('reveal'));const i=s.indexOf(el);if(i>0)el.style.transitionDelay=`${i*0.09}s`;io.observe(el);});
+
+  /* nav scroll */
+  window.addEventListener('scroll',()=>document.querySelector('nav').classList.toggle('scrolled',window.scrollY>20));
+
+  /* counter animation */
+  function animateCount(el){
+    const raw=el.textContent.trim();
+    const hasPlus=raw.includes('+');
+    const hasDollar=raw.includes('$');
+    const hasK=raw.includes('K');
+    let target=parseFloat(raw.replace(/[$K+]/g,''));
+    if(hasK)target*=1000;
+    const prefix=hasDollar?'$':'';
+    const suffix=hasPlus?'+':'';
+    const dur=1600;
+    let start=null;
+    (function step(ts){
+      if(!start)start=ts;
+      const p=Math.min((ts-start)/dur,1);
+      const v=Math.round((1-Math.pow(1-p,3))*target);
+      if(target>=1000)el.textContent=prefix+'$'+Math.round(v/1000*10)/10+'K'+suffix;
+      else el.textContent=prefix+v+suffix;
+      if(p<1)requestAnimationFrame(step);
+      else el.textContent=raw;
+    })(performance.now());
+  }
+
+  const io=new IntersectionObserver(e=>e.forEach(x=>{
+    if(!x.isIntersecting)return;
+    x.target.classList.add('in');
+    x.target.querySelectorAll('.pi-num,.ps-num').forEach(animateCount);
+  }),{threshold:0.1,rootMargin:'0px 0px -28px 0px'});
+  document.querySelectorAll('.reveal').forEach((el,_,all)=>{
+    const p=el.parentElement;const s=[...p.children].filter(c=>c.classList.contains('reveal'));const i=s.indexOf(el);if(i>0)el.style.transitionDelay=`${i*0.09}s`;io.observe(el);
+  });
+
+  /* 3D tilt */
+  function addTilt(sel,deg=7){
+    document.querySelectorAll(sel).forEach(card=>{
+      card.addEventListener('mousemove',e=>{
+        const r=card.getBoundingClientRect();
+        const x=(e.clientX-r.left)/r.width-0.5;
+        const y=(e.clientY-r.top)/r.height-0.5;
+        card.style.transform=`translateY(-8px) rotateY(${x*deg}deg) rotateX(${-y*deg}deg)`;
+      });
+      card.addEventListener('mouseleave',()=>card.style.transform='');
+    });
+  }
+  addTilt('.prog-visual',4);
 </script>
 </body>
 </html>
