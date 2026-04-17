@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meet the Team | International Children's Wellness</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    /* ══════════════════════
+       FOUNDER CARDS
+    ══════════════════════ */
+    #founders { background: var(--off-white); padding: 88px 5vw; }
+    .founders-inner { max-width: 1100px; margin: 0 auto; }
+    .founders-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+    .founder-card {
+      background: white; border-radius: 24px; overflow: hidden;
+      box-shadow: var(--shadow-lg); transition: transform 0.3s;
+    }
+    .founder-card:hover { transform: translateY(-6px); }
+
+    .fc-photo {
+      height: 420px; position: relative; overflow: hidden;
+    }
+    .fc-photo-badge {
+      position: absolute; bottom: 16px; right: 16px; z-index: 2;
+      background: rgba(11,29,58,0.75); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;
+      padding: 6px 14px; color: white; font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .fc-body { padding: 28px 32px 32px; }
+    .fc-name { font-weight: 900; font-size: 1.4rem; color: var(--navy); margin-bottom: 4px; }
+    .fc-role { color: var(--teal); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+    .fc-bio  { color: var(--gray-500); font-size: 0.9rem; line-height: 1.82; margin-bottom: 20px; }
+    .fc-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .fc-tag  { background: var(--gray-100); color: var(--gray-700); padding: 5px 14px; border-radius: 100px; font-size: 0.75rem; font-weight: 600; }
+
+    /* ══════════════════════
+       TEAM SECTIONS
+    ══════════════════════ */
+    .team-section { padding: 72px 5vw; }
+    .team-section:nth-child(even) { background: white; }
+    .team-section:nth-child(odd)  { background: var(--off-white); }
+    .team-section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .region-header {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 40px;
+      padding-bottom: 20px; border-bottom: 2px solid var(--gray-100);
+    }
+    .region-flag { font-size: 2rem; }
+    .region-info h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-bottom: 2px; }
+    .region-info p  { font-size: 0.82rem; color: var(--gray-500); font-weight: 500; }
+    .region-badge {
+      margin-left: auto; padding: 5px 16px; border-radius: 100px;
+      font-size: 0.75rem; font-weight: 700; white-space: nowrap;
+    }
+    .rb-hq     { background: rgba(14,165,233,0.1); color: var(--teal-dark); }
+    .rb-active { background: rgba(16,185,129,0.1); color: #047857; }
+
+    .member-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 22px; }
+
+    .member-card {
+      background: white; border-radius: 18px; overflow: hidden;
+      box-shadow: var(--shadow); transition: transform 0.25s, box-shadow 0.25s;
+      border: 1px solid var(--gray-100);
+    }
+    .member-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+    /* Photo area for members - taller to show full faces */
+    .mc-photo { height: 260px; overflow: hidden; position: relative; background: var(--gray-100); }
+
+    .mc-body { padding: 16px 18px 22px; }
+    .mc-name { font-weight: 800; color: var(--navy); font-size: 0.92rem; margin-bottom: 3px; line-height: 1.3; }
+    .mc-role { font-size: 0.72rem; color: var(--teal); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; }
+    .mc-bio  { font-size: 0.78rem; color: var(--gray-500); line-height: 1.65; }
+
+    /* placeholder when no photo */
+    .mc-placeholder {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; font-weight: 900; color: white; letter-spacing: -1px;
+    }
+    .ph-navy   { background: linear-gradient(135deg,#0B1D3A,#1e4080); }
+    .ph-teal   { background: linear-gradient(135deg,#0EA5E9,#0284C7); }
+    .ph-coral  { background: linear-gradient(135deg,#F97316,#C2410C); }
+    .ph-purple { background: linear-gradient(135deg,#8B5CF6,#6D28D9); }
+    .ph-green  { background: linear-gradient(135deg,#10B981,#047857); }
+    .ph-gold   { background: linear-gradient(135deg,#FBBF24,#D97706); }
+
+    /* JOIN CTA */
+    #join-cta { background: linear-gradient(145deg,var(--navy),#0f2d5c); padding: 80px 5vw; text-align: center; }
+    #join-cta h2 { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.6rem); font-weight:800; color:white; margin-bottom:12px; }
+    #join-cta p  { color:rgba(255,255,255,0.65); font-size:1rem; margin-bottom:32px; max-width:500px; margin-left:auto; margin-right:auto; }
+    .jc-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+    @media(max-width:1024px){ .member-grid { grid-template-columns:repeat(3,1fr); } }
+    @media(max-width:768px){ .founders-grid { grid-template-columns:1fr; } .member-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:480px){ .member-grid { grid-template-columns:1fr 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" class="nav-logo-img"/>
+    <div><div class="nav-logo-text">International Children's Wellness</div><div class="nav-logo-sub">Youth-Led Nonprofit · EIN 93-2522549</div></div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="mission.html">Mission</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="chapters.html">Chapters</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html" class="active">Team</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="donate.html" class="nav-cta">Donate</a></li>
+  </ul>
+  <button class="nav-menu-btn" id="menuBtn"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-orb page-hero-orb-1"></div>
+  <div class="page-hero-orb page-hero-orb-2"></div>
+  <div class="page-hero-inner">
+    <div class="page-hero-tag">The People Behind ICW</div>
+    <h1>Meet the <span>Team</span></h1>
+    <p>Students from Washington to Tampa to Accra — united by one mission: ensuring every child gets the care they deserve.</p>
+  </div>
+</div>
+
+<!-- FOUNDERS -->
+<section id="founders">
+  <div class="founders-inner">
+    <div class="section-header center reveal">
+      <div class="section-label">Leadership</div>
+      <h2 class="section-title">Our <span>Founders</span></h2>
+      <p class="section-sub">Two high school students who decided that being young was no reason to wait — and built a global movement in the process.</p>
+    </div>
+    <div class="founders-grid">
+
+      <div class="founder-card reveal">
+        <div class="fc-photo">
+          <img src="https://static.wixstatic.com/media/f02e73_7260ca5a283642379b58dc58548eda66~mv2.png" alt="Aditi Kuthanoor" />
+          <div class="fc-photo-badge">Co-Founder</div>
+        </div>
+        <div class="fc-body">
+          <div class="fc-name">Aditi Kuthanoor</div>
+          <div class="fc-role">Co-Founder &amp; Executive Director</div>
+        </div>
+      </div>
+
+      <div class="founder-card reveal">
+        <div class="fc-photo">
+          <img src="https://static.wixstatic.com/media/462b5a_f03c956287c5433085764ce568a0d0cd~mv2.jpeg" alt="Shritan Pothini" />
+          <div class="fc-photo-badge">Co-Founder</div>
+        </div>
+        <div class="fc-body">
+          <div class="fc-name">Shritan Pothini</div>
+          <div class="fc-role">Co-Founder &amp; CEO</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HQ TEAM -->
+<section class="team-section">
+  <div class="team-section-inner">
+    <div class="region-header reveal">
+      <div class="region-flag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <div class="region-info">
+        <h2>Issaquah HQ Team</h2>
+        <p>Washington State · Headquarters</p>
+      </div>
+      <div class="region-badge rb-hq">Headquarters</div>
+    </div>
+    <div class="member-grid">
+
+      <div class="member-card reveal">
+        <div class="mc-photo">
+          <img src="https://static.wixstatic.com/media/f02e73_9cbc641bda5b4e9387ed716576165318~mv2.png" alt="Alexander Mammar" />
+        </div>
+        <div class="mc-body">
+          <div class="mc-name">Alexander Mammar</div>
+          <div class="mc-role">COO</div>
+        </div>
+      </div>
+
+      <div class="member-card reveal">
+        <div class="mc-photo">
+          <img src="https://static.wixstatic.com/media/f02e73_17ea3d1c9d0b498fb7a027bc1362dbbb~mv2.png" alt="Akshara Guddeti" />
+        </div>
+        <div class="mc-body">
+          <div class="mc-name">Akshara Guddeti</div>
+          <div class="mc-role">Director of Vaccine Outreach &amp; Advocacy</div>
+        </div>
+      </div>
+
+      <div class="member-card reveal">
+        <div class="mc-photo">
+          <img src="https://static.wixstatic.com/media/f02e73_f3e204cb995f4f049610e0478d13bf6a~mv2.png" alt="Akshaj Mamidi" />
+        </div>
+        <div class="mc-body">
+          <div class="mc-name">Akshaj Mamidi</div>
+          <div class="mc-role">Web Lead</div>
+        </div>
+      </div>
+
+      <div class="member-card reveal">
+        <div class="mc-photo">
+          <img src="https://static.wixstatic.com/media/f02e73_0863302d3037489bab1912b0e61dfb9c~mv2.png" alt="Arjun Harshe" style="object-position: center 10%;" />
+        </div>
+        <div class="mc-body">
+          <div class="mc-name">Arjun Harshe</div>
+          <div class="mc-role">Product Manager</div>
+        </div>
+      </div>
+
+      <div class="member-card reveal">
+        <div class="mc-photo">
+          <img src="https://static.wixstatic.com/media/f02e73_61b1e2b635dc42349fb6db6486d20fd3~mv2.png" alt="Pradyumna Mandalapu" />
+        </div>
+        <div class="mc-body">
+          <div class="mc-name">Pradyumna Mandalapu</div>
+          <div class="mc-role">Blog Lead &amp; Social Media</div>
+        </div>
+      </div>
+
+      <div class="member-card reveal">
+        <div class="mc-photo">
+          <img src="photos/dhvani.jpg" alt="Dhvani" style="object-fit:cover; object-position:center 15%; width:100%; height:100%;" onerror="this.src='https://static.wixstatic.com/media/f02e73_23773825ad274b3f95d6c3d5eca55866~mv2.png'; this.style.objectPosition='50% top';" />
+        </div>
+        <div class="mc-body">
+          <div class="mc-name">Dhvani</div>
+          <div class="mc-role">Blog</div>
+        </div>
+      </div>
+
+      <div class="member-card reveal">
+        <div class="mc-photo">
+          <img src="https://static.wixstatic.com/media/462b5a_5336d74cc32b4925810a5de18211dd97~mv2.jpeg" alt="Ellie McLachlan" />
+        </div>
+        <div class="mc-body">
+          <div class="mc-name">Ellie McLachlan</div>
+          <div class="mc-role">Events Manager</div>
+        </div>
+      </div>
+
+      <div class="member-card reveal">
+        <div class="mc-photo">
+          <img src="https://static.wixstatic.com/media/462b5a_b5269c9876854c78a86f5d5109e7886e~mv2.png" alt="Richa Gawande" style="object-position: center 10%;" />
+        </div>
+        <div class="mc-body">
+          <div class="mc-name">Richa Gawande</div>
+          <div class="mc-role">Fundraising Lead</div>
+        </div>
+      </div>
+
+      <div class="member-card reveal">
+        <div class="mc-photo">
+          <img src="https://static.wixstatic.com/media/462b5a_2354471f6fc3476a8faacd053f116de2~mv2.jpeg" alt="Arnav Vishwakarma" />
+        </div>
+        <div class="mc-body">
+          <div class="mc-name">Arnav Vishwakarma</div>
+          <div class="mc-role">Outreach</div>
+        </div>
+      </div>
+
+      <div class="member-card reveal">
+        <div class="mc-photo">
+          <img src="https://static.wixstatic.com/media/f02e73_84a0d581f01e4126879321e15ae412bf~mv2.png" alt="Riva Joshi" />
+        </div>
+        <div class="mc-body">
+          <div class="mc-name">Riva Joshi</div>
+          <div class="mc-role">Website Lead</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- JOIN CTA -->
+<section id="join-cta">
+  <h2>Want to Join the Team?</h2>
+  <p>We're always looking for passionate students who want to make a difference. Start a chapter, join the HQ team, or volunteer at events.</p>
+  <div class="jc-btns">
+    <a href="mailto:internationalchildrenwellness@gmail.com" class="btn btn-teal">Reach Out to Us</a>
+    <a href="chapters.html" class="btn btn-outline-light">Start a Chapter</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;margin-bottom:4px;">
+          <img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" class="nav-logo-img"/>
+          <div><div class="nav-logo-text" style="color:white;font-size:1rem;">International Children's Wellness</div><div class="nav-logo-sub">Youth-Led Nonprofit</div></div>
+        </a>
+        <p>A youth-led nonprofit making pediatric cancer care accessible, compassionate, and equitable — for every child, everywhere.</p>
+        <div class="ft-social"><a href="https://instagram.com/internationalchildrenswellness" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a></div>
+      </div>
+      <div class="ft-col"><h4>Organization</h4><ul><li><a href="mission.html">Our Mission</a></li><li><a href="programs.html">Programs</a></li><li><a href="chapters.html">Chapters</a></li><li><a href="team.html">Meet the Team</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      <div class="ft-col"><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Volunteer</a></li><li><a href="chapters.html">Start a Chapter</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Partner with Us</a></li><li><a href="events.html">Past Events</a></li></ul></div>
+      <div class="ft-col"><h4>Contact</h4><div class="ft-contact-item">internationalchildrenwellness@gmail.com</div><div class="ft-contact-item">Issaquah / Sammamish, WA</div><div class="ft-contact-item">@internationalchildrenswellness</div></div>
+    </div>
+    <div class="ft-bottom"><p>© 2026 International Children's Wellness. All rights reserved.</p><div class="ein-chip">EIN: 93-2522549</div></div>
+  </div>
+</footer>
+
+<script>
+  const btn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
+  btn.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:0.08,rootMargin:'0px 0px -24px 0px'});
+  document.querySelectorAll('.reveal').forEach((el,_,all)=>{const p=el.parentElement;const s=[...p.children].filter(c=>c.classList.contains('reveal'));const i=s.indexOf(el);if(i>0)el.style.transitionDelay=`${i*0.07}s`;io.observe(el);});
+</script>
+</body>
+</html>

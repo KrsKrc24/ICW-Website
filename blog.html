@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog | International Children's Wellness</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    /* ── BLOG GRID ── */
+    #blog-main { background: var(--off-white); padding: 88px 5vw; }
+    .blog-inner { max-width: 1200px; margin: 0 auto; }
+
+    .blog-featured {
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 28px; margin-bottom: 52px;
+    }
+    .blog-feature-card {
+      border-radius: 22px; overflow: hidden; background: white;
+      box-shadow: var(--shadow-lg); transition: transform 0.3s;
+    }
+    .blog-feature-card:hover { transform: translateY(-5px); }
+    .bfc-thumb {
+      height: 260px; display: flex; align-items: center; justify-content: center;
+      font-size: 5rem; position: relative; overflow: hidden;
+    }
+    .bfc-thumb::before {
+      content:''; position:absolute; inset:0;
+      background: rgba(11,29,58,0.18);
+    }
+    .bft-1 { background: linear-gradient(145deg,#0B1D3A,#0EA5E9); }
+    .bft-2 { background: linear-gradient(145deg,#7C3AED,#C026D3); }
+    .bfc-body { padding: 28px 32px; }
+    .bfc-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .bfc-date { font-size: 0.73rem; color: var(--gray-500); font-weight: 500; }
+    .bfc-tag  { background: rgba(14,165,233,0.1); color: var(--teal-dark); padding: 3px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 700; }
+    .bfc-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.4rem; color: var(--navy); line-height: 1.35; margin-bottom: 12px; }
+    .bfc-excerpt { color: var(--gray-500); font-size: 0.9rem; line-height: 1.78; margin-bottom: 20px; }
+    .bfc-read { display: inline-flex; align-items: center; gap: 6px; color: var(--teal); font-weight: 700; font-size: 0.85rem; text-decoration: none; transition: gap 0.2s; }
+    .bfc-read:hover { gap: 10px; }
+
+    .blog-side-cards { display: flex; flex-direction: column; gap: 16px; }
+    .blog-side-card {
+      background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow);
+      display: flex; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .blog-side-card:hover { transform: translateX(4px); box-shadow: var(--shadow-lg); }
+    .bsc-thumb { width: 88px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+    .bst-1 { background: linear-gradient(135deg,#DBEAFE,#BFDBFE); }
+    .bst-2 { background: linear-gradient(135deg,#D1FAE5,#A7F3D0); }
+    .bst-3 { background: linear-gradient(135deg,#FEF3C7,#FDE68A); }
+    .bsc-body { padding: 16px 18px; flex: 1; }
+    .bsc-date  { font-size: 0.68rem; color: var(--gray-500); margin-bottom: 6px; font-weight: 500; }
+    .bsc-title { font-weight: 700; color: var(--navy); font-size: 0.85rem; line-height: 1.4; margin-bottom: 6px; }
+    .bsc-read  { font-size: 0.73rem; color: var(--teal); font-weight: 600; }
+
+    /* all posts grid */
+    .blog-all-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.4rem; color: var(--navy); margin-bottom: 28px; padding-bottom: 16px; border-bottom: 2px solid var(--gray-100); }
+    .blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .blog-card {
+      background: white; border-radius: 18px; overflow: hidden;
+      box-shadow: var(--shadow); transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .blog-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .bc-thumb {
+      height: 164px; display: flex; align-items: center; justify-content: center; font-size: 3rem;
+    }
+    .bct-1 { background: linear-gradient(135deg,#DBEAFE,#BFDBFE); }
+    .bct-2 { background: linear-gradient(135deg,#FCE7F3,#FBCFE8); }
+    .bct-3 { background: linear-gradient(135deg,#D1FAE5,#A7F3D0); }
+    .bct-4 { background: linear-gradient(135deg,#FEF3C7,#FDE68A); }
+    .bc-body { padding: 20px 22px; }
+    .bc-meta  { font-size: 0.72rem; color: var(--gray-500); margin-bottom: 9px; }
+    .bc-title { font-weight: 700; color: var(--navy); font-size: 0.93rem; line-height: 1.45; margin-bottom: 10px; }
+    .bc-snip  { font-size: 0.82rem; color: var(--gray-500); line-height: 1.68; margin-bottom: 14px; }
+    .bc-link  { display: inline-flex; align-items: center; gap: 5px; font-size: 0.8rem; font-weight: 700; color: var(--teal); text-decoration: none; transition: gap 0.2s; }
+    .bc-link:hover { gap: 9px; }
+
+    /* ── TOPICS ── */
+    #topics { background: white; padding: 72px 5vw; }
+    .topics-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .topics-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 40px; }
+    .topic-pill {
+      background: var(--off-white); border: 1px solid var(--gray-100);
+      border-radius: 14px; padding: 18px 20px; text-align: center;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .topic-pill:hover { border-color: var(--teal); background: rgba(14,165,233,0.04); }
+    .tp-ico  { font-size: 1.8rem; margin-bottom: 8px; }
+    .tp-name { font-weight: 700; color: var(--navy); font-size: 0.88rem; }
+
+    /* ── NEWSLETTER ── */
+    #newsletter { background: linear-gradient(145deg, var(--navy), #0f2d5c); padding: 80px 5vw; }
+    .nl-inner { max-width: 600px; margin: 0 auto; text-align: center; }
+    #newsletter h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 800; color: white; margin-bottom: 12px; }
+    #newsletter p  { color: rgba(255,255,255,0.65); font-size: 1rem; margin-bottom: 32px; }
+    .nl-form { display: flex; gap: 10px; max-width: 480px; margin: 0 auto; }
+    .nl-input {
+      flex: 1; padding: 13px 18px; border-radius: 10px; border: 1.5px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08); color: white; font-size: 0.9rem; outline: none;
+      transition: border-color 0.2s;
+    }
+    .nl-input::placeholder { color: rgba(255,255,255,0.4); }
+    .nl-input:focus { border-color: var(--teal); }
+    .nl-note { font-size: 0.75rem; color: rgba(255,255,255,0.35); margin-top: 12px; }
+
+    @media(max-width:1024px){ .blog-featured { grid-template-columns:1fr; } .blog-side-cards { display:grid; grid-template-columns:1fr 1fr; } }
+    @media(max-width:768px){ .blog-grid { grid-template-columns:1fr 1fr; } .topics-grid { grid-template-columns:repeat(2,1fr); } .nl-form { flex-direction:column; } .blog-side-cards { grid-template-columns:1fr; } }
+    @media(max-width:480px){ .blog-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" class="nav-logo-img"/><div><div class="nav-logo-text">International Children's Wellness</div><div class="nav-logo-sub">Youth-Led Nonprofit · EIN 93-2522549</div></div></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="mission.html">Mission</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="chapters.html">Chapters</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="donate.html" class="nav-cta">Donate</a></li>
+  </ul>
+  <button class="nav-menu-btn" id="menuBtn"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-orb page-hero-orb-1"></div>
+  <div class="page-hero-orb page-hero-orb-2"></div>
+  <div class="page-hero-inner">
+    <div class="page-hero-tag">ICW Stories</div>
+    <h1>News &amp; <span>Insights</span></h1>
+    <p>Perspectives, research, and stories from our community of change-makers — because sharing knowledge is part of creating change.</p>
+  </div>
+</div>
+
+<!-- BLOG MAIN -->
+<section id="blog-main">
+  <div class="blog-inner">
+
+    <!-- Featured -->
+    <div class="section-header reveal">
+      <div class="section-label">Featured</div>
+      <h2 class="section-title">Latest <span>Stories</span></h2>
+    </div>
+    <div class="blog-featured">
+      <div class="blog-feature-card reveal">
+        <div class="bfc-thumb bft-1" style="padding:0;"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=700&q=80" alt="Community fundraiser" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+        <div class="bfc-body">
+          <div class="bfc-meta"><span class="bfc-date">November 4, 2025 · 1 min read</span><span class="bfc-tag">Community</span></div>
+          <div class="bfc-title">Community Comes Together: ICW Raises Funds at MOD Pizza</div>
+          <p class="bfc-excerpt">Over 100 supporters turned a Tuesday night pizza dinner into a statement of collective purpose. Here's how a local restaurant partnership became one of ICW's most successful outreach moments — and what it taught us about the power of community giving.</p>
+          <a href="blog.html" class="bfc-read">Read on our website →</a>
+        </div>
+      </div>
+      <div class="blog-side-cards">
+        <div class="blog-side-card reveal">
+          <div class="bsc-thumb bst-1" style="padding:0;overflow:hidden;"><img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=200&q=80" alt="Hospital cards" style="width:100%;height:100%;object-fit:cover;"/></div>
+          <div class="bsc-body">
+            <div class="bsc-date">November 4, 2025 · 2 min read</div>
+            <div class="bsc-title">More Than a Card: How ICW Is Spreading Joy at Seattle Children's Hospital</div>
+            <a href="blog.html" class="bsc-read">Read →</a>
+          </div>
+        </div>
+        <div class="blog-side-card reveal">
+          <div class="bsc-thumb bst-2" style="padding:0;overflow:hidden;"><img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=200&q=80" alt="Healthcare" style="width:100%;height:100%;object-fit:cover;"/></div>
+          <div class="bsc-body">
+            <div class="bsc-date">October 5, 2025 · 2 min read</div>
+            <div class="bsc-title">Healthcare Shouldn't Be a Luxury: Fighting for Equitable Pediatric Care</div>
+            <a href="blog.html" class="bsc-read">Read →</a>
+          </div>
+        </div>
+        <div class="blog-side-card reveal">
+          <div class="bsc-thumb bst-3" style="padding:0;overflow:hidden;"><img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=200&q=80" alt="Research" style="width:100%;height:100%;object-fit:cover;"/></div>
+          <div class="bsc-body">
+            <div class="bsc-date">September 28, 2025 · 3 min read</div>
+            <div class="bsc-title">The Hidden Cost: How Financial Barriers Impact Childhood Leukemia Screening</div>
+            <a href="blog.html" class="bsc-read">Read →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- All Posts -->
+    <div class="blog-all-title reveal">All Posts</div>
+    <div class="blog-grid">
+
+      <div class="blog-card reveal">
+        <div class="bc-thumb bct-1" style="padding:0;"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&q=80" alt="Fundraiser" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+        <div class="bc-body">
+          <div class="bc-meta">November 4, 2025 · 1 min read · Community</div>
+          <div class="bc-title">Community Comes Together: ICW Raises Funds at MOD Pizza</div>
+          <div class="bc-snip">How a local pizza chain became a catalyst for community giving — and why creative partnerships like these are key to sustainable nonprofit impact.</div>
+          <a href="blog.html" class="bc-link">Read more →</a>
+        </div>
+      </div>
+
+      <div class="blog-card reveal">
+        <div class="bc-thumb bct-2" style="padding:0;"><img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=500&q=80" alt="Cards for children" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+        <div class="bc-body">
+          <div class="bc-meta">November 4, 2025 · 2 min read · Outreach</div>
+          <div class="bc-title">More Than a Card: How ICW Is Spreading Joy at Seattle Children's Hospital</div>
+          <div class="bc-snip">A handwritten card might seem small — but for a child in treatment, it's a powerful reminder that the whole community is rooting for them.</div>
+          <a href="blog.html" class="bc-link">Read more →</a>
+        </div>
+      </div>
+
+      <div class="blog-card reveal">
+        <div class="bc-thumb bct-3" style="padding:0;"><img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=500&q=80" alt="Healthcare equity" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+        <div class="bc-body">
+          <div class="bc-meta">October 5, 2025 · 2 min read · Advocacy</div>
+          <div class="bc-title">Healthcare Shouldn't Be a Luxury: Fighting for Equitable Pediatric Care</div>
+          <div class="bc-snip">Many underprivileged families lack the healthcare they deserve. We break down systemic barriers and what ICW is doing to tear them down.</div>
+          <a href="blog.html" class="bc-link">Read more →</a>
+        </div>
+      </div>
+
+      <div class="blog-card reveal">
+        <div class="bc-thumb bct-4" style="padding:0;"><img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=500&q=80" alt="Cancer research" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+        <div class="bc-body">
+          <div class="bc-meta">September 28, 2025 · 3 min read · Research</div>
+          <div class="bc-title">The Hidden Cost: How Financial Barriers Impact Childhood Leukemia Screening</div>
+          <div class="bc-snip">Leukemia is the most common childhood cancer. Yet financial obstacles — from lack of insurance to high out-of-pocket costs — prevent countless families from accessing early detection. Here's what we know, and what can change.</div>
+          <a href="blog.html" class="bc-link">Read more →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section id="topics">
+  <div class="topics-inner">
+    <div class="section-header center reveal">
+      <div class="section-label">Explore by Topic</div>
+      <h2 class="section-title">What We <span>Write About</span></h2>
+    </div>
+    <div class="topics-grid">
+      <div class="topic-pill reveal"><div class="tp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M9 3H5v11l7 7 7-7V3h-4"/><line x1="9" y1="3" x2="15" y2="3"/></svg></div><div class="tp-name">Cancer Research</div></div>
+      <div class="topic-pill reveal"><div class="tp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="tp-name">Health Equity</div></div>
+      <div class="topic-pill reveal"><div class="tp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="tp-name">Patient Stories</div></div>
+      <div class="topic-pill reveal"><div class="tp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="tp-name">Hospital Outreach</div></div>
+      <div class="topic-pill reveal"><div class="tp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="tp-name">Global Impact</div></div>
+      <div class="topic-pill reveal"><div class="tp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><div class="tp-name">Youth Leadership</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="nl-inner">
+    <div class="reveal">
+      <div class="section-label" style="color:var(--teal);">Stay Connected</div>
+      <h2>Get ICW Stories in Your Inbox</h2>
+      <p>Follow our latest events, research, and impact stories. No spam — just meaningful updates from a mission that matters.</p>
+      <div class="nl-form">
+        <input type="email" class="nl-input" placeholder="your@email.com" />
+        <button class="btn btn-teal" onclick="alert('Thank you! We'll be in touch soon.')">Subscribe</button>
+      </div>
+      <div class="nl-note">Or follow us on Instagram @internationalchildrenswellness for daily updates.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand"><a href="index.html" class="nav-logo" style="display:inline-flex;margin-bottom:4px;"><img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" class="nav-logo-img"/><div><div class="nav-logo-text" style="color:white;font-size:1rem;">International Children's Wellness</div><div class="nav-logo-sub">Youth-Led Nonprofit</div></div></a><p>A youth-led nonprofit making pediatric cancer care accessible, compassionate, and equitable — for every child, everywhere.</p><div class="ft-social"><a href="https://instagram.com/internationalchildrenswellness" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a></div></div>
+      <div class="ft-col"><h4>Organization</h4><ul><li><a href="mission.html">Our Mission</a></li><li><a href="programs.html">Programs</a></li><li><a href="chapters.html">Chapters</a></li><li><a href="team.html">Meet the Team</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      <div class="ft-col"><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Volunteer</a></li><li><a href="chapters.html">Start a Chapter</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Partner with Us</a></li><li><a href="events.html">Past Events</a></li></ul></div>
+      <div class="ft-col"><h4>Contact</h4><div class="ft-contact-item">internationalchildrenwellness@gmail.com</div><div class="ft-contact-item">Issaquah / Sammamish, WA</div><div class="ft-contact-item">@internationalchildrenswellness</div></div>
+    </div>
+    <div class="ft-bottom"><p>© 2026 International Children's Wellness. All rights reserved.</p><div class="ein-chip">EIN: 93-2522549</div></div>
+  </div>
+</footer>
+
+<script>
+  const btn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
+  btn.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:0.08,rootMargin:'0px 0px -24px 0px'});
+  document.querySelectorAll('.reveal').forEach((el,_,all)=>{const p=el.parentElement;const s=[...p.children].filter(c=>c.classList.contains('reveal'));const i=s.indexOf(el);if(i>0)el.style.transitionDelay=`${i*0.08}s`;io.observe(el);});
+</script>
+</body>
+</html>

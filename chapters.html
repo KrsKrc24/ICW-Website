@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chapters | International Children's Wellness</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    /* ══ KEYFRAMES ══ */
+    @keyframes fadeUp   { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:none} }
+    @keyframes countUp  { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
+    @keyframes shimmer  { 0%{background-position:-400px 0} 100%{background-position:400px 0} }
+    @keyframes floatUp  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    @keyframes ringPulse{ 0%{transform:scale(1);opacity:.65} 100%{transform:scale(2.2);opacity:0} }
+    @keyframes gradFlow { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+    /* ── GLOBAL MAP STATS ── */
+    #ch-overview { background: var(--off-white); padding: 88px 5vw; }
+    .ch-ov-inner { max-width: 1200px; margin: 0 auto; }
+    .ch-ov-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .ch-ov-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .ch-stat-box {
+      background: white; border-radius: 18px; padding: 32px 24px; text-align: center;
+      box-shadow: var(--shadow); transition: transform 0.2s;
+    }
+    .ch-stat-box:hover { transform: translateY(-3px); }
+    .csb-num { font-size: 2.6rem; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 8px; }
+    .csb-lbl { font-size: 0.82rem; color: var(--gray-500); font-weight: 500; }
+    .csb-1 .csb-num { color: var(--teal-dark); }
+    .csb-2 .csb-num { color: var(--coral); }
+    .csb-3 .csb-num { color: var(--purple); }
+    .csb-4 .csb-num { color: var(--green); }
+    .ch-body { color: var(--gray-500); font-size: 1rem; line-height: 1.85; margin-bottom: 20px; }
+
+    /* ── CHAPTER DIRECTORY ── */
+    #ch-directory { background: white; padding: 88px 5vw; }
+    .ch-dir-inner { max-width: 1100px; margin: 0 auto; }
+    .ch-region-title {
+      font-weight: 800; font-size: 1.1rem; color: var(--navy);
+      padding: 14px 0; border-bottom: 2px solid var(--gray-100); margin-bottom: 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .ch-region-title span { font-size: 1.4rem; }
+    .ch-cards-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 52px; }
+    .ch-card {
+      background: white; border: 1px solid var(--gray-100); border-radius: 16px; padding: 24px;
+      box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .ch-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .ch-card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .ch-flag { font-size: 2rem; }
+    .ch-card-loc { font-weight: 800; color: var(--navy); font-size: 0.95rem; margin-bottom: 2px; }
+    .ch-card-country { font-size: 0.75rem; color: var(--gray-500); font-weight: 500; }
+    .ch-badge {
+      display: inline-block; padding: 3px 10px; border-radius: 100px;
+      font-size: 0.7rem; font-weight: 700; margin-bottom: 12px;
+    }
+    .cb-hq     { background: rgba(14,165,233,0.1); color: var(--teal-dark); }
+    .cb-active { background: rgba(16,185,129,0.1); color: #047857; }
+    .cb-grow   { background: rgba(249,115,22,0.1); color: #C2410C; }
+    .ch-members { font-size: 0.82rem; color: var(--gray-700); line-height: 1.65; }
+    .ch-members strong { color: var(--navy); }
+
+    /* ── START A CHAPTER ── */
+    #start-chapter { background: var(--off-white); padding: 88px 5vw; }
+    .sc-inner { max-width: 1100px; margin: 0 auto; }
+    .sc-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .sc-steps { display: flex; flex-direction: column; gap: 20px; }
+    .sc-step {
+      display: flex; gap: 20px; align-items: flex-start;
+      background: white; border-radius: 14px; padding: 22px 24px; box-shadow: var(--shadow);
+    }
+    .sc-step-num {
+      width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 900; font-size: 1rem;
+    }
+    .sc-step h3 { font-weight: 700; color: var(--navy); font-size: 0.93rem; margin-bottom: 5px; }
+    .sc-step p  { font-size: 0.83rem; color: var(--gray-500); line-height: 1.65; }
+    .sc-cta-card {
+      background: linear-gradient(145deg, var(--navy), #0f2d5c);
+      border-radius: 24px; padding: 48px 40px; text-align: center;
+    }
+    .sc-cta-card h3 { color: white; font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 14px; }
+    .sc-cta-card p  { color: rgba(255,255,255,0.68); font-size: 0.95rem; line-height: 1.75; margin-bottom: 28px; }
+    .sc-cta-card .btn { display: block; margin-bottom: 12px; text-align: center; }
+
+    /* ── GLOBE SECTION ── */
+    #ch-globe { background:#040b18; padding:110px 5vw; position:relative; overflow:hidden; }
+    #ch-globe::before { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 70% 60% at 60% 50%,rgba(14,165,233,0.06),transparent); }
+    .chg-inner { max-width:1300px; margin:0 auto; display:grid; grid-template-columns:1fr 1.1fr; gap:80px; align-items:center; }
+    .chg-overline { display:flex; align-items:center; gap:12px; font-size:0.7rem; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:0.16em; margin-bottom:20px; }
+    .chg-overline::before { content:''; display:block; width:28px; height:1px; background:var(--teal); }
+    .chg-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,3.4vw,3.4rem); font-weight:800; color:white; line-height:1.1; margin-bottom:18px; }
+    .chg-title em { color:var(--teal); font-style:normal; }
+    .chg-body { color:rgba(255,255,255,0.46); font-size:1rem; line-height:1.88; margin-bottom:36px; }
+    .chg-stats { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:36px; }
+    .chg-stat { background:rgba(255,255,255,0.04); border:1px solid rgba(14,165,233,0.12); border-radius:14px; padding:20px 22px; }
+    .chg-stat-num { font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; color:white; line-height:1; }
+    .chg-stat-lbl { font-size:0.72rem; color:rgba(255,255,255,0.38); margin-top:5px; font-weight:500; }
+    #chGlobeViz { position:relative; }
+    #chGlobeViz svg { filter:drop-shadow(0 0 44px rgba(14,165,233,0.22)); cursor:grab; display:block; }
+    #chGlobeViz svg:active { cursor:grabbing; }
+    #chGlobeTooltip { position:absolute; background:rgba(11,29,58,0.96); border:1px solid rgba(14,165,233,0.35); border-radius:9px; padding:8px 15px; font-size:0.78rem; color:white; font-weight:600; pointer-events:none; white-space:nowrap; display:none; z-index:20; transform:translate(-50%,-100%); margin-top:-10px; }
+    .chg-hint { font-size:0.7rem; color:rgba(255,255,255,0.2); text-align:center; margin-top:12px; letter-spacing:0.04em; }
+    .chg-legend { display:flex; flex-wrap:wrap; gap:14px; }
+    .chg-leg-item { display:flex; align-items:center; gap:8px; font-size:0.75rem; color:rgba(255,255,255,0.55); font-weight:600; }
+    .chg-leg-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+    .chg-leg-hq { background:#F97316; box-shadow:0 0 7px rgba(249,115,22,0.7); }
+    .chg-leg-ch { background:#0EA5E9; box-shadow:0 0 7px rgba(14,165,233,0.7); }
+
+    /* ── STAT BOX ANIMATIONS ── */
+    .ch-stat-box { animation: floatUp 5s ease-in-out infinite; }
+    .ch-stat-box:nth-child(2) { animation-delay: 0.8s; }
+    .ch-stat-box:nth-child(3) { animation-delay: 1.6s; }
+    .ch-stat-box:nth-child(4) { animation-delay: 2.4s; }
+    .csb-num { transition: color 0.3s; }
+    .ch-stat-box:hover .csb-num { color: var(--teal) !important; }
+
+    /* ── PILL HOVER ── */
+    .ch-pill { transition: border-color 0.2s, transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.22s; }
+    .ch-pill:hover { border-color: var(--teal); transform: translateY(-4px) scale(1.03); box-shadow: 0 12px 28px rgba(14,165,233,0.14); }
+
+    @media(max-width:1100px){ .chg-inner { grid-template-columns:1fr; } }
+    @media(max-width:1024px){
+      .ch-ov-grid { grid-template-columns:1fr; gap:44px; }
+      .sc-layout  { grid-template-columns:1fr; gap:44px; }
+    }
+    @media(max-width:768px){ .ch-cards-grid { grid-template-columns:1fr 1fr; } }
+    @media(max-width:480px){ .ch-cards-grid { grid-template-columns:1fr; } .ch-ov-stats { grid-template-columns:1fr 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" class="nav-logo-img"/><div><div class="nav-logo-text">International Children's Wellness</div><div class="nav-logo-sub">Youth-Led Nonprofit · EIN 93-2522549</div></div></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="mission.html">Mission</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="chapters.html" class="active">Chapters</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="donate.html" class="nav-cta">Donate</a></li>
+  </ul>
+  <button class="nav-menu-btn" id="menuBtn"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-orb page-hero-orb-1"></div>
+  <div class="page-hero-orb page-hero-orb-2"></div>
+  <div class="page-hero-inner">
+    <div class="page-hero-tag">Global Network</div>
+    <h1>21+ Chapters <span>Worldwide</span></h1>
+    <p>From Issaquah to Tampa, Accra to Bangalore — our student-led chapters are driving change in communities across 4 continents.</p>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section id="ch-overview">
+  <div class="ch-ov-inner">
+    <div class="ch-ov-grid">
+      <div class="reveal">
+        <div class="section-label">Our Global Presence</div>
+        <h2 class="section-title">A Movement That <span>Knows No Borders</span></h2>
+        <p class="ch-body">ICW's chapter model empowers students everywhere to take ownership of the fight for pediatric health equity. Each chapter is student-led and community-focused — bringing ICW's programs to their local hospitals, schools, and events.</p>
+        <p class="ch-body">Whether organizing care package drives, hosting fundraising events, or conducting educational outreach, every chapter is a force multiplier for our mission — and proof that young people anywhere can change everything.</p>
+        <a href="#start-chapter" class="btn btn-teal">Start a Chapter Near You</a>
+      </div>
+      <div class="ch-ov-stats reveal">
+        <div class="ch-stat-box csb-1"><div class="csb-num">21+</div><div class="csb-lbl">Active Chapters</div></div>
+        <div class="ch-stat-box csb-2"><div class="csb-num">4</div><div class="csb-lbl">Continents</div></div>
+        <div class="ch-stat-box csb-3"><div class="csb-num">100+</div><div class="csb-lbl">Volunteers</div></div>
+        <div class="ch-stat-box csb-4"><div class="csb-num">2023</div><div class="csb-lbl">Founded</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBE SECTION -->
+<section id="ch-globe">
+  <div class="chg-inner">
+    <div class="reveal">
+      <div class="chg-overline">Interactive Map</div>
+      <h2 class="chg-title">Our Chapters,<br/><em>On the Globe</em></h2>
+      <p class="chg-body">Every dot is a team of student leaders. Drag the globe to explore our full network — from Issaquah HQ to Accra, from Bangalore to Doha.</p>
+      <div class="chg-stats">
+        <div class="chg-stat">
+          <div class="chg-stat-num" data-target="21" data-suffix="+">0+</div>
+          <div class="chg-stat-lbl">Active Chapters</div>
+        </div>
+        <div class="chg-stat">
+          <div class="chg-stat-num" data-target="4">0</div>
+          <div class="chg-stat-lbl">Continents</div>
+        </div>
+        <div class="chg-stat">
+          <div class="chg-stat-num" data-target="100" data-suffix="+">0+</div>
+          <div class="chg-stat-lbl">Volunteers</div>
+        </div>
+        <div class="chg-stat">
+          <div class="chg-stat-num" data-target="8">0</div>
+          <div class="chg-stat-lbl">Countries</div>
+        </div>
+      </div>
+      <div class="chg-legend">
+        <div class="chg-leg-item"><div class="chg-leg-dot chg-leg-hq"></div>Headquarters — Issaquah, WA</div>
+        <div class="chg-leg-item"><div class="chg-leg-dot chg-leg-ch"></div>Active Chapter</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div id="chGlobeViz">
+        <div id="chGlobeTooltip"></div>
+      </div>
+      <p class="chg-hint">Drag to rotate · Hover to explore</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIRECTORY -->
+<section id="ch-directory">
+  <div class="ch-dir-inner">
+    <div class="section-header reveal">
+      <div class="section-label">Chapter Directory</div>
+      <h2 class="section-title">Find a <span>Chapter</span></h2>
+    </div>
+
+    <!-- All Chapters Grid -->
+    <style>
+      .ch-all-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 40px; }
+      .ch-pill {
+        background: white; border: 1px solid var(--gray-100); border-radius: 12px;
+        padding: 14px 16px; box-shadow: var(--shadow);
+        transition: border-color 0.2s, transform 0.2s;
+      }
+      .ch-pill:hover { border-color: var(--teal); transform: translateY(-2px); }
+      .ch-pill-loc { font-weight: 700; font-size: 0.85rem; color: var(--navy); margin-bottom: 2px; }
+      .ch-pill-region { font-size: 0.72rem; color: var(--gray-500); font-weight: 500; }
+      .ch-pill-badge { display: inline-block; margin-top: 8px; padding: 2px 10px; border-radius: 100px; font-size: 0.67rem; font-weight: 700; }
+      .cpb-hq { background: rgba(14,165,233,0.1); color: var(--teal-dark); }
+      .cpb-active { background: rgba(16,185,129,0.1); color: #047857; }
+      .cpb-grow { background: rgba(249,115,22,0.1); color: #C2410C; }
+      @media(max-width:1024px){ .ch-all-grid { grid-template-columns: repeat(3,1fr); } }
+      @media(max-width:768px){ .ch-all-grid { grid-template-columns: repeat(2,1fr); } }
+      @media(max-width:480px){ .ch-all-grid { grid-template-columns: 1fr; } }
+    </style>
+
+    <div class="ch-region-title reveal" style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--navy);border-bottom:2px solid var(--gray-100);padding-bottom:10px;margin-bottom:20px;font-weight:800;">United States</div>
+    <div class="ch-all-grid">
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Issaquah / Sammamish, WA</div><div class="ch-pill-region">Washington · Headquarters</div><span class="ch-pill-badge cpb-hq">HQ</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Snoqualmie, WA</div><div class="ch-pill-region">Washington</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Lynwood, WA</div><div class="ch-pill-region">Washington</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Fremont, CA</div><div class="ch-pill-region">California</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Folsom, CA</div><div class="ch-pill-region">California</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">San Jose, CA</div><div class="ch-pill-region">California</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">California (General)</div><div class="ch-pill-region">California</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Tampa, FL</div><div class="ch-pill-region">Florida</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Orlando, FL</div><div class="ch-pill-region">Florida</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Suwanee, GA</div><div class="ch-pill-region">Georgia</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Georgia (General)</div><div class="ch-pill-region">Georgia</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Chicago, IL</div><div class="ch-pill-region">Illinois</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Massachusetts</div><div class="ch-pill-region">Massachusetts</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">New York City, NY</div><div class="ch-pill-region">New York</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Cary, NC</div><div class="ch-pill-region">North Carolina</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Round Rock, TX</div><div class="ch-pill-region">Texas</div><span class="ch-pill-badge cpb-active">Active</span></div>
+    </div>
+
+    <div class="ch-region-title reveal" style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--navy);border-bottom:2px solid var(--gray-100);padding-bottom:10px;margin-bottom:20px;margin-top:36px;font-weight:800;">Africa</div>
+    <div class="ch-all-grid">
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Tema, Ghana</div><div class="ch-pill-region">Ghana</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Accra, Ghana</div><div class="ch-pill-region">Ghana — DPS International</div><span class="ch-pill-badge cpb-active">Active</span></div>
+    </div>
+
+    <div class="ch-region-title reveal" style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--navy);border-bottom:2px solid var(--gray-100);padding-bottom:10px;margin-bottom:20px;margin-top:36px;font-weight:800;">Asia &amp; Middle East</div>
+    <div class="ch-all-grid">
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Delhi, India</div><div class="ch-pill-region">India</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Bangalore, India</div><div class="ch-pill-region">India — Hospital Outreach</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Kathmandu, Nepal</div><div class="ch-pill-region">Nepal</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Nepal (General)</div><div class="ch-pill-region">Nepal</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Doha, Qatar</div><div class="ch-pill-region">Qatar</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Saudi Arabia</div><div class="ch-pill-region">Saudi Arabia</div><span class="ch-pill-badge cpb-active">Active</span></div>
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Abu Dhabi, UAE</div><div class="ch-pill-region">United Arab Emirates</div><span class="ch-pill-badge cpb-active">Active</span></div>
+    </div>
+
+    <div class="ch-region-title reveal" style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--navy);border-bottom:2px solid var(--gray-100);padding-bottom:10px;margin-bottom:20px;margin-top:36px;font-weight:800;">Expanding</div>
+    <div class="ch-all-grid">
+      <div class="ch-pill reveal"><div class="ch-pill-loc">Additional Regions</div><div class="ch-pill-region">Worldwide — Forming Now</div><span class="ch-pill-badge cpb-grow">Growing</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- START A CHAPTER -->
+<section id="start-chapter">
+  <div class="sc-inner">
+    <div class="section-header center reveal">
+      <div class="section-label">Join the Network</div>
+      <h2 class="section-title">Start a <span>Chapter</span></h2>
+      <p class="section-sub">You don't need experience — just passion. ICW gives you everything you need to bring our mission to your school or community.</p>
+    </div>
+    <div class="sc-layout">
+      <div class="sc-steps">
+        <div class="sc-step reveal">
+          <div class="sc-step-num">1</div>
+          <div><h3>Reach Out to ICW HQ</h3><p>Email us at internationalchildrenwellness@gmail.com expressing your interest. Tell us about your school, community, and why you want to start a chapter.</p></div>
+        </div>
+        <div class="sc-step reveal">
+          <div class="sc-step-num">2</div>
+          <div><h3>Get Onboarded</h3><p>HQ will provide you with the ICW chapter handbook, program guidelines, fundraising resources, and direct mentorship from existing chapter leaders.</p></div>
+        </div>
+        <div class="sc-step reveal">
+          <div class="sc-step-num">3</div>
+          <div><h3>Build Your Team</h3><p>Recruit fellow students who share your passion. Chapters typically start with 4–6 members and grow from there — every person makes a difference.</p></div>
+        </div>
+        <div class="sc-step reveal">
+          <div class="sc-step-num">4</div>
+          <div><h3>Launch Your First Initiative</h3><p>Start with a care package drive, awareness booth, or small fundraiser. HQ supports your first event every step of the way.</p></div>
+        </div>
+        <div class="sc-step reveal">
+          <div class="sc-step-num">5</div>
+          <div><h3>Join the Global Network</h3><p>Your chapter becomes part of ICW's growing global community — connecting with peers on 4 continents working toward the same mission.</p></div>
+        </div>
+      </div>
+      <div class="sc-cta-card reveal">
+        <h3>Ready to Start?</h3>
+        <p>It takes one motivated student to change a community. Whether you're in Washington, Tampa, Ghana, or anywhere else — there's a place for you in ICW.</p>
+        <a href="mailto:internationalchildrenwellness@gmail.com" class="btn btn-teal">Email Us to Get Started</a>
+        <a href="team.html" class="btn btn-outline-light" style="margin-top:0;">Meet Existing Chapter Leaders</a>
+        <div style="margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.1);">
+          <div style="color:rgba(255,255,255,0.5);font-size:0.8rem;margin-bottom:8px;">Questions? Reach us at</div>
+          <div style="color:var(--teal);font-weight:600;font-size:0.9rem;">internationalchildrenwellness@gmail.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand"><a href="index.html" class="nav-logo" style="display:inline-flex;margin-bottom:4px;"><img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" class="nav-logo-img"/><div><div class="nav-logo-text" style="color:white;font-size:1rem;">International Children's Wellness</div><div class="nav-logo-sub">Youth-Led Nonprofit</div></div></a><p>A youth-led nonprofit making pediatric cancer care accessible, compassionate, and equitable — for every child, everywhere.</p><div class="ft-social"><a href="https://instagram.com/internationalchildrenswellness" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a></div></div>
+      <div class="ft-col"><h4>Organization</h4><ul><li><a href="mission.html">Our Mission</a></li><li><a href="programs.html">Programs</a></li><li><a href="chapters.html">Chapters</a></li><li><a href="team.html">Meet the Team</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      <div class="ft-col"><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Volunteer</a></li><li><a href="chapters.html">Start a Chapter</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Partner with Us</a></li><li><a href="events.html">Past Events</a></li></ul></div>
+      <div class="ft-col"><h4>Contact</h4><div class="ft-contact-item">internationalchildrenwellness@gmail.com</div><div class="ft-contact-item">Issaquah / Sammamish, WA</div><div class="ft-contact-item">@internationalchildrenswellness</div></div>
+    </div>
+    <div class="ft-bottom"><p>© 2026 International Children's Wellness. All rights reserved.</p><div class="ein-chip">EIN: 93-2522549</div></div>
+  </div>
+</footer>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
+<script>
+/* ── NAV ── */
+const btn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
+btn.addEventListener('click',()=>links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+
+/* ── REVEAL ── */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    e.target.classList.add('in');
+    e.target.querySelectorAll('.chg-stat-num[data-target]').forEach(el=>{
+      const t=parseInt(el.dataset.target,10), sfx=el.dataset.suffix||'', dur=1600;
+      let s=null;
+      (function tick(ts){
+        if(!s)s=ts;
+        const p=Math.min((ts-s)/dur,1), v=Math.round((1-Math.pow(1-p,3))*t);
+        el.textContent=v+sfx;
+        if(p<1)requestAnimationFrame(tick); else el.textContent=t+sfx;
+      })(performance.now());
+    });
+  });
+},{threshold:0.1,rootMargin:'0px 0px -28px 0px'});
+document.querySelectorAll('.reveal').forEach((el,_,all)=>{
+  const p=el.parentElement;
+  const s=[...p.children].filter(c=>c.classList.contains('reveal'));
+  const i=s.indexOf(el);
+  if(i>0)el.style.transitionDelay=`${i*0.09}s`;
+  io.observe(el);
+});
+
+/* ── CHAPTERS GLOBE ── */
+(async function initChGlobe(){
+  const container=document.getElementById('chGlobeViz');
+  const tooltip=document.getElementById('chGlobeTooltip');
+  if(!container||!tooltip) return;
+  const W=Math.min(560,container.parentElement.offsetWidth||560), H=W, R=W*0.435;
+
+  const svg=d3.select(container).append('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('width','100%');
+  const defs=svg.append('defs');
+  const glow=defs.append('filter').attr('id','chglow').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
+  glow.append('feGaussianBlur').attr('stdDeviation','2.8').attr('result','blur');
+  const fm=glow.append('feMerge');fm.append('feMergeNode').attr('in','blur');fm.append('feMergeNode').attr('in','SourceGraphic');
+  defs.append('radialGradient').attr('id','chocean').attr('cx','50%').attr('cy','40%').attr('r','50%')
+    .html('<stop offset="0%" stop-color="#0d2040"/><stop offset="100%" stop-color="#060d1e"/>');
+
+  const projection=d3.geoOrthographic().scale(R).translate([W/2,H/2]).rotate([20,-15,0]);
+  const pathGen=d3.geoPath().projection(projection);
+  const graticule=d3.geoGraticule();
+
+  svg.append('circle').attr('cx',W/2).attr('cy',H/2).attr('r',R).attr('fill','url(#chocean)');
+  svg.append('circle').attr('cx',W/2).attr('cy',H/2).attr('r',R).attr('fill','none').attr('stroke','rgba(14,165,233,0.18)').attr('stroke-width',1.5);
+
+  const CHAPTERS=[
+    {lat:47.52,lng:-122.05,name:"Issaquah, WA (HQ)",hq:true},
+    {lat:37.33,lng:-121.89,name:"San Jose, CA"},
+    {lat:38.68,lng:-121.17,name:"Folsom, CA"},
+    {lat:37.55,lng:-122.05,name:"Fremont, CA"},
+    {lat:36.17,lng:-115.14,name:"California (General)"},
+    {lat:27.95,lng:-82.46,name:"Tampa, FL"},
+    {lat:28.54,lng:-81.38,name:"Orlando, FL"},
+    {lat:34.05,lng:-84.07,name:"Suwanee, GA"},
+    {lat:33.75,lng:-84.39,name:"Georgia (General)"},
+    {lat:41.88,lng:-87.63,name:"Chicago, IL"},
+    {lat:42.36,lng:-71.06,name:"Massachusetts"},
+    {lat:40.71,lng:-74.01,name:"New York City, NY"},
+    {lat:35.79,lng:-78.78,name:"Cary, NC"},
+    {lat:30.51,lng:-97.68,name:"Round Rock, TX"},
+    {lat:47.82,lng:-122.28,name:"Lynwood, WA"},
+    {lat:47.62,lng:-122.04,name:"Sammamish, WA"},
+    {lat:47.52,lng:-121.83,name:"Snoqualmie, WA"},
+    {lat:28.63,lng:77.22,name:"Delhi, India"},
+    {lat:12.97,lng:77.59,name:"Bangalore, India"},
+    {lat:27.71,lng:85.31,name:"Kathmandu, Nepal"},
+    {lat:27.90,lng:84.00,name:"Nepal (General)"},
+    {lat:5.56,lng:-0.20,name:"Accra/Tema, Ghana"},
+    {lat:25.29,lng:51.53,name:"Doha, Qatar"},
+    {lat:24.69,lng:46.72,name:"Saudi Arabia"},
+    {lat:24.45,lng:54.40,name:"Abu Dhabi, UAE"}
+  ];
+
+  function isVisible(lat,lng){
+    const rot=projection.rotate();
+    return d3.geoDistance([lng,lat],[-rot[0],-rot[1]])<Math.PI/2;
+  }
+
+  let gratPath,landPath,dotsGroup,rotAngle=20,isDragging=false;
+
+  try{
+    const world=await d3.json('https://unpkg.com/world-atlas@2/countries-110m.json');
+    const land=topojson.feature(world,world.objects.land);
+    gratPath=svg.append('path').datum(graticule()).attr('class','globe-graticule').attr('d',pathGen);
+    landPath=svg.append('path').datum(land).attr('class','globe-land').attr('d',pathGen);
+    dotsGroup=svg.append('g');
+
+    function redraw(){
+      if(landPath)landPath.attr('d',pathGen);
+      if(gratPath)gratPath.attr('d',pathGen);
+      dotsGroup.selectAll('*').remove();
+      CHAPTERS.forEach(ch=>{
+        if(!isVisible(ch.lat,ch.lng))return;
+        const[x,y]=projection([ch.lng,ch.lat]);
+        if(ch.hq){
+          const pulse=dotsGroup.append('circle').attr('cx',x).attr('cy',y).attr('r',7).attr('fill','none').attr('stroke','#F97316').attr('stroke-width',1.5).attr('opacity',0.5);
+          (function pulsate(){pulse.attr('r',7).attr('opacity',0.5).transition().duration(1400).ease(d3.easeLinear).attr('r',14).attr('opacity',0).on('end',pulsate);})();
+          dotsGroup.append('circle').attr('cx',x).attr('cy',y).attr('r',5.5).attr('fill','#F97316').attr('filter','url(#chglow)').style('cursor','pointer')
+            .on('mousemove',(event)=>{const r=container.getBoundingClientRect();tooltip.style.display='block';tooltip.textContent=ch.name;tooltip.style.left=(event.clientX-r.left)+'px';tooltip.style.top=(event.clientY-r.top-14)+'px';})
+            .on('mouseout',()=>tooltip.style.display='none');
+        } else {
+          dotsGroup.append('circle').attr('cx',x).attr('cy',y).attr('r',3.8).attr('fill','#0EA5E9').attr('filter','url(#chglow)').style('cursor','pointer')
+            .on('mousemove',(event)=>{const r=container.getBoundingClientRect();tooltip.style.display='block';tooltip.textContent=ch.name;tooltip.style.left=(event.clientX-r.left)+'px';tooltip.style.top=(event.clientY-r.top-14)+'px';})
+            .on('mouseout',()=>tooltip.style.display='none');
+        }
+      });
+    }
+
+    d3.timer(()=>{if(isDragging)return;rotAngle+=0.15;projection.rotate([rotAngle,-15,0]);redraw();});
+    svg.call(d3.drag()
+      .on('start',()=>{isDragging=true;svg.style('cursor','grabbing');})
+      .on('drag',(event)=>{const r=projection.rotate();const lat=Math.max(-75,Math.min(75,r[1]-event.dy*0.4));const lng=r[0]+event.dx*0.4;projection.rotate([lng,lat,0]);rotAngle=lng;redraw();})
+      .on('end',()=>{isDragging=false;svg.style('cursor','grab');}));
+    redraw();
+  } catch(err){
+    container.innerHTML='<div style="text-align:center;padding:60px 20px;color:rgba(255,255,255,0.3);font-size:0.9rem;">Globe requires internet connection.</div>';
+  }
+})();
+</script>
+</body>
+</html>

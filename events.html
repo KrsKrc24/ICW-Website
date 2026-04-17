@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Events | International Children's Wellness</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    /* ── IMPACT BAR override ── */
+    #ev-impact { background: var(--navy); }
+
+    /* ── VERTICAL TIMELINE ── */
+    #timeline { background: var(--off-white); padding: 88px 5vw; }
+    .tl-inner { max-width: 980px; margin: 0 auto; }
+
+    .tl-year-marker {
+      display: flex; align-items: center; gap: 0;
+      margin: 0 0 40px; position: relative;
+    }
+    .tl-year-label {
+      background: var(--navy); color: white; font-weight: 900;
+      font-size: 1rem; padding: 8px 22px; border-radius: 100px;
+      letter-spacing: 0.04em; z-index: 1; position: relative;
+    }
+    .tl-year-label span { color: var(--teal); }
+    .tl-year-line { flex: 1; height: 2px; background: var(--gray-100); margin-left: 16px; }
+
+    /* the central spine */
+    .tl-spine { position: relative; padding-left: 36px; border-left: 2px solid var(--gray-100); margin-bottom: 16px; }
+
+    .tl-event {
+      position: relative; margin-bottom: 48px;
+    }
+    .tl-event:last-child { margin-bottom: 0; }
+
+    /* dot on spine */
+    .tl-dot {
+      position: absolute; left: -44px; top: 20px;
+      width: 16px; height: 16px; border-radius: 50%;
+      border: 3px solid white; box-shadow: 0 0 0 2px var(--teal);
+      background: var(--teal); z-index: 2;
+    }
+
+    .tl-card {
+      background: white; border-radius: 20px; overflow: hidden;
+      box-shadow: var(--shadow); transition: transform 0.25s, box-shadow 0.25s;
+      display: grid; grid-template-columns: 280px 1fr;
+    }
+    .tl-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+    .tl-card-img {
+      height: 100%; min-height: 220px; overflow: hidden; position: relative; flex-shrink: 0;
+      background: var(--gray-100);
+    }
+    .tl-card-img img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center;
+      display: block; transition: transform 0.4s ease;
+    }
+    .tl-card:hover .tl-card-img img { transform: scale(1.04); }
+
+    /* multi-photo layout */
+    .tl-img-grid {
+      display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+      height: 100%;
+    }
+    .tl-img-grid img {
+      width: 100%; height: 100%; object-fit: cover; border: 1px solid var(--gray-100);
+    }
+
+    .tl-card-body { padding: 28px 32px; display: flex; flex-direction: column; justify-content: center; }
+    .tl-date-badge {
+      display: inline-block; background: rgba(14,165,233,0.1); color: var(--teal-dark);
+      border-radius: 100px; padding: 4px 14px; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.04em; margin-bottom: 12px; width: fit-content;
+    }
+    .tl-event-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.3rem; color: var(--navy); line-height: 1.3; margin-bottom: 8px; }
+    .tl-event-loc   { font-size: 0.8rem; color: var(--gray-500); font-weight: 600; margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+    .tl-event-desc  { font-size: 0.88rem; color: var(--gray-500); line-height: 1.78; margin-bottom: 16px; flex: 1; }
+    .tl-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tl-tag { padding: 4px 12px; border-radius: 100px; font-size: 0.72rem; font-weight: 700; }
+    .tt-raised  { background: rgba(16,185,129,0.1); color: #047857; }
+    .tt-impact  { background: rgba(14,165,233,0.1); color: var(--teal-dark); }
+    .tt-intl    { background: rgba(139,92,246,0.1); color: #6D28D9; }
+    .tt-partner { background: rgba(249,115,22,0.1); color: #C2410C; }
+    .tt-debut   { background: rgba(11,29,58,0.08); color: var(--navy); }
+
+    /* ── UPCOMING ── */
+    #upcoming { background: white; padding: 72px 5vw; }
+    .up-inner { max-width: 900px; margin: 0 auto; }
+    .up-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .up-card { border: 2px dashed var(--gray-300); border-radius: 18px; padding: 28px; display: flex; gap: 18px; align-items: flex-start; transition: border-color 0.2s; }
+    .up-card:hover { border-color: var(--teal); }
+    .up-ico { font-size: 2.2rem; flex-shrink: 0; }
+    .up-title { font-weight: 800; color: var(--navy); font-size: 0.98rem; margin-bottom: 6px; }
+    .up-desc  { font-size: 0.85rem; color: var(--gray-500); line-height: 1.7; margin-bottom: 10px; }
+    .up-tag   { display: inline-block; background: rgba(14,165,233,0.1); color: var(--teal-dark); padding: 3px 12px; border-radius: 100px; font-size: 0.72rem; font-weight: 700; }
+
+    /* CTA */
+    #vol-cta { background: linear-gradient(145deg,var(--navy),#0f2d5c); padding: 80px 5vw; text-align:center; }
+    #vol-cta h2 { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.6rem); font-weight:800; color:white; margin-bottom:12px; }
+    #vol-cta p  { color:rgba(255,255,255,0.65); font-size:1rem; margin-bottom:32px; max-width:500px; margin-left:auto; margin-right:auto; }
+    .vc-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+    @media(max-width:768px){
+      .tl-card { grid-template-columns:1fr; }
+      .tl-card-img { min-height: 220px; max-height: 260px; }
+      .up-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" class="nav-logo-img"/>
+    <div><div class="nav-logo-text">International Children's Wellness</div><div class="nav-logo-sub">Youth-Led Nonprofit · EIN 93-2522549</div></div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="mission.html">Mission</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="chapters.html">Chapters</a></li>
+    <li><a href="events.html" class="active">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="donate.html" class="nav-cta">Donate</a></li>
+  </ul>
+  <button class="nav-menu-btn" id="menuBtn"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-orb page-hero-orb-1"></div>
+  <div class="page-hero-orb page-hero-orb-2"></div>
+  <div class="page-hero-inner">
+    <div class="page-hero-tag">Our Journey</div>
+    <h1>Events &amp; <span>Impact</span></h1>
+    <p>A visual timeline of every event, campaign, and milestone — from our first dance show in 2024 to our most recent partnership with Swedish Medical Center.</p>
+  </div>
+</div>
+
+<!-- IMPACT BAR -->
+<div id="ev-impact" class="impact-bar-section">
+  <div class="impact-bar">
+    <div class="impact-cell reveal"><div class="impact-num">$5K+</div><div class="impact-lbl">Total Raised Through Events</div></div>
+    <div class="impact-cell reveal"><div class="impact-num">8+</div><div class="impact-lbl">Events Organized</div></div>
+    <div class="impact-cell reveal"><div class="impact-num">100+</div><div class="impact-lbl">Community Supporters</div></div>
+    <div class="impact-cell reveal"><div class="impact-num">2</div><div class="impact-lbl">Countries Reached</div></div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="tl-inner">
+    <div class="section-header reveal">
+      <div class="section-label">Most Recent First</div>
+      <h2 class="section-title">Event <span>Timeline</span></h2>
+      <p class="section-sub">Every event that has brought us closer to our mission — in reverse chronological order.</p>
+    </div>
+
+    <!-- 2026 -->
+    <div class="tl-year-marker reveal">
+      <div class="tl-year-label">20<span>26</span></div>
+      <div class="tl-year-line"></div>
+    </div>
+    <div class="tl-spine">
+
+      <!-- Holi Booth Feb 2026 -->
+      <div class="tl-event reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-img">
+            <img src="https://static.wixstatic.com/media/f02e73_ba082a44a849465fb63f0248c18fecc9~mv2.png" alt="Holi Fundraising Booth" />
+          </div>
+          <div class="tl-card-body">
+            <div class="tl-date-badge">February 2026</div>
+            <div class="tl-event-title">Holi Fundraising Booth</div>
+            <div class="tl-event-loc">Community Event</div>
+            <p class="tl-event-desc">ICW brought awareness and fundraising energy to the vibrant Holi celebration — combining a prize spinner, candy distribution, interactive activities, and education about pediatric cancer to engage the community and raise funds.</p>
+            <div class="tl-tags">
+              <span class="tl-tag tt-impact">Community Engagement</span>
+              <span class="tl-tag tt-impact">Awareness Booth</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mammogram Van Jan 2026 -->
+      <div class="tl-event reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-img">
+            <img src="https://static.wixstatic.com/media/f02e73_d1fa277de7a642509cf07d2474c3b634~mv2.png" alt="Mammogram Van Tour" />
+          </div>
+          <div class="tl-card-body">
+            <div class="tl-date-badge">January 2026</div>
+            <div class="tl-event-title">Mammogram Van Tour</div>
+            <div class="tl-event-loc">Swedish Medical Center · Seattle, WA</div>
+            <p class="tl-event-desc">ICW partnered with Swedish Medical Center to sponsor a mobile mammogram van tour, bringing life-saving cancer screening directly to underserved communities across the Seattle area. A landmark collaboration with an established medical institution.</p>
+            <div class="tl-tags">
+              <span class="tl-tag tt-raised">$1,000 Donated</span>
+              <span class="tl-tag tt-partner">Swedish Medical Center</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /spine 2026 -->
+
+    <!-- 2025 -->
+    <div class="tl-year-marker reveal" style="margin-top:24px;">
+      <div class="tl-year-label">20<span>25</span></div>
+      <div class="tl-year-line"></div>
+    </div>
+    <div class="tl-spine">
+
+      <!-- MOD Pizza Oct 2025 -->
+      <div class="tl-event reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-img">
+            <img src="https://static.wixstatic.com/media/2ecd9f_5f02017f8bd64a2bb0657f9b5d638236~mv2.jpg" alt="MOD Pizza Fundraiser" />
+          </div>
+          <div class="tl-card-body">
+            <div class="tl-date-badge">October 2025</div>
+            <div class="tl-event-title">MOD Pizza Fundraiser</div>
+            <div class="tl-event-loc">MOD Pizza · Sammamish, WA</div>
+            <p class="tl-event-desc">Over 100 community supporters came out to MOD Pizza in Sammamish for a give-back night. A portion of all proceeds supported ICW's pediatric wellness and childhood cancer initiatives — proving local businesses and nonprofits can create real impact together.</p>
+            <div class="tl-tags">
+              <span class="tl-tag tt-impact">100+ Supporters</span>
+              <span class="tl-tag tt-partner">Restaurant Partnership</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ananda Mela Aug 2025 -->
+      <div class="tl-event reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-img">
+            <div class="tl-img-grid">
+              <img src="https://static.wixstatic.com/media/2ecd9f_c90ef08384464ea58f469db8c21b94dd~mv2.jpeg" alt="Ananda Mela 1" />
+              <img src="https://static.wixstatic.com/media/2ecd9f_f773bb1cce314456975394eafd211e5b~mv2.jpg" alt="Ananda Mela 2" />
+              <img src="https://static.wixstatic.com/media/2ecd9f_eb53b2cb5e5f4b8fa5abf32912b3bc6c~mv2.jpg" alt="Ananda Mela 3" />
+              <img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" style="object-fit:contain;background:#f8fafc;padding:12px;" />
+            </div>
+          </div>
+          <div class="tl-card-body">
+            <div class="tl-date-badge">August 2025</div>
+            <div class="tl-event-title">Awareness Booth — Ananda Mela</div>
+            <div class="tl-event-loc">Ananda Mela Festival · Pacific Northwest</div>
+            <p class="tl-event-desc">ICW set up an educational awareness and fundraising booth at Ananda Mela — one of the largest annual celebrations of Indian culture in the United States. Through speech, communication, and interactive activities, the team reached hundreds of attendees and raised $800.</p>
+            <div class="tl-tags">
+              <span class="tl-tag tt-raised">$800 Raised</span>
+              <span class="tl-tag tt-impact">Hundreds Reached</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seattle Children's Cards Jun 2025 -->
+      <div class="tl-event reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-img" style="background:linear-gradient(135deg,#e0f2fe,#bae6fd);display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="80" height="80"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="tl-card-body">
+            <div class="tl-date-badge">June 2025</div>
+            <div class="tl-event-title">Handmade Cards — Seattle Children's Hospital</div>
+            <div class="tl-event-loc">Seattle Children's Hospital · Seattle, WA</div>
+            <p class="tl-event-desc">ICW volunteers gathered to create heartfelt, handwritten cards delivered directly to children undergoing cancer treatment. Because healing isn't only physical — every card carried a message that someone out there was thinking of them and rooting for their recovery.</p>
+            <div class="tl-tags">
+              <span class="tl-tag tt-impact">Direct Patient Impact</span>
+              <span class="tl-tag tt-partner">Seattle Children's Hospital</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dance Charity Show ISKCON Apr 2025 -->
+      <div class="tl-event reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-img">
+            <div class="tl-img-grid">
+              <img src="https://static.wixstatic.com/media/2ecd9f_01bc481bb28847fbbf5640c16fd098b4~mv2.jpg" alt="Dance Show 1" />
+              <img src="https://static.wixstatic.com/media/2ecd9f_341811be48f846a39e051549e8b86ca2~mv2.jpg" alt="Dance Show 2" />
+              <img src="https://static.wixstatic.com/media/2ecd9f_0ca9e3d582754eab82fe101b4976cfa7~mv2.jpg" alt="Dance Show 3" />
+              <img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" style="object-fit:contain;background:#f8fafc;padding:12px;" />
+            </div>
+          </div>
+          <div class="tl-card-body">
+            <div class="tl-date-badge">April 2025</div>
+            <div class="tl-event-title">Dance Charity Show — ISKCON</div>
+            <div class="tl-event-loc">ISKCON Vedic Cultural Center</div>
+            <p class="tl-event-desc">A beautiful evening of cultural dance performances at the ISKCON Vedic Cultural Center, drawing an enthusiastic crowd and raising $600 for childhood cancer detection and treatment programs. Attendance grew significantly compared to ICW's debut event.</p>
+            <div class="tl-tags">
+              <span class="tl-tag tt-raised">$600 Raised</span>
+              <span class="tl-tag tt-impact">Cultural Performance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bangalore Cards Jan 2025 -->
+      <div class="tl-event reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-card-img" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="80" height="80"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="tl-card-body">
+            <div class="tl-date-badge">January 2025</div>
+            <div class="tl-event-title">Handmade Cards — Bangalore, India</div>
+            <div class="tl-event-loc">Sammprada Hospital · Bangalore, India</div>
+            <p class="tl-event-desc">ICW's first international outreach event — a community card-making campaign for children at Sammprada Hospital in Bangalore. This milestone marked ICW's expansion beyond the US and established our international commitment to bringing compassion across borders.</p>
+            <div class="tl-tags">
+              <span class="tl-tag tt-intl">First International Event</span>
+              <span class="tl-tag tt-partner">Sammprada Hospital</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /spine 2025 -->
+
+    <!-- 2024 -->
+    <div class="tl-year-marker reveal" style="margin-top:24px;">
+      <div class="tl-year-label">20<span>24</span></div>
+      <div class="tl-year-line"></div>
+    </div>
+    <div class="tl-spine">
+
+      <!-- Inaugural Dance Show Oct 2024 -->
+      <div class="tl-event reveal">
+        <div class="tl-dot" style="background:var(--coral);box-shadow:0 0 0 2px var(--coral);"></div>
+        <div class="tl-card">
+          <div class="tl-card-img">
+            <div class="tl-img-grid">
+              <img src="https://static.wixstatic.com/media/2ecd9f_c0a5737d6de34f6197b79a3769737d76~mv2.jpg" alt="Inaugural Dance Show 1" />
+              <img src="https://static.wixstatic.com/media/2ecd9f_8e417b8340254c999addcaf8fa82d846~mv2.avif" alt="Inaugural Dance Show 2" />
+              <img src="https://static.wixstatic.com/media/2ecd9f_1f38e14801814f8b9ccc5562adfa1c32~mv2.jpg" alt="Inaugural Dance Show 3" />
+              <img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" style="object-fit:contain;background:#f8fafc;padding:12px;" />
+            </div>
+          </div>
+          <div class="tl-card-body">
+            <div class="tl-date-badge" style="background:rgba(249,115,22,0.1);color:#C2410C;">October 2024</div>
+            <div class="tl-event-title">Inaugural Dance Charity Show</div>
+            <div class="tl-event-loc">Issaquah Community Center · Issaquah, WA</div>
+            <p class="tl-event-desc">ICW's very first public event — a debut dance charity show that launched our mission to the world. The show raised $500 for early cancer detection and set the tone for everything ICW would become: community-driven, youth-powered, and deeply compassionate.</p>
+            <div class="tl-tags">
+              <span class="tl-tag tt-raised">$500 Raised</span>
+              <span class="tl-tag tt-debut">ICW's Founding Event</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /spine 2024 -->
+
+  </div>
+</section>
+
+<!-- UPCOMING -->
+<section id="upcoming">
+  <div class="up-inner">
+    <div class="section-header reveal">
+      <div class="section-label">What's Next</div>
+      <h2 class="section-title">Stay <span>Connected</span></h2>
+    </div>
+    <div class="up-grid">
+      <div class="up-card reveal">
+        <div class="up-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div>
+          <div class="up-title">More Events Coming Soon</div>
+          <div class="up-desc">ICW runs community events year-round. Follow our Instagram for the latest announcements, volunteer calls, and upcoming fundraisers near you.</div>
+          <a href="https://instagram.com/internationalchildrenswellness" target="_blank" class="up-tag">@internationalchildrenswellness</a>
+        </div>
+      </div>
+      <div class="up-card reveal">
+        <div class="up-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="40" height="40"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div>
+          <div class="up-title">Want to Host an Event?</div>
+          <div class="up-desc">Partner with ICW to host a give-back night, awareness booth, or fundraising event at your school, business, or community space.</div>
+          <a href="mailto:internationalchildrenwellness@gmail.com" class="up-tag" style="display:inline-block;text-decoration:none;">Get in touch →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="vol-cta">
+  <h2>Be Part of the Next Event</h2>
+  <p>Join hundreds of volunteers who have helped us raise funds, deliver care, and change lives.</p>
+  <div class="vc-btns">
+    <a href="mailto:internationalchildrenwellness@gmail.com" class="btn btn-teal">Volunteer Now</a>
+    <a href="donate.html" class="btn btn-outline-light">Donate Instead</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;margin-bottom:4px;">
+          <img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" class="nav-logo-img"/>
+          <div><div class="nav-logo-text" style="color:white;font-size:1rem;">International Children's Wellness</div><div class="nav-logo-sub">Youth-Led Nonprofit</div></div>
+        </a>
+        <p>A youth-led nonprofit making pediatric cancer care accessible, compassionate, and equitable — for every child, everywhere.</p>
+        <div class="ft-social"><a href="https://instagram.com/internationalchildrenswellness" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a></div>
+      </div>
+      <div class="ft-col"><h4>Organization</h4><ul><li><a href="mission.html">Our Mission</a></li><li><a href="programs.html">Programs</a></li><li><a href="chapters.html">Chapters</a></li><li><a href="team.html">Meet the Team</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      <div class="ft-col"><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Volunteer</a></li><li><a href="chapters.html">Start a Chapter</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Partner with Us</a></li></ul></div>
+      <div class="ft-col"><h4>Contact</h4><div class="ft-contact-item">internationalchildrenwellness@gmail.com</div><div class="ft-contact-item">Issaquah / Sammamish, WA</div><div class="ft-contact-item">@internationalchildrenswellness</div></div>
+    </div>
+    <div class="ft-bottom"><p>© 2026 International Children's Wellness. All rights reserved.</p><div class="ein-chip">EIN: 93-2522549</div></div>
+  </div>
+</footer>
+
+<script>
+  const btn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
+  btn.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:0.08,rootMargin:'0px 0px -24px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

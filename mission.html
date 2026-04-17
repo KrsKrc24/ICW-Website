@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Mission | International Children's Wellness</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    /* ── MISSION STATEMENT ── */
+    #mission-main { background: var(--off-white); padding: 88px 5vw; }
+    .mission-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; max-width: 1200px; margin: 0 auto; }
+    .big-quote {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 1.5rem; color: var(--navy); line-height: 1.6;
+      border-left: 4px solid var(--teal); padding-left: 28px; margin-bottom: 28px;
+    }
+    .mission-body { color: var(--gray-500); line-height: 1.88; font-size: 1rem; margin-bottom: 20px; }
+    .stat-pills { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .stat-pill {
+      background: white; border: 1px solid var(--gray-100); border-radius: 100px;
+      padding: 10px 20px; display: flex; align-items: center; gap: 10px;
+      box-shadow: var(--shadow);
+    }
+    .sp-num { font-size: 1.25rem; font-weight: 900; color: var(--navy); }
+    .sp-lbl { font-size: 0.77rem; color: var(--gray-500); font-weight: 500; }
+
+    .vision-card {
+      background: linear-gradient(135deg, var(--navy), #0f2d5c);
+      border-radius: 20px; padding: 40px 36px; margin-bottom: 20px;
+      position: relative; overflow: hidden;
+    }
+    .vision-card::before {
+      content: ''; position: absolute; right: -30px; top: -30px;
+      width: 180px; height: 180px; border-radius: 50%; background: rgba(14,165,233,0.1);
+    }
+    .vision-card h3 { color: var(--teal); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+    .vision-card p  { color: rgba(255,255,255,0.82); font-size: 1.05rem; line-height: 1.75; position: relative; z-index: 1; }
+    .why-card {
+      background: white; border-radius: 16px; padding: 28px;
+      box-shadow: var(--shadow);
+    }
+    .why-card h3 { color: var(--navy); font-weight: 800; font-size: 1rem; margin-bottom: 12px; }
+    .why-card p  { color: var(--gray-500); font-size: 0.9rem; line-height: 1.78; }
+
+    /* ── VALUES ── */
+    #values { background: white; padding: 88px 5vw; }
+    .values-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
+    .val-card {
+      border-radius: 18px; padding: 36px 28px; position: relative; overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .val-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .val-card::after {
+      content: ''; position: absolute; right: -20px; bottom: -20px;
+      width: 100px; height: 100px; border-radius: 50%; opacity: 0.15;
+    }
+    .vc-1 { background: linear-gradient(145deg,#EFF6FF,#DBEAFE); }
+    .vc-1::after { background: #3B82F6; }
+    .vc-2 { background: linear-gradient(145deg,#FFF7ED,#FFEDD5); }
+    .vc-2::after { background: #F97316; }
+    .vc-3 { background: linear-gradient(145deg,#F5F3FF,#EDE9FE); }
+    .vc-3::after { background: #8B5CF6; }
+    .vc-4 { background: linear-gradient(145deg,#ECFDF5,#D1FAE5); }
+    .vc-4::after { background: #10B981; }
+    .vc-5 { background: linear-gradient(145deg,#FFF9DB,#FEF3C7); }
+    .vc-5::after { background: #FBBF24; }
+    .vc-6 { background: linear-gradient(145deg,#FFF1F2,#FFE4E6); }
+    .vc-6::after { background: #F43F5E; }
+    .val-num  { font-size: 2.8rem; margin-bottom: 12px; }
+    .val-ttl  { font-weight: 800; font-size: 1.05rem; color: var(--navy); margin-bottom: 10px; }
+    .val-desc { font-size: 0.87rem; color: var(--gray-700); line-height: 1.75; position: relative; z-index: 1; }
+
+    /* ── OUR STORY ── */
+    #story { background: var(--off-white); padding: 88px 5vw; }
+    .story-inner { max-width: 860px; margin: 0 auto; }
+    .story-text { color: var(--gray-700); font-size: 1.05rem; line-height: 1.9; margin-bottom: 20px; }
+    .story-highlight {
+      background: linear-gradient(135deg, var(--navy), #0f2d5c);
+      border-radius: 18px; padding: 40px 48px; margin: 48px 0;
+      text-align: center;
+    }
+    .story-highlight p { color: rgba(255,255,255,0.82); font-size: 1.15rem; line-height: 1.8; font-style: italic; font-family: 'Playfair Display', serif; }
+
+    /* ── CTA STRIP ── */
+    #cta-strip { background: linear-gradient(135deg, var(--teal-dark), var(--teal)); padding: 72px 5vw; text-align: center; }
+    #cta-strip h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 800; color: white; margin-bottom: 12px; }
+    #cta-strip p  { color: rgba(255,255,255,0.8); font-size: 1.05rem; margin-bottom: 32px; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: white; color: var(--teal-dark); font-weight: 700; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+
+    @media(max-width:1024px){ .mission-layout { grid-template-columns:1fr; gap:44px; } }
+    @media(max-width:768px){ .values-grid { grid-template-columns:1fr 1fr; } }
+    @media(max-width:480px){ .values-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" class="nav-logo-img"/>
+    <div><div class="nav-logo-text">International Children's Wellness</div><div class="nav-logo-sub">Youth-Led Nonprofit · EIN 93-2522549</div></div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="mission.html" class="active">Mission</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="chapters.html">Chapters</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="donate.html" class="nav-cta">Donate</a></li>
+  </ul>
+  <button class="nav-menu-btn" id="menuBtn"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-orb page-hero-orb-1"></div>
+  <div class="page-hero-orb page-hero-orb-2"></div>
+  <div class="page-hero-inner">
+    <div class="page-hero-tag">Our Purpose</div>
+    <h1>Our <span>Mission</span> &amp; Vision</h1>
+    <p>We believe every child — regardless of where they were born or what resources are available to them — deserves a fighting chance against cancer.</p>
+  </div>
+</div>
+
+<!-- MISSION MAIN -->
+<section id="mission-main">
+  <div class="mission-layout">
+    <div class="reveal">
+      <div class="section-label">Mission Statement</div>
+      <h2 class="section-title">Why <span>ICW</span> Exists</h2>
+      <blockquote class="big-quote">"To make a world where every child, regardless of socioeconomic background, has access to timely cancer screening, advanced treatment, and comprehensive support for their well-being."</blockquote>
+      <p class="mission-body">International Children's Wellness exists because childhood cancer doesn't discriminate — but access to treatment does. Every day, children around the world face delayed diagnoses, unaffordable treatment, and a lack of emotional support — not because medicine doesn't have answers, but because those answers never reach them.</p>
+      <p class="mission-body">We bridge that gap. Through community fundraising, hospital partnerships, chapter networks, and youth-driven advocacy, we ensure that the progress happening in research labs actually reaches the children who need it most.</p>
+      <div class="stat-pills">
+        <div class="stat-pill"><span class="sp-num">$5K+</span><span class="sp-lbl">Donated globally</span></div>
+        <div class="stat-pill"><span class="sp-num">200+</span><span class="sp-lbl">Care packages sent</span></div>
+        <div class="stat-pill"><span class="sp-num">21+</span><span class="sp-lbl">Active chapters</span></div>
+        <div class="stat-pill"><span class="sp-num">4</span><span class="sp-lbl">Continents reached</span></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="vision-card">
+        <h3>Our Vision</h3>
+        <p>"A future where cost-effective, innovative therapies enable pediatric cancer care to be accessible and equitable for every child, regardless of geography or socioeconomic status."</p>
+      </div>
+      <div class="why-card">
+        <h3>Why Pediatric Cancer?</h3>
+        <p>Leukemia is the most common childhood cancer, yet financial barriers — including lack of insurance, high treatment costs, and geographic isolation — prevent countless children from receiving timely care. Early detection can dramatically improve outcomes, but only when it's accessible. ICW works to tear down those barriers, one community at a time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values">
+  <div class="inner">
+    <div class="section-header center reveal">
+      <div class="section-label">What Guides Us</div>
+      <h2 class="section-title">Our Core <span>Values</span></h2>
+      <p class="section-sub">Six principles that shape every decision we make, every card we write, every dollar we raise.</p>
+    </div>
+    <div class="values-grid">
+      <div class="val-card vc-1 reveal">
+        <div class="val-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="val-ttl">Compassion First</div>
+        <div class="val-desc">Every child is more than a patient — they are a person. We center emotional well-being alongside medical care in everything we do.</div>
+      </div>
+      <div class="val-card vc-2 reveal">
+        <div class="val-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><line x1="12" y1="3" x2="12" y2="21"/><path d="M5 6l7-3 7 3"/><path d="M5 12H2l3-6"/><path d="M19 12h3l-3-6"/><path d="M5 12l7 3 7-3"/></svg></div>
+        <div class="val-ttl">Health Equity</div>
+        <div class="val-desc">Quality healthcare is a right, not a privilege. We work to eliminate the financial and geographic barriers that keep children from life-saving treatment.</div>
+      </div>
+      <div class="val-card vc-3 reveal">
+        <div class="val-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M9 3H5v11l7 7 7-7V3h-4"/><line x1="9" y1="3" x2="15" y2="3"/><line x1="9" y1="11" x2="15" y2="11"/></svg></div>
+        <div class="val-ttl">Evidence-Driven Action</div>
+        <div class="val-desc">We ground our work in research and data — from advocating for early detection technologies to partnering with hospitals on evidence-based programs.</div>
+      </div>
+      <div class="val-card vc-4 reveal">
+        <div class="val-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M12 22V12"/><path d="M5 3a9.5 9.5 0 0 0 7 9 9.5 9.5 0 0 0 7-9"/></svg></div>
+        <div class="val-ttl">Youth Leadership</div>
+        <div class="val-desc">Young people don't just represent the future — they shape it right now. Our entire organization is built on the belief that students can drive meaningful change.</div>
+      </div>
+      <div class="val-card vc-5 reveal">
+        <div class="val-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="val-ttl">Community Power</div>
+        <div class="val-desc">Change doesn't happen in isolation. Through events, chapters, and partnerships, we mobilize communities to stand together for children's health.</div>
+      </div>
+      <div class="val-card vc-6 reveal">
+        <div class="val-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div class="val-ttl">Global Perspective</div>
+        <div class="val-desc">Pediatric cancer is a global crisis. With chapters on 4 continents, we bring local action to bear on a worldwide challenge.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="story-inner">
+    <div class="section-header reveal">
+      <div class="section-label">How It Started</div>
+      <h2 class="section-title">Our <span>Story</span></h2>
+    </div>
+    <p class="story-text reveal">International Children's Wellness was born from a simple but powerful conviction: that every child — no matter where they were born, how much their family earns, or what resources are available in their community — deserves access to timely cancer screening, advanced treatment, and the emotional support needed to heal.</p>
+    <p class="story-text reveal">As high school students, co-founders Aditi Kuthanoor and Shritan Pothini saw firsthand the chasm between where cancer research stands and where it actually reaches. They saw children in Seattle and in Bangalore facing the same disease but vastly different realities. The research existed. The treatments existed. But access? That was a different story.</p>
+    <div class="story-highlight reveal">
+      <p>"Being young isn't a reason to wait. It's a reason to start."</p>
+    </div>
+    <p class="story-text reveal">So they started. What began as a local initiative — handwritten cards for children at Seattle Children's Hospital and a dance fundraiser at Issaquah Community Center — has grown into an organization with 21+ chapters across 4 continents, $5,000+ donated to hospitals globally, and 200+ care packages delivered to children in treatment.</p>
+    <p class="story-text reveal">ICW proves that youth can move the world. One card, one event, one chapter at a time.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-strip">
+  <h2>Ready to Make a Difference?</h2>
+  <p>Join a community of students, volunteers, and supporters united by one mission.</p>
+  <div class="cta-btns">
+    <a href="donate.html" class="btn btn-white">Donate Today</a>
+    <a href="team.html" class="btn btn-outline-light">Meet the Team</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;margin-bottom:4px;">
+          <img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" class="nav-logo-img"/>
+          <div><div class="nav-logo-text" style="color:white;font-size:1rem;">International Children's Wellness</div><div class="nav-logo-sub">Youth-Led Nonprofit</div></div>
+        </a>
+        <p>A youth-led nonprofit making pediatric cancer care accessible, compassionate, and equitable — for every child, everywhere.</p>
+        <div class="ft-social"><a href="https://instagram.com/internationalchildrenswellness" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a></div>
+      </div>
+      <div class="ft-col"><h4>Organization</h4><ul><li><a href="mission.html">Our Mission</a></li><li><a href="programs.html">Programs</a></li><li><a href="chapters.html">Chapters</a></li><li><a href="team.html">Meet the Team</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      <div class="ft-col"><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Volunteer</a></li><li><a href="chapters.html">Start a Chapter</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Partner with Us</a></li><li><a href="events.html">Past Events</a></li></ul></div>
+      <div class="ft-col"><h4>Contact</h4><div class="ft-contact-item">internationalchildrenwellness@gmail.com</div><div class="ft-contact-item">Issaquah / Sammamish, WA</div><div class="ft-contact-item">@internationalchildrenswellness</div></div>
+    </div>
+    <div class="ft-bottom"><p>© 2026 International Children's Wellness. All rights reserved.</p><div class="ein-chip">EIN: 93-2522549</div></div>
+  </div>
+</footer>
+
+<script>
+  const btn = document.getElementById('menuBtn'), links = document.getElementById('navLinks');
+  btn.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('in'); }), { threshold:0.1, rootMargin:'0px 0px -28px 0px' });
+  document.querySelectorAll('.reveal').forEach((el,_,all) => { const p=el.parentElement; const s=[...p.children].filter(c=>c.classList.contains('reveal')); const i=s.indexOf(el); if(i>0) el.style.transitionDelay=`${i*0.09}s`; io.observe(el); });
+</script>
+</body>
+</html>

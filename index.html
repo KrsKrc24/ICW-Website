@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>International Children's Wellness | ICW</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    /* ══ KEYFRAME ANIMATIONS ══ */
+    @keyframes fadeSlideUp { from{opacity:0;transform:translateY(36px)} to{opacity:1;transform:none} }
+    @keyframes pulseRing { 0%{transform:scale(1);opacity:0.7} 100%{transform:scale(2.4);opacity:0} }
+    @keyframes barShine { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+    @keyframes floatGlow { 0%,100%{box-shadow:0 0 28px rgba(14,165,233,0.2)} 50%{box-shadow:0 0 56px rgba(14,165,233,0.45)} }
+    @keyframes scrollBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+    @keyframes gradientShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    @keyframes marqueeScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    @keyframes sparkleFloat { 0%,100%{transform:translateY(0) scale(1);opacity:var(--so)} 50%{transform:translateY(-14px) scale(1.15);opacity:calc(var(--so)*0.55)} }
+    @keyframes shimmerGlow { 0%,100%{opacity:0.18} 50%{opacity:0.42} }
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    @keyframes rotateGlow { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+    @keyframes numberPop { 0%{transform:scale(0.7);opacity:0} 60%{transform:scale(1.08)} 100%{transform:scale(1);opacity:1} }
+    @keyframes borderFlow { 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
+    @keyframes slideInLeft { from{opacity:0;transform:translateX(-40px)} to{opacity:1;transform:none} }
+    @keyframes slideInRight { from{opacity:0;transform:translateX(40px)} to{opacity:1;transform:none} }
+    @keyframes breathe { 0%,100%{opacity:0.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.03)} }
+
+    /* ══ ANIMATED IMPACT BAR ══ */
+    .impact-bar-section { position:relative; overflow:hidden; }
+    .impact-cell { position:relative; }
+    .impact-num { background:linear-gradient(135deg,var(--teal) 0%,#38BDF8 50%,var(--teal) 100%); background-size:200%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:borderFlow 3s linear infinite; }
+
+    /* ══ STAT CARD HOVER TILT ══ */
+    .im-stat-card { perspective:600px; }
+    .inv-card2 { perspective:800px; }
+
+    /* ══ SECTION REVEAL ENHANCEMENTS ══ */
+    .reveal-left { opacity:0; transform:translateX(-40px); transition:opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .reveal-left.in { opacity:1; transform:none; }
+    .reveal-right { opacity:0; transform:translateX(40px); transition:opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .reveal-right.in { opacity:1; transform:none; }
+    .reveal-scale { opacity:0; transform:scale(0.88); transition:opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.34,1.56,0.64,1); }
+    .reveal-scale.in { opacity:1; transform:scale(1); }
+
+    /* ══ FLOATING MISSION PHOTO ══ */
+    .ms-photo-wrap { animation:floatY 6s ease-in-out infinite; }
+
+    /* ══ GLOBE GLOW PULSE ══ */
+    #globeViz svg { animation:breathe 4s ease-in-out infinite; }
+
+    /* ══ IMPACT METRIC CARD NUMBER ══ */
+    .im-stat-card.in .im-stat-num { animation:numberPop 0.6s cubic-bezier(0.34,1.56,0.64,1) both; }
+
+    /* ══ GET INVOLVED CARD FLOAT ══ */
+    .inv-card2:nth-child(1) { animation:floatY 5.5s ease-in-out infinite; animation-delay:0s; }
+    .inv-card2:nth-child(2) { animation:floatY 5.5s ease-in-out infinite; animation-delay:0.9s; }
+    .inv-card2:nth-child(3) { animation:floatY 5.5s ease-in-out infinite; animation-delay:1.8s; }
+
+    /* ══ PARTNER ITEMS SUBTLE FLOAT ══ */
+    .pm-item:nth-child(odd) { animation:floatY 5s ease-in-out infinite; }
+    .pm-item:nth-child(even) { animation:floatY 5s ease-in-out infinite; animation-delay:1.2s; }
+    #partners-marquee:hover .pm-track { animation-play-state:paused; }
+
+    /* ══ HERO PARALLAX PSEUDO ══ */
+    .hero-overlay { background:linear-gradient(108deg,rgba(4,9,18,0.96) 0%,rgba(4,9,18,0.82) 44%,rgba(4,9,18,0.25) 100%); animation:breathe 8s ease-in-out infinite; }
+
+    /* ══ PARTNER LOGOS MARQUEE ══ */
+    #partners-marquee { background:#fff; border-top:1px solid rgba(11,29,58,0.06); border-bottom:1px solid rgba(11,29,58,0.06); padding:30px 0; overflow:hidden; position:relative; }
+    #partners-marquee::before,#partners-marquee::after {
+      content:''; position:absolute; top:0; bottom:0; width:140px; z-index:2; pointer-events:none;
+    }
+    #partners-marquee::before { left:0; background:linear-gradient(to right,#fff 0%,transparent 100%); }
+    #partners-marquee::after  { right:0; background:linear-gradient(to left,#fff 0%,transparent 100%); }
+    .pm-label { text-align:center; font-size:0.66rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(11,29,58,0.3); margin-bottom:18px; }
+    .pm-track { display:flex; width:max-content; animation:marqueeScroll 32s linear infinite; gap:0; }
+    .pm-track:hover { animation-play-state:paused; }
+    .pm-item {
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      padding:0 52px; gap:8px; flex-shrink:0; opacity:0.55; transition:opacity 0.25s;
+    }
+    .pm-item:hover { opacity:1; }
+    .pm-logo-icon { width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; }
+    .pm-logo-name { font-size:0.72rem; font-weight:700; color:var(--navy); letter-spacing:0.03em; white-space:nowrap; }
+    .pm-logo-type { font-size:0.58rem; color:var(--gray-500); font-weight:500; white-space:nowrap; }
+
+    /* ══ SPARKLES CANVAS ══ */
+    #sparkles-canvas { position:absolute; inset:0; pointer-events:none; z-index:0; }
+
+    /* ══ HERO ══ */
+    #hero { min-height:100vh; position:relative; display:flex; align-items:flex-end; }
+    .hero-bg {
+      position:absolute; inset:0;
+      background:url('https://static.wixstatic.com/media/f02e73_d1fa277de7a642509cf07d2474c3b634~mv2.png') center/cover no-repeat;
+    }
+    .hero-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(108deg, rgba(4,9,18,0.95) 0%, rgba(4,9,18,0.82) 44%, rgba(4,9,18,0.3) 100%);
+    }
+    .hero-content {
+      position:relative; z-index:1;
+      max-width:1300px; margin:0 auto; width:100%;
+      padding:230px 5vw 140px;
+    }
+    .hero-eyebrow {
+      display:flex; align-items:center; gap:12px;
+      font-size:0.72rem; font-weight:700; letter-spacing:0.18em;
+      text-transform:uppercase; color:var(--teal); margin-bottom:28px;
+      animation:fadeSlideUp 0.85s ease both 0.2s;
+    }
+    .eyebrow-rule { width:36px; height:1px; background:var(--teal); flex-shrink:0; }
+    .hero-title {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.9rem,5.6vw,6.2rem);
+      font-weight:800; color:white; line-height:1.03;
+      letter-spacing:-0.025em; margin-bottom:28px;
+      max-width:800px;
+      animation:fadeSlideUp 0.9s ease both 0.4s;
+    }
+    .hero-title em { color:var(--teal); font-style:normal; }
+    .hero-sub {
+      font-size:clamp(1rem,1.4vw,1.2rem);
+      color:rgba(255,255,255,0.58); line-height:1.92;
+      max-width:520px; margin-bottom:56px;
+      animation:fadeSlideUp 0.9s ease both 0.6s;
+    }
+    .hero-actions { display:flex; gap:16px; flex-wrap:wrap; animation:fadeSlideUp 0.9s ease both 0.76s; }
+    .hero-actions .btn { padding:18px 50px; font-size:1rem; }
+    .hero-scroll {
+      position:absolute; bottom:52px; left:5vw; z-index:2;
+      display:flex; align-items:center; gap:10px;
+      color:rgba(255,255,255,0.26); font-size:0.67rem; letter-spacing:0.12em; text-transform:uppercase;
+      animation:fadeSlideUp 1s ease both 1.1s;
+    }
+    .scroll-chevron { animation:scrollBounce 2s ease infinite; }
+    .scroll-line { width:36px; height:1px; background:rgba(255,255,255,0.2); }
+
+    /* ══ MISSION ══ */
+    #mission-strip { background:white; padding:130px 5vw; }
+    .ms-grid { display:grid; grid-template-columns:1fr 1fr; gap:100px; align-items:center; max-width:1280px; margin:0 auto; }
+    .ms-overline { display:flex; align-items:center; gap:12px; font-size:0.71rem; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:0.16em; margin-bottom:22px; }
+    .ms-overline::before { content:''; display:block; width:28px; height:1px; background:var(--teal); }
+    .ms-heading { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,3.4vw,3.6rem); font-weight:800; color:var(--navy); line-height:1.1; letter-spacing:-0.02em; margin-bottom:26px; }
+    .ms-heading em { color:var(--teal); font-style:normal; }
+    .ms-body { color:#5A6A7E; line-height:1.92; font-size:1.02rem; margin-bottom:22px; }
+    .ms-quote { border-left:3px solid var(--teal); padding:4px 0 4px 22px; margin-bottom:38px; font-style:italic; opacity:0.75; font-size:1.04rem; color:var(--navy); line-height:1.78; }
+    .ms-pills { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:44px; }
+    .ms-pill { background:transparent; color:#374151; border:1px solid rgba(11,29,58,0.16); border-radius:100px; padding:7px 18px; font-size:0.8rem; font-weight:600; transition:background 0.2s, border-color 0.2s; }
+    .ms-pill:hover { background:rgba(14,165,233,0.06); border-color:rgba(14,165,233,0.3); }
+    .ms-photo-wrap { position:relative; border-radius:20px; overflow:hidden; aspect-ratio:4/5; box-shadow:0 28px 64px rgba(11,29,58,0.14); }
+    .ms-photo-wrap img { width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block; }
+    .ms-photo-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(11,29,58,0.84) 0%,transparent 55%); }
+    .ms-photo-tag { position:absolute; bottom:28px; left:28px; right:28px; border-top:1px solid rgba(255,255,255,0.14); padding-top:18px; }
+    .ms-photo-tag strong { color:white; font-weight:700; font-size:0.95rem; display:block; margin-bottom:4px; }
+    .ms-photo-tag span { color:rgba(255,255,255,0.48); font-size:0.76rem; }
+
+    /* ══ ANIMATED IMPACT METRICS ══ */
+    #impact-metrics { background:var(--navy); padding:120px 5vw; position:relative; overflow:hidden; }
+    #impact-metrics::before {
+      content:''; position:absolute; inset:0; pointer-events:none;
+      background-image:radial-gradient(circle,rgba(14,165,233,0.038) 1px,transparent 1px);
+      background-size:44px 44px;
+    }
+    #impact-metrics::after {
+      content:''; position:absolute; inset:0; pointer-events:none;
+      background:radial-gradient(ellipse 60% 80% at 50% 0%,rgba(14,165,233,0.07),transparent);
+    }
+    .im-inner { max-width:1200px; margin:0 auto; position:relative; z-index:1; }
+    .im-header { text-align:center; margin-bottom:76px; }
+    .im-overline { display:flex; align-items:center; justify-content:center; gap:14px; font-size:0.71rem; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:0.16em; margin-bottom:18px; }
+    .im-overline::before,.im-overline::after { content:''; display:block; width:24px; height:1px; background:var(--teal); }
+    .im-title { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,3.6vw,3.4rem); font-weight:800; color:white; line-height:1.1; }
+    .im-title em { color:var(--teal); font-style:normal; }
+
+    .im-stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-bottom:48px; }
+    .im-stat-card {
+      background:rgba(255,255,255,0.04); border:1px solid rgba(14,165,233,0.14);
+      border-radius:20px; padding:40px 28px 34px; text-align:center;
+      position:relative; overflow:hidden;
+      transition:border-color 0.3s, background 0.3s, transform 0.3s;
+    }
+    .im-stat-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      opacity:0; transition:opacity 0.3s;
+    }
+    .isc-1::before { background:linear-gradient(90deg,#0EA5E9,#38BDF8); }
+    .isc-2::before { background:linear-gradient(90deg,#F97316,#FB923C); }
+    .isc-3::before { background:linear-gradient(90deg,#8B5CF6,#A78BFA); }
+    .isc-4::before { background:linear-gradient(90deg,#10B981,#34D399); }
+    .im-stat-card:hover { border-color:rgba(14,165,233,0.35); background:rgba(255,255,255,0.07); transform:translateY(-4px); }
+    .im-stat-card:hover::before { opacity:1; }
+    .im-stat-num {
+      font-size:clamp(2.8rem,4.2vw,4rem); font-weight:900;
+      font-family:'Playfair Display',serif;
+      background:linear-gradient(135deg,#fff 0%,var(--teal) 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      line-height:1; margin-bottom:10px;
+    }
+    .im-stat-lbl { font-size:0.82rem; color:rgba(255,255,255,0.48); font-weight:500; letter-spacing:0.04em; margin-bottom:22px; }
+    .im-bar-wrap { background:rgba(255,255,255,0.08); border-radius:100px; height:5px; overflow:hidden; }
+    .im-bar {
+      height:100%; border-radius:100px;
+      transform:scaleX(0); transform-origin:left;
+      transition:transform 1.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .im-bar.animate { transform:scaleX(1); }
+    .imb-1 { background:linear-gradient(90deg,#0EA5E9,#38BDF8); width:52%; }
+    .imb-2 { background:linear-gradient(90deg,#F97316,#FB923C); width:80%; }
+    .imb-3 { background:linear-gradient(90deg,#8B5CF6,#A78BFA); width:70%; }
+    .imb-4 { background:linear-gradient(90deg,#10B981,#34D399); width:42%; }
+
+    /* Featured row */
+    .im-featured { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,0.07); border-radius:20px; overflow:hidden; }
+    .im-feat-cell { background:#0d1f3a; padding:40px 36px; display:flex; align-items:center; gap:22px; transition:background 0.25s; }
+    .im-feat-cell:hover { background:#112248; }
+    .im-feat-icon { width:52px; height:52px; border-radius:14px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+    .im-feat-icon svg { width:24px; height:24px; }
+    .ifi-1 { background:rgba(14,165,233,0.18); }
+    .ifi-2 { background:rgba(249,115,22,0.18); }
+    .ifi-3 { background:rgba(139,92,246,0.18); }
+    .im-feat-num { font-family:'Playfair Display',serif; font-size:2.8rem; font-weight:900; color:white; line-height:1; }
+    .im-feat-lbl { font-size:0.8rem; color:rgba(255,255,255,0.42); font-weight:500; margin-top:7px; }
+
+    /* ══ GLOBE SECTION ══ */
+    #globe-section { background:#040b18; padding:120px 5vw; position:relative; overflow:hidden; }
+    #globe-section::before {
+      content:''; position:absolute; inset:0; pointer-events:none;
+      background:radial-gradient(ellipse 80% 60% at 70% 50%,rgba(14,165,233,0.045),transparent);
+    }
+    .gs-inner { max-width:1300px; margin:0 auto; display:grid; grid-template-columns:1fr 1.1fr; gap:80px; align-items:center; }
+    .gs-overline { display:flex; align-items:center; gap:12px; font-size:0.71rem; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:0.16em; margin-bottom:22px; }
+    .gs-overline::before { content:''; display:block; width:28px; height:1px; background:var(--teal); }
+    .gs-title { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,3.4vw,3.5rem); font-weight:800; color:white; line-height:1.1; margin-bottom:20px; }
+    .gs-title em { color:var(--teal); font-style:normal; }
+    .gs-body { color:rgba(255,255,255,0.48); font-size:1.02rem; line-height:1.88; margin-bottom:44px; }
+    .gs-regions { display:flex; flex-direction:column; gap:10px; margin-bottom:44px; }
+    .gs-region { display:flex; align-items:center; gap:14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:14px 18px; transition:border-color 0.2s, background 0.2s; }
+    .gs-region:hover { border-color:rgba(14,165,233,0.25); background:rgba(14,165,233,0.05); }
+    .gs-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+    .gsd-na { background:#0EA5E9; box-shadow:0 0 8px rgba(14,165,233,0.7); }
+    .gsd-as { background:#F97316; box-shadow:0 0 8px rgba(249,115,22,0.7); }
+    .gsd-af { background:#10B981; box-shadow:0 0 8px rgba(16,185,129,0.7); }
+    .gsd-me { background:#8B5CF6; box-shadow:0 0 8px rgba(139,92,246,0.7); }
+    .gs-rname { font-weight:700; font-size:0.9rem; color:rgba(255,255,255,0.85); flex:1; }
+    .gs-rcount { font-size:0.78rem; color:rgba(255,255,255,0.32); font-weight:600; background:rgba(255,255,255,0.06); padding:3px 10px; border-radius:100px; }
+
+    #globeWrap { position:relative; }
+    #globeViz { width:100%; max-width:580px; margin:0 auto; position:relative; }
+    #globeViz svg { filter:drop-shadow(0 0 52px rgba(14,165,233,0.2)); cursor:grab; display:block; }
+    #globeViz svg:active { cursor:grabbing; }
+    .globe-ocean { fill:#060d1e; }
+    .globe-land { fill:#1a3558; stroke:rgba(14,165,233,0.28); stroke-width:0.45; }
+    .globe-graticule { fill:none; stroke:rgba(14,165,233,0.055); stroke-width:0.5; }
+    #globeTooltip {
+      position:absolute; background:rgba(11,29,58,0.96); border:1px solid rgba(14,165,233,0.35);
+      border-radius:9px; padding:8px 15px; font-size:0.78rem; color:white; font-weight:600;
+      pointer-events:none; white-space:nowrap; display:none; z-index:20;
+      transform:translate(-50%,-100%); margin-top:-10px;
+    }
+    .gs-hint { font-size:0.72rem; color:rgba(255,255,255,0.2); text-align:center; margin-top:14px; letter-spacing:0.04em; }
+
+    /* ══ QUOTE BAND ══ */
+    #quote-band { background:#040b16; padding:130px 5vw; text-align:center; position:relative; overflow:hidden; }
+    #quote-band::before { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(14,165,233,0.055),transparent); }
+    .qb-inner { max-width:800px; margin:0 auto; position:relative; z-index:1; }
+    .qb-rule { width:44px; height:1px; background:rgba(14,165,233,0.38); margin:0 auto 52px; }
+    .qb-text { font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(1.9rem,3.1vw,2.9rem); font-weight:600; color:white; line-height:1.48; margin-bottom:36px; }
+    .qb-rule-b { width:44px; height:1px; background:rgba(14,165,233,0.38); margin:0 auto 26px; }
+    .qb-attr { font-size:0.73rem; color:rgba(255,255,255,0.32); font-weight:600; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:52px; }
+    .qb-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+    .qb-btns .btn { padding:16px 44px; }
+
+    /* ══ TEAM TEASER ══ */
+    #team-teaser { background:white; padding:130px 5vw; }
+    .tt-inner2 { max-width:1160px; margin:0 auto; }
+    .tt-header { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:end; margin-bottom:64px; }
+    .tt-overline { display:flex; align-items:center; gap:12px; font-size:0.71rem; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:0.16em; margin-bottom:18px; }
+    .tt-overline::before { content:''; display:block; width:28px; height:1px; background:var(--teal); }
+    .tt-hd h2 { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,3.4vw,3.3rem); font-weight:800; color:var(--navy); line-height:1.12; }
+    .tt-hd h2 span { color:var(--teal); }
+    .tt-hd-right p { color:#5A6A7E; font-size:1.02rem; line-height:1.88; margin-bottom:28px; }
+    .tt-founders2 { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+    .tt-card2 { background:#F8FAFB; border-radius:20px; overflow:hidden; border:1px solid rgba(11,29,58,0.07); box-shadow:0 2px 16px rgba(11,29,58,0.05); transition:transform 0.28s cubic-bezier(0.4,0,0.2,1), box-shadow 0.28s; }
+    .tt-card2:hover { transform:translateY(-6px); box-shadow:0 22px 50px rgba(11,29,58,0.13); }
+    .tt-photo-wrap { height:420px; overflow:hidden; }
+    .tt-photo-wrap img { width:100%; height:100%; object-fit:cover; object-position:center 10%; display:block; transition:transform 0.45s ease; }
+    .tt-card2:hover .tt-photo-wrap img { transform:scale(1.04); }
+    .tt-card-body { padding:28px 30px 34px; }
+    .tt-name2 { font-weight:800; font-size:1.22rem; color:var(--navy); margin-bottom:6px; }
+    .tt-role2 { color:var(--teal); font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; }
+
+    /* ══ GET INVOLVED ══ */
+    #get-involved { background:#F8FAFB; padding:130px 5vw; }
+    .inv-inner2 { max-width:1260px; margin:0 auto; }
+    .inv-header2 { text-align:center; margin-bottom:68px; }
+    .inv-overline { display:flex; align-items:center; justify-content:center; gap:14px; font-size:0.71rem; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:0.16em; margin-bottom:18px; }
+    .inv-overline::before,.inv-overline::after { content:''; display:block; width:24px; height:1px; background:var(--teal); }
+    .inv-header2 h2 { font-family:'Playfair Display',serif; font-size:clamp(2.4rem,4vw,3.7rem); font-weight:800; color:var(--navy); margin-bottom:18px; line-height:1.1; }
+    .inv-header2 h2 em { color:var(--teal); font-style:normal; }
+    .inv-header2 p { color:#6B7280; font-size:1.04rem; max-width:500px; margin:0 auto; line-height:1.88; }
+    .inv-grid2 { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .inv-card2 { background:white; border:1px solid rgba(11,29,58,0.07); border-radius:22px; padding:48px 38px; box-shadow:0 2px 16px rgba(11,29,58,0.04); transition:transform 0.28s cubic-bezier(0.4,0,0.2,1), box-shadow 0.28s, border-color 0.28s; }
+    .inv-card2:hover { transform:translateY(-6px); box-shadow:0 22px 50px rgba(11,29,58,0.11); border-color:rgba(14,165,233,0.22); }
+    .inv-icon { width:58px; height:58px; border-radius:14px; margin-bottom:28px; display:flex; align-items:center; justify-content:center; }
+    .inv-icon svg { width:26px; height:26px; }
+    .ii-1 { background:rgba(14,165,233,0.1); } .ii-2 { background:rgba(249,115,22,0.1); } .ii-3 { background:rgba(139,92,246,0.1); }
+    .inv-card2 h3 { color:var(--navy); font-weight:800; font-size:1.22rem; margin-bottom:14px; }
+    .inv-card2 p { color:#6B7280; font-size:0.92rem; line-height:1.82; margin-bottom:34px; }
+    .inv-card2 .btn { display:block; text-align:center; }
+
+    @media(max-width:1100px){
+      .im-stats-grid { grid-template-columns:repeat(2,1fr); }
+      .im-featured { grid-template-columns:1fr; }
+      .gs-inner { grid-template-columns:1fr; }
+      #globeViz { max-width:500px; }
+    }
+    @media(max-width:1024px){
+      .ms-grid { grid-template-columns:1fr; gap:56px; }
+      .ms-photo-wrap { aspect-ratio:16/9; }
+      .tt-header { grid-template-columns:1fr; gap:24px; }
+      .tt-founders2 { max-width:680px; }
+    }
+    @media(max-width:768px){
+      .hero-content { padding:160px 5vw 110px; }
+      .tt-founders2 { grid-template-columns:1fr; }
+      .inv-grid2 { grid-template-columns:1fr; }
+      .im-stats-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media(max-width:520px){ .im-stats-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" class="nav-logo-img"/>
+    <div>
+      <div class="nav-logo-text">International Children's Wellness</div>
+      <div class="nav-logo-sub">Youth-Led Nonprofit · EIN 93-2522549</div>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="mission.html">Mission</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="chapters.html">Chapters</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="donate.html" class="nav-cta">Donate</a></li>
+  </ul>
+  <button class="nav-menu-btn" id="menuBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-rule"></div>
+      Youth-Led &nbsp;·&nbsp; Globally Driven &nbsp;·&nbsp; Since 2023
+    </div>
+    <h1 class="hero-title">Access to Pediatric<br/>Cancer Care Is a<br/><em>Human Right.</em></h1>
+    <p class="hero-sub">ICW is a youth-led nonprofit on a mission to make life-saving pediatric cancer care accessible, compassionate, and equitable — for every child, across every border.</p>
+    <div class="hero-actions">
+      <a href="donate.html" class="btn btn-teal">Support Our Mission</a>
+      <a href="programs.html" class="btn btn-outline-light">How We Help</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span class="scroll-chevron">&#8595;</span>
+    Scroll to Explore
+  </div>
+</section>
+
+<!-- IMPACT BAR -->
+<div class="impact-bar-section">
+  <div class="impact-bar">
+    <div class="impact-cell reveal"><div class="impact-num" data-count="5000" data-suffix="+">$0+</div><div class="impact-lbl">Donated to Hospitals Globally</div></div>
+    <div class="impact-cell reveal"><div class="impact-num" data-count="200" data-suffix="+">0+</div><div class="impact-lbl">Care Packages &amp; Cards Delivered</div></div>
+    <div class="impact-cell reveal"><div class="impact-num" data-count="21" data-suffix="+">0+</div><div class="impact-lbl">Active Chapters Worldwide</div></div>
+    <div class="impact-cell reveal"><div class="impact-num" data-count="100" data-suffix="+">0+</div><div class="impact-lbl">Volunteers &amp; Growing</div></div>
+  </div>
+</div>
+
+<!-- PARTNER LOGOS MARQUEE -->
+<div id="partners-marquee">
+  <div class="pm-label">Trusted Partners &amp; Collaborations</div>
+  <div class="pm-track" id="pmTrack">
+
+    <!-- Fred Hutch -->
+    <div class="pm-item">
+      <div class="pm-logo-icon" style="background:rgba(0,50,127,0.1);">
+        <svg viewBox="0 0 44 44" fill="none" width="32" height="32">
+          <!-- Fred Hutch stylised ribbon/arc mark -->
+          <path d="M9 22C9 14.268 15.268 8 23 8" stroke="#00327F" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M12 29C12 22.373 17.373 17 24 17" stroke="#00327F" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
+          <path d="M16 35C16 30.029 20.029 26 25 26" stroke="#00327F" stroke-width="2.5" stroke-linecap="round" opacity="0.35"/>
+          <circle cx="33" cy="22" r="4.5" fill="#00327F"/>
+        </svg>
+      </div>
+      <div class="pm-logo-name">Fred Hutch</div>
+      <div class="pm-logo-type">Cancer Research Center</div>
+    </div>
+
+    <!-- Seattle Children's -->
+    <div class="pm-item">
+      <div class="pm-logo-icon" style="background:rgba(0,130,186,0.1);">
+        <svg viewBox="0 0 44 44" fill="none" width="28" height="28"><circle cx="22" cy="16" r="7" stroke="#0082BA" stroke-width="2"/><path d="M8 38c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="#0082BA" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="pm-logo-name">Seattle Children's</div>
+      <div class="pm-logo-type">Pediatric Hospital</div>
+    </div>
+
+    <!-- Swedish Medical -->
+    <div class="pm-item">
+      <div class="pm-logo-icon" style="background:rgba(0,100,160,0.1);">
+        <svg viewBox="0 0 44 44" fill="none" width="28" height="28"><path d="M22 8v28M8 22h28" stroke="#0064A0" stroke-width="3" stroke-linecap="round"/></svg>
+      </div>
+      <div class="pm-logo-name">Swedish Medical</div>
+      <div class="pm-logo-type">Medical Partner</div>
+    </div>
+
+    <!-- MOD Pizza -->
+    <div class="pm-item">
+      <div class="pm-logo-icon" style="background:rgba(228,37,29,0.1);">
+        <svg viewBox="0 0 44 44" fill="none" width="28" height="28"><circle cx="22" cy="22" r="13" stroke="#E4251D" stroke-width="2"/><circle cx="22" cy="22" r="7" fill="rgba(228,37,29,0.2)" stroke="#E4251D" stroke-width="1.5"/><circle cx="22" cy="22" r="2.5" fill="#E4251D"/></svg>
+      </div>
+      <div class="pm-logo-name">MOD Pizza</div>
+      <div class="pm-logo-type">Community Partner</div>
+    </div>
+
+    <!-- Google -->
+    <div class="pm-item">
+      <div class="pm-logo-icon" style="background:rgba(66,133,244,0.1);">
+        <svg viewBox="0 0 44 44" fill="none" width="28" height="28"><path d="M33.5 22c0-.7-.06-1.4-.18-2.05H22v3.88h6.46a5.52 5.52 0 01-2.39 3.62v3h3.87C32.29 28.36 33.5 25.37 33.5 22z" fill="#4285F4"/><path d="M22 34c3.24 0 5.96-1.08 7.94-2.9l-3.87-3a7.28 7.28 0 01-10.86-3.83h-4v3.08A12 12 0 0022 34z" fill="#34A853"/><path d="M15.21 24.27a7.18 7.18 0 010-4.54v-3.08h-4a12 12 0 000 10.7l4-3.08z" fill="#FBBC05"/><path d="M22 15.5a6.49 6.49 0 014.59 1.8l3.44-3.44A11.54 11.54 0 0022 10a12 12 0 00-10.79 6.65l4 3.08A7.15 7.15 0 0122 15.5z" fill="#EA4335"/></svg>
+      </div>
+      <div class="pm-logo-name">Google</div>
+      <div class="pm-logo-type">Technology Partner</div>
+    </div>
+
+    <!-- Costco -->
+    <div class="pm-item">
+      <div class="pm-logo-icon" style="background:rgba(0,83,159,0.08);">
+        <svg viewBox="0 0 52 28" width="52" height="28">
+          <!-- Costco wordmark-style block letters -->
+          <text x="2" y="22" font-family="Arial Black, sans-serif" font-weight="900" font-size="19" fill="#005DAA" letter-spacing="-0.5">COSTCO</text>
+          <rect x="2" y="24" width="48" height="2.5" rx="1" fill="#E31837"/>
+        </svg>
+      </div>
+      <div class="pm-logo-name">Costco</div>
+      <div class="pm-logo-type">Corporate Sponsor</div>
+    </div>
+
+    <!-- Ghana Hospital -->
+    <div class="pm-item">
+      <div class="pm-logo-icon" style="background:rgba(6,109,53,0.1);">
+        <svg viewBox="0 0 44 44" fill="none" width="28" height="28"><rect x="10" y="10" width="24" height="24" rx="4" stroke="#066D35" stroke-width="2"/><path d="M22 14v16M14 22h16" stroke="#066D35" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="pm-logo-name">Ghana Hospital</div>
+      <div class="pm-logo-type">Africa Partner</div>
+    </div>
+
+    <!-- Shoba Trust -->
+    <div class="pm-item">
+      <div class="pm-logo-icon" style="background:rgba(139,92,246,0.1);">
+        <svg viewBox="0 0 44 44" fill="none" width="32" height="32">
+          <!-- Lotus / hands raising symbol -->
+          <path d="M22 34C22 34 10 27 10 18a12 12 0 0 1 24 0c0 9-12 16-12 16z" stroke="#8B5CF6" stroke-width="2" fill="rgba(139,92,246,0.1)"/>
+          <path d="M22 14v12" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+          <path d="M17 19l5-5 5 5" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="22" cy="11" r="3" fill="#8B5CF6" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="pm-logo-name">Shoba Trust</div>
+      <div class="pm-logo-type">India NGO Partner</div>
+    </div>
+
+    <!-- Samprada Hospital -->
+    <div class="pm-item">
+      <div class="pm-logo-icon" style="background:rgba(249,115,22,0.1);">
+        <svg viewBox="0 0 44 44" fill="none" width="28" height="28"><rect x="9" y="13" width="26" height="20" rx="3" stroke="#F97316" stroke-width="2"/><path d="M22 13V9M17 9h10" stroke="#F97316" stroke-width="2" stroke-linecap="round"/><path d="M22 18v10M17 23h10" stroke="#F97316" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </div>
+      <div class="pm-logo-name">Samprada Hospital</div>
+      <div class="pm-logo-type">Bangalore Partner</div>
+    </div>
+
+  </div><!-- /.pm-track (JS will duplicate for infinite scroll) -->
+</div>
+
+<!-- MISSION -->
+<section id="mission-strip">
+  <div class="ms-grid">
+    <div class="reveal">
+      <div class="ms-overline">Our Mission &amp; Vision</div>
+      <h2 class="ms-heading">A World Where Every Child Has a <em>Fighting Chance</em></h2>
+      <p class="ms-body">We take a heart-first approach to pediatric cancer care — supporting both the physical treatment journey and the emotional healing that comes with it.</p>
+      <blockquote class="ms-quote">"To make a world where every child, regardless of socioeconomic background, has access to timely cancer screening, advanced treatment, and comprehensive support for their well-being."</blockquote>
+      <div class="ms-pills">
+        <span class="ms-pill">Early Detection</span>
+        <span class="ms-pill">Health Equity</span>
+        <span class="ms-pill">Emotional Healing</span>
+        <span class="ms-pill">Youth Leadership</span>
+        <span class="ms-pill">Global Access</span>
+      </div>
+      <a href="mission.html" class="btn btn-teal">Read Our Full Mission</a>
+    </div>
+    <div class="ms-photo-wrap reveal">
+      <img src="https://static.wixstatic.com/media/2ecd9f_c90ef08384464ea58f469db8c21b94dd~mv2.jpeg" alt="ICW at Ananda Mela"/>
+      <div class="ms-photo-overlay"></div>
+      <div class="ms-photo-tag">
+        <strong>Ananda Mela Awareness Booth</strong>
+        <span>$800 raised for pediatric cancer care · Pacific Northwest, 2025</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANIMATED IMPACT METRICS -->
+<section id="impact-metrics">
+  <div class="im-inner">
+    <div class="im-header reveal">
+      <div class="im-overline">Our Track Record</div>
+      <h2 class="im-title">Real Impact, <em>Measurable Results</em></h2>
+    </div>
+
+    <div class="im-stats-grid">
+      <div class="im-stat-card isc-1 reveal">
+        <div class="im-stat-num" data-target="5000" data-prefix="$" data-suffix="+">$0+</div>
+        <div class="im-stat-lbl">Total Funds Raised &amp; Donated</div>
+        <div class="im-bar-wrap"><div class="im-bar imb-1"></div></div>
+      </div>
+      <div class="im-stat-card isc-2 reveal">
+        <div class="im-stat-num" data-target="200" data-suffix="+">0+</div>
+        <div class="im-stat-lbl">Care Packages &amp; Handwritten Cards</div>
+        <div class="im-bar-wrap"><div class="im-bar imb-2"></div></div>
+      </div>
+      <div class="im-stat-card isc-3 reveal">
+        <div class="im-stat-num" data-target="21" data-suffix="+">0+</div>
+        <div class="im-stat-lbl">Active Student-Led Chapters</div>
+        <div class="im-bar-wrap"><div class="im-bar imb-3"></div></div>
+      </div>
+      <div class="im-stat-card isc-4 reveal">
+        <div class="im-stat-num" data-target="100" data-suffix="+">0+</div>
+        <div class="im-stat-lbl">Volunteers Across All Chapters</div>
+        <div class="im-bar-wrap"><div class="im-bar imb-4"></div></div>
+      </div>
+    </div>
+
+    <div class="im-featured reveal">
+      <div class="im-feat-cell">
+        <div class="im-feat-icon ifi-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div>
+          <div class="im-feat-num">4</div>
+          <div class="im-feat-lbl">Continents with Active Chapters</div>
+        </div>
+      </div>
+      <div class="im-feat-cell">
+        <div class="im-feat-icon ifi-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div>
+          <div class="im-feat-num">7</div>
+          <div class="im-feat-lbl">Partner Hospitals &amp; Medical Centers</div>
+        </div>
+      </div>
+      <div class="im-feat-cell">
+        <div class="im-feat-icon ifi-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div>
+          <div class="im-feat-num">6+</div>
+          <div class="im-feat-lbl">Major Fundraising Events Hosted</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTIVE GLOBE -->
+<section id="globe-section">
+  <div class="gs-inner">
+    <div class="reveal">
+      <div class="gs-overline">Global Reach</div>
+      <h2 class="gs-title">21+ Chapters Across <em>4 Continents</em></h2>
+      <p class="gs-body">From the Pacific Northwest to West Africa, from South Asia to the Arabian Gulf — ICW's growing network of student-led chapters spans the globe. Each chapter brings the mission to life locally while connected to a worldwide movement.</p>
+      <div class="gs-regions">
+        <div class="gs-region">
+          <div class="gs-dot gsd-na"></div>
+          <div class="gs-rname">North America</div>
+          <div class="gs-rcount">17 Chapters</div>
+        </div>
+        <div class="gs-region">
+          <div class="gs-dot gsd-as"></div>
+          <div class="gs-rname">South &amp; Central Asia</div>
+          <div class="gs-rcount">4 Chapters</div>
+        </div>
+        <div class="gs-region">
+          <div class="gs-dot gsd-me"></div>
+          <div class="gs-rname">Middle East</div>
+          <div class="gs-rcount">3 Chapters</div>
+        </div>
+        <div class="gs-region">
+          <div class="gs-dot gsd-af"></div>
+          <div class="gs-rname">Africa</div>
+          <div class="gs-rcount">2 Chapters</div>
+        </div>
+      </div>
+      <a href="chapters.html" class="btn btn-teal">View All Chapters</a>
+    </div>
+    <div id="globeWrap" class="reveal">
+      <div id="globeViz">
+        <div id="globeTooltip"></div>
+      </div>
+      <p class="gs-hint">Drag to rotate · Hover dots to explore</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE BAND -->
+<section id="quote-band">
+  <canvas id="sparkles-canvas"></canvas>
+  <div class="qb-inner reveal">
+    <div class="qb-rule"></div>
+    <p class="qb-text">Being young isn't a reason to wait.<br/>It's a reason to start.</p>
+    <div class="qb-rule-b"></div>
+    <div class="qb-attr">— Aditi Kuthanoor &amp; Shritan Pothini, Co-Founders of ICW</div>
+    <div class="qb-btns">
+      <a href="mission.html" class="btn btn-teal">Our Story</a>
+      <a href="events.html" class="btn btn-outline-light">See Our Impact</a>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM TEASER -->
+<section id="team-teaser">
+  <div class="tt-inner2">
+    <div class="tt-header">
+      <div class="tt-hd reveal">
+        <div class="tt-overline">Leadership</div>
+        <h2>Meet the <span>Board</span></h2>
+      </div>
+      <div class="tt-hd-right reveal">
+        <p>Two high school students who decided that being young was no reason to wait — and built an international nonprofit spanning 4 continents in the process.</p>
+        <a href="team.html" class="btn btn-navy">Meet Our Full Team</a>
+      </div>
+    </div>
+    <div class="tt-founders2">
+      <div class="tt-card2 reveal">
+        <div class="tt-photo-wrap">
+          <img src="https://static.wixstatic.com/media/f02e73_7260ca5a283642379b58dc58548eda66~mv2.png" alt="Aditi Kuthanoor"/>
+        </div>
+        <div class="tt-card-body">
+          <div class="tt-name2">Aditi Kuthanoor</div>
+          <div class="tt-role2">Co-Founder &amp; Executive Director</div>
+        </div>
+      </div>
+      <div class="tt-card2 reveal">
+        <div class="tt-photo-wrap">
+          <img src="https://static.wixstatic.com/media/462b5a_f03c956287c5433085764ce568a0d0cd~mv2.jpeg" alt="Shritan Pothini"/>
+        </div>
+        <div class="tt-card-body">
+          <div class="tt-name2">Shritan Pothini</div>
+          <div class="tt-role2">Co-Founder &amp; CEO</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GET INVOLVED -->
+<section id="get-involved">
+  <div class="inv-inner2">
+    <div class="inv-header2 reveal">
+      <div class="inv-overline">Join the Movement</div>
+      <h2>Make a <em>Difference</em> Today</h2>
+      <p>Whether you donate, volunteer, or start a chapter — every action helps a child access the care they deserve.</p>
+    </div>
+    <div class="inv-grid2">
+      <div class="inv-card2 reveal">
+        <div class="inv-icon ii-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Donate</h3>
+        <p>Your gift directly funds care packages, cancer screening technology, and hospital donations in underserved communities worldwide.</p>
+        <a href="donate.html" class="btn btn-teal">Donate Now</a>
+      </div>
+      <div class="inv-card2 reveal">
+        <div class="inv-icon ii-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Volunteer</h3>
+        <p>Write a card, help at an event, or join a care package campaign. Every act of compassion creates real impact for a real child.</p>
+        <a href="mailto:internationalchildrenwellness@gmail.com" class="btn btn-coral">Get Involved</a>
+      </div>
+      <div class="inv-card2 reveal">
+        <div class="inv-icon ii-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Start a Chapter</h3>
+        <p>Bring ICW to your school or city. Join 21+ chapters worldwide — we provide the framework, you bring the passion.</p>
+        <a href="chapters.html" class="btn btn-purple">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;margin-bottom:4px;">
+          <img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" class="nav-logo-img"/>
+          <div><div class="nav-logo-text" style="color:white;font-size:1rem;">International Children's Wellness</div><div class="nav-logo-sub">Youth-Led Nonprofit</div></div>
+        </a>
+        <p>A youth-led nonprofit making pediatric cancer care accessible, compassionate, and equitable — for every child, everywhere.</p>
+        <div class="ft-social">
+          <a href="https://instagram.com/internationalchildrenswellness" target="_blank" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="ft-col"><h4>Organization</h4><ul><li><a href="mission.html">Our Mission</a></li><li><a href="programs.html">Programs</a></li><li><a href="chapters.html">Chapters</a></li><li><a href="team.html">Meet the Team</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      <div class="ft-col"><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Volunteer</a></li><li><a href="chapters.html">Start a Chapter</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Partner with Us</a></li><li><a href="events.html">Past Events</a></li></ul></div>
+      <div class="ft-col"><h4>Contact</h4>
+        <div class="ft-contact-item">internationalchildrenwellness@gmail.com</div>
+        <div class="ft-contact-item">Issaquah / Sammamish, WA</div>
+        <div class="ft-contact-item">@internationalchildrenswellness</div>
+      </div>
+    </div>
+    <div class="ft-bottom"><p>© 2026 International Children's Wellness. All rights reserved.</p><div class="ein-chip">EIN: 93-2522549</div></div>
+  </div>
+</footer>
+
+<!-- D3 + TopoJSON for globe -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
+
+<script>
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+/* ══════════════════════════════════════
+   SCROLL REVEAL + COUNTER TRIGGER
+══════════════════════════════════════ */
+function animateCount(el) {
+  const target = parseInt(el.dataset.target, 10);
+  const prefix = el.dataset.prefix || '';
+  const suffix = el.dataset.suffix || '';
+  const duration = 1800;
+  let start = null;
+
+  function step(ts) {
+    if (!start) start = ts;
+    const p = Math.min((ts - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const val = Math.round(eased * target);
+    if (target >= 1000) {
+      el.textContent = prefix + val.toLocaleString() + suffix;
+    } else {
+      el.textContent = prefix + val + suffix;
+    }
+    if (p < 1) requestAnimationFrame(step);
+    else el.textContent = prefix + target.toLocaleString() + suffix;
+  }
+  requestAnimationFrame(step);
+}
+
+const revealIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in');
+
+    // Counter animation for impact-num (impact bar)
+    e.target.querySelectorAll('.impact-num[data-count]').forEach(el => {
+      const count = parseInt(el.dataset.count, 10);
+      const suffix = el.dataset.suffix || '';
+      const prefix = el.dataset.prefix || '';
+      const isK = count >= 1000;
+      const duration = 1600;
+      let start = null;
+      function tick(ts) {
+        if (!start) start = ts;
+        const p = Math.min((ts - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = Math.round(eased * count);
+        el.textContent = prefix + (isK ? '$' + val.toLocaleString() : val) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = prefix + (isK ? '$' + count.toLocaleString() : count) + suffix;
+      }
+      requestAnimationFrame(tick);
+    });
+
+    // Counter animation for im-stat-num
+    e.target.querySelectorAll('.im-stat-num[data-target]').forEach(el => animateCount(el));
+
+    // Animate progress bars
+    e.target.querySelectorAll('.im-bar').forEach((bar, i) => {
+      setTimeout(() => bar.classList.add('animate'), i * 150);
+    });
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+
+document.querySelectorAll('.reveal').forEach((el) => {
+  const sibs = [...el.parentElement.children].filter(c => c.classList.contains('reveal'));
+  const i = sibs.indexOf(el);
+  if (i > 0) el.style.transitionDelay = `${i * 0.1}s`;
+  revealIO.observe(el);
+});
+
+// Also observe reveal-left / reveal-right / reveal-scale
+const dirIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -24px 0px' });
+document.querySelectorAll('.reveal-left,.reveal-right,.reveal-scale').forEach(el => dirIO.observe(el));
+
+/* ══ 3D CARD TILT ON HOVER ══ */
+function addTilt(selector, maxDeg = 10) {
+  document.querySelectorAll(selector).forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - 0.5;
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      card.style.transform = `translateY(-6px) rotateY(${x * maxDeg}deg) rotateX(${-y * maxDeg}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+addTilt('.im-stat-card', 8);
+addTilt('.inv-card2', 7);
+addTilt('.tt-card2', 6);
+
+/* ══════════════════════════════════════
+   INTERACTIVE GLOBE (D3 v7 + TopoJSON)
+══════════════════════════════════════ */
+(async function initGlobe() {
+  const container = document.getElementById('globeViz');
+  const tooltip  = document.getElementById('globeTooltip');
+  const W = Math.min(580, container.parentElement.offsetWidth || 580);
+  const H = W;
+  const R = W * 0.435;
+
+  const svg = d3.select(container)
+    .append('svg')
+    .attr('viewBox', `0 0 ${W} ${H}`)
+    .attr('width', '100%');
+
+  // SVG defs: glow filter
+  const defs = svg.append('defs');
+  const glow = defs.append('filter').attr('id', 'g-glow').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
+  glow.append('feGaussianBlur').attr('stdDeviation','2.8').attr('result','blur');
+  const fm = glow.append('feMerge');
+  fm.append('feMergeNode').attr('in','blur');
+  fm.append('feMergeNode').attr('in','SourceGraphic');
+
+  // Ocean ring glow
+  defs.append('radialGradient').attr('id','oceanGrad').attr('cx','50%').attr('cy','40%').attr('r','50%')
+    .html('<stop offset="0%" stop-color="#0d2040"/><stop offset="100%" stop-color="#060d1e"/>');
+
+  const projection = d3.geoOrthographic()
+    .scale(R)
+    .translate([W/2, H/2])
+    .rotate([20, -15, 0]);
+
+  const pathGen = d3.geoPath().projection(projection);
+  const graticule = d3.geoGraticule();
+
+  // Ocean
+  svg.append('circle').attr('cx',W/2).attr('cy',H/2).attr('r',R).attr('fill','url(#oceanGrad)');
+  // Outer glow ring
+  svg.append('circle').attr('cx',W/2).attr('cy',H/2).attr('r',R)
+    .attr('fill','none').attr('stroke','rgba(14,165,233,0.18)').attr('stroke-width',1.5);
+
+  // Chapter data
+  const CHAPTERS = [
+    {lat:47.52,lng:-122.05,name:"Issaquah, WA (HQ)",hq:true},
+    {lat:37.33,lng:-121.89,name:"San Jose, CA"},
+    {lat:38.68,lng:-121.17,name:"Folsom, CA"},
+    {lat:37.55,lng:-122.05,name:"Fremont, CA"},
+    {lat:27.95,lng:-82.46,name:"Tampa, FL"},
+    {lat:28.54,lng:-81.38,name:"Orlando, FL"},
+    {lat:34.05,lng:-84.07,name:"Suwanee, GA"},
+    {lat:33.75,lng:-84.39,name:"Atlanta, GA"},
+    {lat:41.88,lng:-87.63,name:"Chicago, IL"},
+    {lat:42.36,lng:-71.06,name:"Massachusetts"},
+    {lat:40.71,lng:-74.01,name:"New York City, NY"},
+    {lat:35.79,lng:-78.78,name:"Cary, NC"},
+    {lat:30.51,lng:-97.68,name:"Round Rock, TX"},
+    {lat:47.82,lng:-122.28,name:"Lynwood, WA"},
+    {lat:47.62,lng:-122.04,name:"Sammamish, WA"},
+    {lat:47.52,lng:-121.83,name:"Snoqualmie, WA"},
+    {lat:28.63,lng:77.22,name:"Delhi, India"},
+    {lat:12.97,lng:77.59,name:"Bangalore, India"},
+    {lat:27.71,lng:85.31,name:"Kathmandu, Nepal"},
+    {lat:27.90,lng:84.00,name:"Nepal"},
+    {lat:5.56,lng:-0.20,name:"Accra/Tema, Ghana"},
+    {lat:25.29,lng:51.53,name:"Doha, Qatar"},
+    {lat:24.69,lng:46.72,name:"Saudi Arabia"},
+    {lat:24.45,lng:54.40,name:"Abu Dhabi, UAE"}
+  ];
+
+  function isVisible(lat, lng) {
+    const rot = projection.rotate();
+    return d3.geoDistance([lng,lat], [-rot[0], -rot[1]]) < Math.PI / 2;
+  }
+
+  let gratPath, landPath, dotsGroup;
+  let rotAngle = 20, isDragging = false;
+
+  try {
+    const world = await d3.json('https://unpkg.com/world-atlas@2/countries-110m.json');
+    const land = topojson.feature(world, world.objects.land);
+
+    gratPath = svg.append('path').datum(graticule()).attr('class','globe-graticule').attr('d',pathGen);
+    landPath = svg.append('path').datum(land).attr('class','globe-land').attr('d',pathGen);
+    dotsGroup = svg.append('g');
+
+    function redraw() {
+      if (landPath) landPath.attr('d', pathGen);
+      if (gratPath) gratPath.attr('d', pathGen);
+      dotsGroup.selectAll('*').remove();
+
+      CHAPTERS.forEach(ch => {
+        if (!isVisible(ch.lat, ch.lng)) return;
+        const [x, y] = projection([ch.lng, ch.lat]);
+
+        if (ch.hq) {
+          // Pulsing ring
+          const pulse = dotsGroup.append('circle')
+            .attr('cx',x).attr('cy',y).attr('r',7)
+            .attr('fill','none').attr('stroke','#F97316')
+            .attr('stroke-width',1.5).attr('opacity',0.5);
+          // Animate pulse using D3 transition loop
+          (function pulsate() {
+            pulse.attr('r',7).attr('opacity',0.5)
+              .transition().duration(1400).ease(d3.easeLinear)
+              .attr('r',14).attr('opacity',0)
+              .on('end', pulsate);
+          })();
+
+          dotsGroup.append('circle')
+            .attr('cx',x).attr('cy',y).attr('r',5.5)
+            .attr('fill','#F97316').attr('filter','url(#g-glow)')
+            .style('cursor','pointer')
+            .on('mousemove', (event) => {
+              const rect = container.getBoundingClientRect();
+              tooltip.style.display = 'block';
+              tooltip.textContent = ch.name;
+              tooltip.style.left = (event.clientX - rect.left) + 'px';
+              tooltip.style.top  = (event.clientY - rect.top - 14) + 'px';
+            })
+            .on('mouseout', () => tooltip.style.display = 'none');
+        } else {
+          dotsGroup.append('circle')
+            .attr('cx',x).attr('cy',y).attr('r',3.8)
+            .attr('fill','#0EA5E9').attr('filter','url(#g-glow)')
+            .style('cursor','pointer')
+            .on('mousemove', (event) => {
+              const rect = container.getBoundingClientRect();
+              tooltip.style.display = 'block';
+              tooltip.textContent = ch.name;
+              tooltip.style.left = (event.clientX - rect.left) + 'px';
+              tooltip.style.top  = (event.clientY - rect.top - 14) + 'px';
+            })
+            .on('mouseout', () => tooltip.style.display = 'none');
+        }
+      });
+    }
+
+    // Auto-rotate
+    const rotTimer = d3.timer(() => {
+      if (isDragging) return;
+      rotAngle += 0.18;
+      projection.rotate([rotAngle, -15, 0]);
+      redraw();
+    });
+
+    // Drag
+    svg.call(d3.drag()
+      .on('start', () => { isDragging = true; svg.style('cursor','grabbing'); })
+      .on('drag', (event) => {
+        const r = projection.rotate();
+        const newLat = Math.max(-75, Math.min(75, r[1] - event.dy * 0.4));
+        const newLng = r[0] + event.dx * 0.4;
+        projection.rotate([newLng, newLat, 0]);
+        rotAngle = newLng;
+        redraw();
+      })
+      .on('end', () => { isDragging = false; svg.style('cursor','grab'); })
+    );
+
+    redraw();
+
+  } catch(err) {
+    container.innerHTML = '<div style="text-align:center;padding:80px 20px;color:rgba(255,255,255,0.3);font-size:0.9rem;">Globe requires internet connection to load.</div>';
+  }
+})();
+
+/* ══════════════════════════════════════
+   PARTNER LOGOS — duplicate track for seamless infinite scroll
+══════════════════════════════════════ */
+(function initMarquee() {
+  const track = document.getElementById('pmTrack');
+  if (!track) return;
+  const clone = track.innerHTML;
+  track.innerHTML = clone + clone;
+})();
+
+/* ══════════════════════════════════════
+   SPARKLES CANVAS (quote-band background)
+══════════════════════════════════════ */
+(function initSparkles() {
+  const canvas = document.getElementById('sparkles-canvas');
+  if (!canvas) return;
+  const section = canvas.parentElement;
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], animId;
+
+  function resize() {
+    W = canvas.width  = section.offsetWidth;
+    H = canvas.height = section.offsetHeight;
+  }
+
+  function rand(min, max) { return Math.random() * (max - min) + min; }
+
+  function createParticles() {
+    const count = Math.floor((W * H) / 5000);
+    particles = Array.from({ length: count }, () => ({
+      x: rand(0, W), y: rand(0, H),
+      r: rand(0.8, 2.2),
+      opacity: rand(0.1, 0.55),
+      speed: rand(0.15, 0.55),
+      phase: rand(0, Math.PI * 2),
+      twinkleSpeed: rand(0.008, 0.022),
+    }));
+  }
+
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    frame++;
+    particles.forEach(p => {
+      p.phase += p.twinkleSpeed;
+      const alpha = p.opacity * (0.5 + 0.5 * Math.sin(p.phase));
+      p.y -= p.speed * 0.25;
+      if (p.y < -4) p.y = H + 4;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(14,165,233,${alpha})`;
+      ctx.fill();
+    });
+    animId = requestAnimationFrame(draw);
+  }
+
+  function init() {
+    resize();
+    createParticles();
+    if (animId) cancelAnimationFrame(animId);
+    draw();
+  }
+
+  // Only run when in view
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { if (!animId) init(); }
+      else { if (animId) { cancelAnimationFrame(animId); animId = null; } }
+    });
+  }, { threshold: 0.05 });
+  io.observe(section);
+
+  window.addEventListener('resize', () => { resize(); createParticles(); });
+})();
+</script>
+</body>
+</html>
