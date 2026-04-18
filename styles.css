@@ -110,8 +110,19 @@ section { padding: 88px 5vw; }
 .btn {
   display: inline-block; padding: 13px 30px; border-radius: 10px;
   font-weight: 700; font-size: 0.93rem; text-decoration: none;
-  transition: all 0.2s; cursor: pointer; border: none;
+  transition: background 0.22s, transform 0.22s, box-shadow 0.22s, color 0.22s, border-color 0.22s;
+  cursor: pointer; border: none;
+  position: relative; overflow: hidden;
 }
+.btn::before {
+  content: '';
+  position: absolute; top: 0; left: -80%; width: 55%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.16), transparent);
+  transform: skewX(-18deg); pointer-events: none;
+  transition: left 0.55s ease;
+}
+.btn:hover::before { left: 140%; }
+.btn:active { transform: translateY(1px) scale(0.98) !important; }
 .btn-teal   { background: var(--teal); color: white; box-shadow: 0 4px 18px rgba(14,165,233,0.38); }
 .btn-teal:hover   { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 26px rgba(14,165,233,0.48); }
 .btn-coral  { background: var(--coral);  color: white; box-shadow: 0 4px 18px rgba(249,115,22,0.32); }
@@ -224,12 +235,11 @@ footer { background: #060D1A; padding: 64px 5vw 36px; border-top: 1px solid rgba
 .btn-coral:hover  { box-shadow: 0 8px 28px rgba(249,115,22,0.42); }
 .btn-purple:hover { box-shadow: 0 8px 28px rgba(139,92,246,0.42); }
 
-/* ── Card hover lifts ── */
-.founder-card, .member-card {
+/* ── Card hover lifts (used on index.html team teaser; team.html overrides these) ── */
+.tt-card2 {
   transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.28s;
 }
-.founder-card:hover { transform: translateY(-7px) scale(1.01); }
-.member-card:hover  { transform: translateY(-6px); }
+.tt-card2:hover { transform: translateY(-7px) scale(1.01); }
 
 /* ── Nav link animated underline ── */
 .nav-links a { position: relative; }
@@ -526,3 +536,191 @@ nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.35); border-bottom-color: rgb
   100% { background-position: 0% 50%; }
 }
 #cta-strip { background-size: 200% 200% !important; animation: ctaGrad 8s ease infinite; }
+
+/* ══════════════════════════════════════
+   ELITE GLOBAL ENHANCEMENTS
+══════════════════════════════════════ */
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #060d1a; }
+::-webkit-scrollbar-thumb { background: rgba(14,165,233,0.38); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(14,165,233,0.65); }
+
+/* Brand selection color */
+::selection { background: rgba(14,165,233,0.22); color: inherit; }
+
+/* Global focus ring */
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+
+/* Scroll progress bar */
+#scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+  background: linear-gradient(90deg, var(--teal), var(--purple), var(--teal));
+  background-size: 200% 100%;
+  z-index: 2000; pointer-events: none;
+  animation: borderFlow 3s linear infinite;
+  transition: width 0.08s linear;
+}
+
+/* Grain texture overlay for dark sections */
+.grain::after {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* Smooth fade-in for images */
+img { transition: opacity 0.35s ease; }
+
+/* Link transitions site-wide */
+a { transition: color 0.2s, opacity 0.2s; }
+
+/* ── Section label stagger entrance ── */
+.reveal .section-label {
+  display: inline-block;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.5s ease 0.05s, transform 0.5s ease 0.05s, letter-spacing 0.4s ease 0.3s;
+  letter-spacing: 0.08em;
+}
+.reveal.in .section-label { opacity: 1; transform: none; letter-spacing: 0.12em; }
+
+/* ── Page hero subtitle line ── */
+.page-hero p { animation: revealUp 0.8s cubic-bezier(0.4,0,0.2,1) both 0.5s; }
+
+/* ── Teal span glow on section titles ── */
+.section-title span, .ms-heading em, .gs-title em, .im-title em, .inv-header2 h2 em {
+  text-shadow: 0 0 32px rgba(14,165,233,0.18);
+}
+
+/* ── Region row reveal stagger ── */
+.reveal .gs-region {
+  opacity: 0; transform: translateX(-14px);
+  transition: opacity 0.45s ease, transform 0.45s ease, border-color 0.2s, background 0.2s;
+}
+.reveal.in .gs-region:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.15s; }
+.reveal.in .gs-region:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.22s; }
+.reveal.in .gs-region:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.29s; }
+.reveal.in .gs-region:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.36s; }
+
+/* ── Partner marquee pause on hover ── */
+.pm-track { cursor: default; }
+
+/* ── Stat pill gradient border on hover ── */
+.ms-pill {
+  position: relative; overflow: hidden;
+}
+.ms-pill::after {
+  content: '';
+  position: absolute; inset: 0; border-radius: 100px;
+  background: linear-gradient(135deg, rgba(14,165,233,0.15), rgba(139,92,246,0.1));
+  opacity: 0; transition: opacity 0.25s;
+}
+.ms-pill:hover::after { opacity: 1; }
+
+/* ── Timeline line pulse ── */
+@keyframes tlLinePulse {
+  0%,100% { opacity: 0.18; }
+  50% { opacity: 0.35; }
+}
+
+/* ── Feature card shimmer ── */
+@keyframes cardShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.im-stat-card::after {
+  content: '';
+  position: absolute; inset: 0; border-radius: 20px;
+  background: linear-gradient(105deg, transparent 40%, rgba(14,165,233,0.06) 50%, transparent 60%);
+  background-size: 200% 100%; opacity: 0;
+  transition: opacity 0.3s;
+}
+.im-stat-card:hover::after { opacity: 1; animation: cardShimmer 1.2s ease; }
+
+/* ── Nav logo hover glow ── */
+.nav-logo-img {
+  transition: box-shadow 0.3s, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.nav-logo:hover .nav-logo-img {
+  box-shadow: 0 0 16px rgba(14,165,233,0.4);
+  transform: scale(1.06);
+}
+
+/* ── Footer link hover slide ── */
+.ft-col ul li a {
+  display: inline-flex; align-items: center; gap: 0;
+  transition: color 0.2s, gap 0.2s;
+}
+.ft-col ul li a:hover { gap: 6px; }
+.ft-col ul li a:hover::before {
+  content: '›'; font-size: 0.9rem; line-height: 1; color: var(--teal);
+}
+
+/* ── Impact featured row counter ── */
+.im-feat-num {
+  background: linear-gradient(135deg, white 0%, var(--teal) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+/* ── Blog card hover glow ── */
+.blog-card, .blog-feature-card {
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+}
+.blog-card:hover, .blog-feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 52px rgba(11,29,58,0.14);
+}
+
+/* ── Event card hover ── */
+.event-card, .ev-card {
+  transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.28s;
+}
+.event-card:hover, .ev-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 44px rgba(11,29,58,0.14);
+}
+
+/* ── Chapter card hover ── */
+.chapter-card, .ch-card {
+  transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.28s, border-color 0.28s;
+}
+.chapter-card:hover, .ch-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(11,29,58,0.12);
+  border-color: rgba(14,165,233,0.25) !important;
+}
+
+/* ── Smooth page-in for all inner pages ── */
+.page-hero { animation: pageFade 0.6s cubic-bezier(0.4,0,0.2,1) both 0.05s; }
+
+/* ── Hero eyebrow line animate ── */
+@keyframes eyebrowLineGrow { from { width: 0 } to { width: 36px } }
+.eyebrow-rule { animation: eyebrowLineGrow 0.6s ease both 0.5s; }
+
+/* ── Quote band text shimmer ── */
+.qb-text {
+  background: linear-gradient(135deg, white 0%, rgba(255,255,255,0.82) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+/* ── Mobile nav animated open ── */
+.nav-links.open {
+  animation: revealUp 0.25s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+/* ── Donate page CTA hover ring ── */
+.btn-teal:focus-visible, .btn-coral:focus-visible, .btn-purple:focus-visible {
+  outline-color: white;
+}
+
+/* ── Smooth hover on gs-region ── */
+.gs-region { cursor: default; }
+
+/* ── Val card subtle border glow on hover ── */
+.val-card { transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.28s, border-color 0.28s; }
+.val-card:hover {
+  box-shadow: 0 16px 44px rgba(11,29,58,0.12), 0 0 0 1px rgba(14,165,233,0.2);
+}

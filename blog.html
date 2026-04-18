@@ -282,5 +282,6 @@
   const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:0.08,rootMargin:'0px 0px -24px 0px'});
   document.querySelectorAll('.reveal').forEach((el,_,all)=>{const p=el.parentElement;const s=[...p.children].filter(c=>c.classList.contains('reveal'));const i=s.indexOf(el);if(i>0)el.style.transitionDelay=`${i*0.08}s`;io.observe(el);});
 </script>
+<script src="common.js" defer></script>
 </body>
 </html>
