@@ -93,6 +93,99 @@
     #join-cta p  { color:rgba(255,255,255,0.65); font-size:1rem; margin-bottom:32px; max-width:500px; margin-left:auto; margin-right:auto; }
     .jc-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
 
+    /* ══ PROFILE MODAL ══ */
+    .member-card, .founder-card { cursor: pointer; }
+    .member-card .mc-body::after {
+      content: 'View Profile →';
+      display: block; margin-top: 8px;
+      font-size: 0.7rem; font-weight: 700; color: var(--teal);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      opacity: 0; transform: translateY(4px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .member-card:hover .mc-body::after { opacity: 1; transform: none; }
+
+    #profile-modal {
+      position: fixed; inset: 0; z-index: 9000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #profile-modal.open { opacity: 1; pointer-events: all; }
+    #modal-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(4,9,20,0.82); backdrop-filter: blur(8px);
+    }
+    #modal-card {
+      position: relative; z-index: 1;
+      background: white; border-radius: 28px;
+      max-width: 760px; width: 100%;
+      display: grid; grid-template-columns: 260px 1fr;
+      overflow: hidden;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.45);
+      transform: translateY(28px) scale(0.96);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      max-height: 90vh;
+    }
+    #profile-modal.open #modal-card { transform: none; }
+    #modal-photo-col {
+      position: relative; background: var(--navy);
+    }
+    #modal-photo-col img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center 15%;
+      display: block;
+    }
+    #modal-photo-col::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(11,29,58,0.75) 0%, transparent 60%);
+    }
+    #modal-content-col {
+      padding: 44px 40px 44px 36px;
+      display: flex; flex-direction: column; justify-content: center;
+      overflow-y: auto;
+    }
+    #modal-role-tag {
+      display: inline-block; background: rgba(14,165,233,0.1);
+      color: var(--teal-dark); border: 1px solid rgba(14,165,233,0.22);
+      padding: 5px 14px; border-radius: 100px;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 14px; width: fit-content;
+    }
+    #modal-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.85rem; font-weight: 800; color: var(--navy);
+      line-height: 1.1; margin-bottom: 6px;
+    }
+    #modal-role {
+      color: var(--teal); font-size: 0.8rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 22px;
+    }
+    .modal-divider {
+      width: 36px; height: 2px; background: var(--teal);
+      margin-bottom: 20px; border-radius: 2px;
+    }
+    #modal-bio {
+      color: #4A5568; font-size: 0.92rem; line-height: 1.85;
+    }
+    #modal-close {
+      position: absolute; top: 18px; right: 18px; z-index: 10;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.1rem; line-height: 1;
+      transition: background 0.2s, transform 0.2s;
+    }
+    #modal-close:hover { background: rgba(255,255,255,0.22); transform: scale(1.1); }
+
+    @keyframes modalIn { from{opacity:0;transform:translateY(28px) scale(0.96)} to{opacity:1;transform:none} }
+
+    @media(max-width:600px){
+      #modal-card { grid-template-columns: 1fr; max-height: 88vh; }
+      #modal-photo-col { height: 220px; }
+      #modal-content-col { padding: 28px 24px; }
+    }
+
     @media(max-width:1024px){ .member-grid { grid-template-columns:repeat(3,1fr); } }
     @media(max-width:768px){ .founders-grid { grid-template-columns:1fr; } .member-grid { grid-template-columns:repeat(2,1fr); } }
     @media(max-width:480px){ .member-grid { grid-template-columns:1fr 1fr; } }
@@ -137,7 +230,11 @@
     </div>
     <div class="founders-grid">
 
-      <div class="founder-card reveal">
+      <div class="founder-card reveal"
+        data-name="Aditi Kuthanoor"
+        data-role="Co-Founder &amp; Executive Director"
+        data-photo="https://static.wixstatic.com/media/f02e73_7260ca5a283642379b58dc58548eda66~mv2.png"
+        data-bio="">
         <div class="fc-photo">
           <img src="https://static.wixstatic.com/media/f02e73_7260ca5a283642379b58dc58548eda66~mv2.png" alt="Aditi Kuthanoor" />
           <div class="fc-photo-overlay-inner"></div>
@@ -149,7 +246,11 @@
         </div>
       </div>
 
-      <div class="founder-card reveal">
+      <div class="founder-card reveal"
+        data-name="Shritan Pothini"
+        data-role="Co-Founder &amp; CEO"
+        data-photo="https://static.wixstatic.com/media/462b5a_f03c956287c5433085764ce568a0d0cd~mv2.jpeg"
+        data-bio="">
         <div class="fc-photo">
           <img src="https://static.wixstatic.com/media/462b5a_f03c956287c5433085764ce568a0d0cd~mv2.jpeg" alt="Shritan Pothini" />
           <div class="fc-photo-overlay-inner"></div>
@@ -178,109 +279,117 @@
     </div>
     <div class="member-grid">
 
-      <div class="member-card reveal">
-        <div class="mc-photo">
-          <img src="https://static.wixstatic.com/media/f02e73_9cbc641bda5b4e9387ed716576165318~mv2.png" alt="Alexander Mammar" />
-        </div>
-        <div class="mc-body">
-          <div class="mc-name">Alexander Mammar</div>
-          <div class="mc-role">Director of Early Detection &amp; Prevention</div>
-        </div>
+      <div class="member-card reveal"
+        data-name="Alexander Mammar"
+        data-role="Director of Early Detection &amp; Prevention"
+        data-photo="https://static.wixstatic.com/media/f02e73_9cbc641bda5b4e9387ed716576165318~mv2.png"
+        data-bio="">
+        <div class="mc-photo"><img src="https://static.wixstatic.com/media/f02e73_9cbc641bda5b4e9387ed716576165318~mv2.png" alt="Alexander Mammar" /></div>
+        <div class="mc-body"><div class="mc-name">Alexander Mammar</div><div class="mc-role">Director of Early Detection &amp; Prevention</div></div>
       </div>
 
-      <div class="member-card reveal">
-        <div class="mc-photo">
-          <img src="https://static.wixstatic.com/media/f02e73_17ea3d1c9d0b498fb7a027bc1362dbbb~mv2.png" alt="Akshara Guddeti" />
-        </div>
-        <div class="mc-body">
-          <div class="mc-name">Akshara Guddeti</div>
-          <div class="mc-role">Director of Vaccine Outreach &amp; Advocacy</div>
-        </div>
+      <div class="member-card reveal"
+        data-name="Akshara Guddeti"
+        data-role="Director of Vaccine Outreach &amp; Advocacy"
+        data-photo="https://static.wixstatic.com/media/f02e73_17ea3d1c9d0b498fb7a027bc1362dbbb~mv2.png"
+        data-bio="">
+        <div class="mc-photo"><img src="https://static.wixstatic.com/media/f02e73_17ea3d1c9d0b498fb7a027bc1362dbbb~mv2.png" alt="Akshara Guddeti" /></div>
+        <div class="mc-body"><div class="mc-name">Akshara Guddeti</div><div class="mc-role">Director of Vaccine Outreach &amp; Advocacy</div></div>
       </div>
 
-      <div class="member-card reveal">
-        <div class="mc-photo">
-          <img src="https://static.wixstatic.com/media/f02e73_f3e204cb995f4f049610e0478d13bf6a~mv2.png" alt="Akshaj Mamidi" />
-        </div>
-        <div class="mc-body">
-          <div class="mc-name">Akshaj Mamidi</div>
-          <div class="mc-role">Web Lead</div>
-        </div>
+      <div class="member-card reveal"
+        data-name="Akshaj Mamidi"
+        data-role="Web Lead"
+        data-photo="https://static.wixstatic.com/media/f02e73_f3e204cb995f4f049610e0478d13bf6a~mv2.png"
+        data-bio="">
+        <div class="mc-photo"><img src="https://static.wixstatic.com/media/f02e73_f3e204cb995f4f049610e0478d13bf6a~mv2.png" alt="Akshaj Mamidi" /></div>
+        <div class="mc-body"><div class="mc-name">Akshaj Mamidi</div><div class="mc-role">Web Lead</div></div>
       </div>
 
-      <div class="member-card reveal">
-        <div class="mc-photo">
-          <img src="https://static.wixstatic.com/media/f02e73_0863302d3037489bab1912b0e61dfb9c~mv2.png" alt="Arjun Harshe" style="object-position: center 10%;" />
-        </div>
-        <div class="mc-body">
-          <div class="mc-name">Arjun Harshe</div>
-          <div class="mc-role">Product Manager</div>
-        </div>
+      <div class="member-card reveal"
+        data-name="Arjun Harshe"
+        data-role="Product Manager"
+        data-photo="https://static.wixstatic.com/media/f02e73_0863302d3037489bab1912b0e61dfb9c~mv2.png"
+        data-bio="">
+        <div class="mc-photo"><img src="https://static.wixstatic.com/media/f02e73_0863302d3037489bab1912b0e61dfb9c~mv2.png" alt="Arjun Harshe" style="object-position:center 10%;" /></div>
+        <div class="mc-body"><div class="mc-name">Arjun Harshe</div><div class="mc-role">Product Manager</div></div>
       </div>
 
-      <div class="member-card reveal">
-        <div class="mc-photo">
-          <img src="https://static.wixstatic.com/media/f02e73_61b1e2b635dc42349fb6db6486d20fd3~mv2.png" alt="Pradyumna Mandalapu" />
-        </div>
-        <div class="mc-body">
-          <div class="mc-name">Pradyumna Mandalapu</div>
-          <div class="mc-role">Creative Director</div>
-        </div>
+      <div class="member-card reveal"
+        data-name="Pradyumna Mandalapu"
+        data-role="Creative Director"
+        data-photo="https://static.wixstatic.com/media/f02e73_61b1e2b635dc42349fb6db6486d20fd3~mv2.png"
+        data-bio="">
+        <div class="mc-photo"><img src="https://static.wixstatic.com/media/f02e73_61b1e2b635dc42349fb6db6486d20fd3~mv2.png" alt="Pradyumna Mandalapu" /></div>
+        <div class="mc-body"><div class="mc-name">Pradyumna Mandalapu</div><div class="mc-role">Creative Director</div></div>
       </div>
 
-      <div class="member-card reveal">
-        <div class="mc-photo">
-          <img src="photos/dhvani.jpg" alt="Dhvani" style="object-fit:cover; object-position:center 15%; width:100%; height:100%;" onerror="this.src='https://static.wixstatic.com/media/f02e73_23773825ad274b3f95d6c3d5eca55866~mv2.png'; this.style.objectPosition='50% top';" />
-        </div>
-        <div class="mc-body">
-          <div class="mc-name">Dhvani</div>
-          <div class="mc-role">Blog</div>
-        </div>
+      <div class="member-card reveal"
+        data-name="Dhvani"
+        data-role="Blog"
+        data-photo="photos/dhvani.jpg"
+        data-bio="">
+        <div class="mc-photo"><img src="photos/dhvani.jpg" alt="Dhvani" style="object-fit:cover;object-position:center 15%;width:100%;height:100%;" onerror="this.src='https://static.wixstatic.com/media/f02e73_23773825ad274b3f95d6c3d5eca55866~mv2.png';this.style.objectPosition='50% top';" /></div>
+        <div class="mc-body"><div class="mc-name">Dhvani</div><div class="mc-role">Blog</div></div>
       </div>
 
-      <div class="member-card reveal">
-        <div class="mc-photo">
-          <img src="https://static.wixstatic.com/media/462b5a_5336d74cc32b4925810a5de18211dd97~mv2.jpeg" alt="Ellie McLachlan" />
-        </div>
-        <div class="mc-body">
-          <div class="mc-name">Ellie McLachlan</div>
-          <div class="mc-role">Events Manager</div>
-        </div>
+      <div class="member-card reveal"
+        data-name="Ellie McLachlan"
+        data-role="Events Manager"
+        data-photo="https://static.wixstatic.com/media/462b5a_5336d74cc32b4925810a5de18211dd97~mv2.jpeg"
+        data-bio="">
+        <div class="mc-photo"><img src="https://static.wixstatic.com/media/462b5a_5336d74cc32b4925810a5de18211dd97~mv2.jpeg" alt="Ellie McLachlan" /></div>
+        <div class="mc-body"><div class="mc-name">Ellie McLachlan</div><div class="mc-role">Events Manager</div></div>
       </div>
 
-      <div class="member-card reveal">
-        <div class="mc-photo">
-          <img src="richa.jfif" alt="Richa Gawande" />
-        </div>
-        <div class="mc-body">
-          <div class="mc-name">Richa Gawande</div>
-          <div class="mc-role">Fundraising Lead</div>
-        </div>
+      <div class="member-card reveal"
+        data-name="Richa Gawande"
+        data-role="Fundraising Lead"
+        data-photo="richa.jfif"
+        data-bio="">
+        <div class="mc-photo"><img src="richa.jfif" alt="Richa Gawande" /></div>
+        <div class="mc-body"><div class="mc-name">Richa Gawande</div><div class="mc-role">Fundraising Lead</div></div>
       </div>
 
-      <div class="member-card reveal">
-        <div class="mc-photo">
-          <img src="Arnav.jfif" alt="Arnav Vishwakarma" />
-        </div>
-        <div class="mc-body">
-          <div class="mc-name">Arnav Vishwakarma</div>
-          <div class="mc-role">Outreach</div>
-        </div>
+      <div class="member-card reveal"
+        data-name="Arnav Vishwakarma"
+        data-role="Executive Director of Chapter Outreach"
+        data-photo="Arnav.jfif"
+        data-bio="I serve as Executive Director of Chapter Outreach for International Children's Wellness, leading national expansion of early screening initiatives. I have conducted research in bacterial genomics and transcriptomics with work published in IEEE Xplore, presented at IEEE ICHI 2026, and recognized at ISEF, and have interned at the University of Washington and Fred Hutchinson Cancer Center. I also led a 13+ member team as a Student Visionary for Blood Cancer United, raising over $10,000, and plan to pursue an MD–PhD in microbiology and immunology.">
+        <div class="mc-photo"><img src="Arnav.jfif" alt="Arnav Vishwakarma" /></div>
+        <div class="mc-body"><div class="mc-name">Arnav Vishwakarma</div><div class="mc-role">Executive Director of Chapter Outreach</div></div>
       </div>
 
-      <div class="member-card reveal">
-        <div class="mc-photo">
-          <img src="https://static.wixstatic.com/media/f02e73_84a0d581f01e4126879321e15ae412bf~mv2.png" alt="Riva Joshi" />
-        </div>
-        <div class="mc-body">
-          <div class="mc-name">Riva Joshi</div>
-          <div class="mc-role">Website Lead</div>
-        </div>
+      <div class="member-card reveal"
+        data-name="Riva Joshi"
+        data-role="Website Lead"
+        data-photo="https://static.wixstatic.com/media/f02e73_84a0d581f01e4126879321e15ae412bf~mv2.png"
+        data-bio="">
+        <div class="mc-photo"><img src="https://static.wixstatic.com/media/f02e73_84a0d581f01e4126879321e15ae412bf~mv2.png" alt="Riva Joshi" /></div>
+        <div class="mc-body"><div class="mc-name">Riva Joshi</div><div class="mc-role">Website Lead</div></div>
       </div>
 
     </div>
   </div>
 </section>
+
+<!-- PROFILE MODAL -->
+<div id="profile-modal" role="dialog" aria-modal="true">
+  <div id="modal-backdrop"></div>
+  <div id="modal-card">
+    <button id="modal-close" aria-label="Close">&#x2715;</button>
+    <div id="modal-photo-col">
+      <img id="modal-img" src="" alt="" />
+    </div>
+    <div id="modal-content-col">
+      <div id="modal-role-tag">ICW Team</div>
+      <div id="modal-name"></div>
+      <div id="modal-role"></div>
+      <div class="modal-divider"></div>
+      <p id="modal-bio"></p>
+    </div>
+  </div>
+</div>
 
 <!-- JOIN CTA -->
 <section id="join-cta" style="position:relative;overflow:hidden;">
@@ -325,6 +434,54 @@
   const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:0.08,rootMargin:'0px 0px -24px 0px'});
   document.querySelectorAll('.reveal').forEach((el,_,all)=>{const p=el.parentElement;const s=[...p.children].filter(c=>c.classList.contains('reveal'));const i=s.indexOf(el);if(i>0)el.style.transitionDelay=`${i*0.07}s`;io.observe(el);});
 
+  /* ── PROFILE MODAL ── */
+  const modal   = document.getElementById('profile-modal');
+  const backdrop= document.getElementById('modal-backdrop');
+  const closeBtn= document.getElementById('modal-close');
+  const mImg    = document.getElementById('modal-img');
+  const mName   = document.getElementById('modal-name');
+  const mRole   = document.getElementById('modal-role');
+  const mBio    = document.getElementById('modal-bio');
+  const mTag    = document.getElementById('modal-role-tag');
+
+  function openModal(el) {
+    const name  = el.dataset.name  || '';
+    const role  = el.dataset.role  || '';
+    const photo = el.dataset.photo || '';
+    const bio   = el.dataset.bio   || '';
+
+    mImg.src    = photo;
+    mImg.alt    = name;
+    mName.textContent = name;
+    mRole.innerHTML   = role;
+    mTag.textContent  = el.classList.contains('founder-card') ? 'Co-Founder' : 'ICW Team';
+
+    if (bio) {
+      mBio.textContent = bio;
+      mBio.style.display = 'block';
+      document.querySelector('.modal-divider').style.display = 'block';
+    } else {
+      mBio.style.display = 'none';
+      document.querySelector('.modal-divider').style.display = 'none';
+    }
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.member-card[data-name], .founder-card[data-name]').forEach(card => {
+    card.addEventListener('click', () => openModal(card));
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
   /* 3D tilt on cards */
   function addTilt(sel,deg=8){
     document.querySelectorAll(sel).forEach(card=>{
@@ -335,7 +492,7 @@
         const y=(e.clientY-r.top)/r.height-0.5;
         card.style.transform=`translateY(-6px) rotateY(${x*deg}deg) rotateX(${-y*deg}deg) scale(1.01)`;
       });
-      card.addEventListener('mouseleave',()=>card.style.transform='');
+      card.addEventListener('mouseleave',()=>{ if(!modal.classList.contains('open')) card.style.transform=''; });
     });
   }
   addTilt('.founder-card',6);
