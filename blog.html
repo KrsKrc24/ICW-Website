@@ -281,9 +281,9 @@
       <div class="section-label" style="color:var(--teal);opacity:1;transform:none;">Stay Connected</div>
       <h2>Get ICW Stories in Your Inbox</h2>
       <p>Follow our latest events, research, and impact stories. No spam — just meaningful updates from a mission that matters.</p>
-      <form class="nl-form" id="nlForm" data-fs-success="#nlSuccess" data-fs-error="#nlError">
-        <input type="email" class="nl-input" name="email" id="nlEmail" placeholder="your@email.com" autocomplete="email" data-fs-field required />
-        <button class="btn btn-teal" type="submit" id="nlBtn" data-fs-submit-btn>Subscribe</button>
+      <form class="nl-form" id="nlForm">
+        <input type="email" class="nl-input" name="email" id="nlEmail" placeholder="your@email.com" autocomplete="email" required />
+        <button class="btn btn-teal" type="submit" id="nlBtn">Subscribe</button>
       </form>
       <div id="nlError" style="color:#f87171;font-size:0.85rem;margin-top:8px;min-height:1.2em;"></div>
       <div class="nl-success" id="nlSuccess">
@@ -321,20 +321,37 @@
   const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:0.08,rootMargin:'0px 0px -24px 0px'});
   document.querySelectorAll('.reveal').forEach((el)=>{const p=el.parentElement;const s=[...p.children].filter(c=>c.classList.contains('reveal'));const i=s.indexOf(el);if(i>0)el.style.transitionDelay=`${i*0.08}s`;io.observe(el);});
 
-  /* ── NEWSLETTER SUBSCRIBE (Formspree) ── */
-  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-  formspree('initForm', { formElement: '#nlForm', formId: 'xlgaldkr' });
-
-  /* Show success UI + confetti after Formspree submits */
-  document.getElementById('nlForm').addEventListener('submit', () => {
-    setTimeout(() => {
-      const success = document.getElementById('nlSuccess');
-      if (success.style.display !== 'none' || success.classList.contains('show')) return;
-      document.getElementById('nlForm').classList.add('hidden');
-      document.getElementById('nlNote').style.display = 'none';
-      success.classList.add('show');
-      confettiBurst(document.getElementById('nlBtn'));
-    }, 1200);
+  /* ── NEWSLETTER SUBSCRIBE (Formspree fetch) ── */
+  document.getElementById('nlForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const emailInput = document.getElementById('nlEmail');
+    const btn = document.getElementById('nlBtn');
+    const email = emailInput.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      emailInput.classList.add('nl-error');
+      setTimeout(() => emailInput.classList.remove('nl-error'), 500);
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    try {
+      const res = await fetch('https://formspree.io/f/xlgaldkr', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      if (res.ok) {
+        document.getElementById('nlForm').classList.add('hidden');
+        document.getElementById('nlNote').style.display = 'none';
+        setTimeout(() => document.getElementById('nlSuccess').classList.add('show'), 300);
+        confettiBurst(btn);
+      } else {
+        btn.disabled = false; btn.textContent = 'Subscribe';
+        document.getElementById('nlError').textContent = 'Something went wrong. Try again.';
+      }
+    } catch {
+      btn.disabled = false; btn.textContent = 'Subscribe';
+    }
   });
 
   /* ── TOPIC FILTER ── */
@@ -392,6 +409,5 @@
   }
 </script>
 <script src="common.js" defer></script>
-<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
