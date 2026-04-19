@@ -1049,6 +1049,46 @@ addTilt('.tt-card2', 6);
 
   window.addEventListener('resize', () => { resize(); createParticles(); });
 })();
+
+/* ══ HERO PARALLAX ══ */
+(function() {
+  const heroBg = document.querySelector('.hero-bg');
+  if (!heroBg) return;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y < window.innerHeight * 1.5) {
+      heroBg.style.transform = `translateY(${y * 0.28}px)`;
+    }
+  }, { passive: true });
+})();
+
+/* ══ HERO TYPEWRITER ON EM ══ */
+(function() {
+  const em = document.querySelector('.hero-title em');
+  if (!em) return;
+  const words = ['Human Right.', 'Global Mission.', 'Shared Responsibility.'];
+  let wi = 0, ci = 0, deleting = false;
+  const delay = { type: 70, delete: 38, pause: 2200, pauseAfterDelete: 420 };
+  function tick() {
+    const word = words[wi];
+    if (!deleting) {
+      em.textContent = word.slice(0, ++ci);
+      if (ci === word.length) { deleting = true; setTimeout(tick, delay.pause); return; }
+    } else {
+      em.textContent = word.slice(0, --ci);
+      if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; setTimeout(tick, delay.pauseAfterDelete); return; }
+    }
+    setTimeout(tick, deleting ? delay.delete : delay.type);
+  }
+  setTimeout(tick, 1400);
+  /* cursor blink */
+  const cursor = document.createElement('span');
+  cursor.style.cssText = 'display:inline-block;width:3px;background:var(--teal);margin-left:2px;animation:blink 1s step-end infinite;vertical-align:baseline;height:0.85em;border-radius:2px;';
+  const style = document.createElement('style');
+  style.textContent = '@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}';
+  document.head.appendChild(style);
+  em.after(cursor);
+})();
 </script>
 <script src="common.js" defer></script>
 </body>
