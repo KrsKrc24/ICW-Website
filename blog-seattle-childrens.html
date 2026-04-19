@@ -148,6 +148,30 @@
   </div>
 </section>
 
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="nl-inner">
+    <div class="reveal">
+      <div class="section-label" style="color:var(--teal);opacity:1;transform:none;">Stay Connected</div>
+      <h2>Get ICW Stories in Your Inbox</h2>
+      <p>Follow our latest events, research, and impact stories. No spam — just meaningful updates from a mission that matters.</p>
+      <form class="nl-form" id="nlForm" data-fs-success="#nlSuccess" data-fs-error="#nlError">
+        <input type="email" class="nl-input" name="email" id="nlEmail" placeholder="your@email.com" autocomplete="email" data-fs-field required />
+        <button class="btn btn-teal" type="submit" id="nlBtn" data-fs-submit-btn>Subscribe</button>
+      </form>
+      <div id="nlError" style="color:#f87171;font-size:0.85rem;margin-top:8px;min-height:1.2em;"></div>
+      <div class="nl-success" id="nlSuccess">
+        <div class="nl-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="nl-success-text">You're on the list!</div>
+        <div class="nl-success-sub">We'll send you our next story. Thanks for caring.</div>
+      </div>
+      <div class="nl-note" id="nlNote">Or follow us on Instagram @internationalchildrenswellness for daily updates.</div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="ft-inner">
     <div class="ft-top">
@@ -169,5 +193,10 @@
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
 <script src="common.js" defer></script>
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#nlForm', formId: 'xlgaldkr' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </body>
 </html>
