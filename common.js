@@ -22,59 +22,6 @@ document.querySelectorAll('img').forEach(img => {
   img.addEventListener('load', () => { img.style.opacity = ''; }, { once: true });
 });
 
-/* ══ CURSOR GLOW DOT ══ */
-(function () {
-  const dot = document.createElement('div');
-  dot.id = 'cursor-dot';
-  dot.style.cssText = `
-    position:fixed; width:12px; height:12px; border-radius:50%;
-    background:rgba(14,165,233,0.55); pointer-events:none; z-index:9998;
-    transform:translate(-50%,-50%) scale(0);
-    transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s, background 0.2s;
-    filter:blur(1px); mix-blend-mode:screen;
-  `;
-  const ring = document.createElement('div');
-  ring.id = 'cursor-ring';
-  ring.style.cssText = `
-    position:fixed; width:36px; height:36px; border-radius:50%;
-    border:1.5px solid rgba(14,165,233,0.3); pointer-events:none; z-index:9997;
-    transform:translate(-50%,-50%) scale(0);
-    transition:transform 0.45s cubic-bezier(0.34,1.56,0.64,1), left 0.08s linear, top 0.08s linear, opacity 0.3s;
-  `;
-  document.body.appendChild(dot);
-  document.body.appendChild(ring);
-
-  let mx = 0, my = 0;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    dot.style.left  = mx + 'px'; dot.style.top  = my + 'px';
-    ring.style.left = mx + 'px'; ring.style.top = my + 'px';
-    dot.style.transform  = 'translate(-50%,-50%) scale(1)';
-    ring.style.transform = 'translate(-50%,-50%) scale(1)';
-  });
-  document.addEventListener('mouseleave', () => {
-    dot.style.opacity  = '0';
-    ring.style.opacity = '0';
-  });
-  document.addEventListener('mouseenter', () => {
-    dot.style.opacity  = '1';
-    ring.style.opacity = '1';
-  });
-
-  /* Expand ring on hover over clickable elements */
-  document.addEventListener('mouseover', e => {
-    if (e.target.closest('a,button,.btn,.member-card,.founder-card,.blog-card,.topic-pill')) {
-      dot.style.background = 'rgba(14,165,233,0.8)';
-      ring.style.transform = 'translate(-50%,-50%) scale(1.7)';
-      ring.style.borderColor = 'rgba(14,165,233,0.5)';
-    } else {
-      dot.style.background = 'rgba(14,165,233,0.55)';
-      ring.style.transform = 'translate(-50%,-50%) scale(1)';
-      ring.style.borderColor = 'rgba(14,165,233,0.3)';
-    }
-  });
-})();
-
 /* ══ MAGNETIC CTA BUTTONS ══ */
 document.querySelectorAll('.hero-actions .btn, .qb-btns .btn, #join-cta .btn').forEach(btn => {
   btn.style.transition = btn.style.transition || 'transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.22s, box-shadow 0.22s';
