@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>More Than a Card: ICW at Seattle Children's Hospital | ICW Blog</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .post-hero { padding:140px 5vw 80px; background:linear-gradient(145deg,#0B1D3A 0%,#0d2347 55%,#112060 100%); position:relative; overflow:hidden; }
+    .post-hero-orb-1 { position:absolute; width:500px; height:500px; border-radius:50%; background:rgba(14,165,233,0.1); filter:blur(90px); top:-120px; right:-80px; animation:orbDrift 12s ease-in-out infinite; }
+    .post-hero-orb-2 { position:absolute; width:320px; height:320px; border-radius:50%; background:rgba(16,185,129,0.08); filter:blur(70px); bottom:-60px; left:-40px; animation:orbDrift 15s ease-in-out infinite reverse; }
+    .post-hero-inner { max-width:780px; margin:0 auto; position:relative; z-index:1; }
+    .post-back { display:inline-flex; align-items:center; gap:8px; color:rgba(255,255,255,0.5); font-size:0.8rem; font-weight:600; text-decoration:none; margin-bottom:32px; transition:color 0.2s; }
+    .post-back:hover { color:var(--teal); }
+    .post-back svg { transition:transform 0.2s; }
+    .post-back:hover svg { transform:translateX(-3px); }
+    .post-tag { display:inline-block; background:rgba(16,185,129,0.18); border:1px solid rgba(16,185,129,0.35); color:#34D399; padding:5px 14px; border-radius:100px; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:20px; }
+    .post-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:800; color:white; line-height:1.18; margin-bottom:22px; letter-spacing:-0.02em; }
+    .post-meta { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+    .post-meta-item { display:flex; align-items:center; gap:7px; color:rgba(255,255,255,0.45); font-size:0.78rem; font-weight:500; }
+    .post-author-dot { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--green),#059669); display:flex; align-items:center; justify-content:center; font-size:0.62rem; font-weight:800; color:white; flex-shrink:0; }
+    .post-body { background:white; padding:72px 5vw 88px; }
+    .post-inner { max-width:720px; margin:0 auto; }
+    .post-cover { border-radius:18px; overflow:hidden; margin-bottom:52px; aspect-ratio:16/8; }
+    .post-cover img { width:100%; height:100%; object-fit:cover; display:block; }
+    .post-text h2 { font-family:'Playfair Display',serif; font-size:1.55rem; font-weight:800; color:var(--navy); margin:44px 0 18px; line-height:1.3; }
+    .post-text p { color:#4A5568; font-size:1.04rem; line-height:1.9; margin-bottom:22px; }
+    .post-text strong { color:var(--navy); font-weight:700; }
+    .post-text a { color:var(--teal); font-weight:600; }
+    .pull-quote { border-left:3px solid var(--green); padding:6px 0 6px 28px; margin:40px 0; font-family:'Playfair Display',serif; font-style:italic; font-size:1.22rem; color:var(--navy); line-height:1.6; }
+    .stat-callout { background:rgba(14,165,233,0.05); border:1px solid rgba(14,165,233,0.15); border-radius:16px; padding:28px 32px; margin:36px 0; display:flex; gap:32px; align-items:center; flex-wrap:wrap; }
+    .stat-callout-num { font-family:'Playfair Display',serif; font-size:3rem; font-weight:900; color:var(--teal); line-height:1; flex-shrink:0; }
+    .stat-callout-text { color:var(--gray-700); font-size:0.95rem; line-height:1.7; }
+    .post-tags { display:flex; gap:8px; flex-wrap:wrap; margin-top:48px; padding-top:28px; border-top:1px solid var(--gray-100); }
+    .ptag { background:var(--gray-100); color:var(--gray-700); padding:5px 14px; border-radius:100px; font-size:0.76rem; font-weight:600; }
+    .post-related { background:var(--off-white); padding:72px 5vw; }
+    .pr-inner { max-width:1100px; margin:0 auto; }
+    .pr-title { font-family:'Playfair Display',serif; font-weight:800; font-size:1.6rem; color:var(--navy); margin-bottom:36px; }
+    .pr-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .pr-card { background:white; border-radius:16px; overflow:hidden; box-shadow:var(--shadow); text-decoration:none; display:block; transition:transform 0.28s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.28s; }
+    .pr-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); }
+    .pr-thumb { height:150px; overflow:hidden; }
+    .pr-thumb img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s; }
+    .pr-card:hover .pr-thumb img { transform:scale(1.05); }
+    .pr-body { padding:18px 20px; }
+    .pr-tag { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--teal); margin-bottom:8px; }
+    .pr-card-title { font-weight:700; color:var(--navy); font-size:0.9rem; line-height:1.45; }
+    @media(max-width:768px){ .pr-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" class="nav-logo-img"/><div><div class="nav-logo-text">International Children's Wellness</div><div class="nav-logo-sub">Youth-Led Nonprofit · EIN 93-2522549</div></div></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="mission.html">Mission</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="chapters.html">Chapters</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="donate.html" class="nav-cta">Donate</a></li>
+  </ul>
+  <button class="nav-menu-btn" id="menuBtn"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="post-hero">
+  <div class="post-hero-orb-1"></div>
+  <div class="post-hero-orb-2"></div>
+  <div class="post-hero-inner">
+    <a href="blog.html" class="post-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Blog
+    </a>
+    <div class="post-tag">Outreach</div>
+    <h1>More Than a Card: How ICW Is Spreading Joy at Seattle Children's Hospital</h1>
+    <div class="post-meta">
+      <div class="post-meta-item"><div class="post-author-dot">ICW</div> ICW Team</div>
+      <div class="post-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        November 4, 2025
+      </div>
+      <div class="post-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        2 min read
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="post-body">
+  <div class="post-inner">
+    <div class="post-cover reveal">
+      <img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=1400&q=85" alt="Handwritten cards for children"/>
+    </div>
+    <div class="post-text">
+      <p>There is a wall at Seattle Children's Hospital covered in handwritten cards. Crayon-colored stars, careful cursive, stickers, and hand-drawn rainbows — sent by students across the Pacific Northwest who wanted a child they'd never met to know that someone was rooting for them. Many of those cards were written by ICW volunteers.</p>
+
+      <p>The ICW care package and card campaign is one of the organization's most consistent programs. Multiple times a year, chapters across North America mobilize their members to write personal, heartfelt cards for pediatric cancer patients. The cards are bundled with small care items — journals, comfort socks, small toys — and delivered to partner hospitals including Seattle Children's.</p>
+
+      <div class="stat-callout">
+        <div class="stat-callout-num">200+</div>
+        <div class="stat-callout-text"><strong>Cards and care packages delivered</strong> to pediatric cancer patients since ICW's founding in 2023 — with more shipped every semester.</div>
+      </div>
+
+      <h2>Why Cards Matter in a Hospital Setting</h2>
+      <p>For a child spending weeks or months in treatment, the hospital can start to feel like the whole world. The routine of IV lines, vitals checks, and medication schedules can blur into a kind of institutional sameness that strips away the feeling of being seen as a person — not just a patient. That's where a handwritten card can do something medicine cannot.</p>
+
+      <p>Research in pediatric oncology has consistently shown that emotional well-being directly affects treatment outcomes. Patients with strong social support, a sense of belonging, and positive emotional engagement tend to tolerate treatment better and recover more quickly. ICW's card campaigns are designed with this in mind: the goal isn't just to make a child smile — it's to remind them that they exist in a larger web of care that extends far beyond the hospital walls.</p>
+
+      <div class="pull-quote">"When we hand the bundle to a nurse and she says 'these kids are going to love this' — that's the whole reason we do this."<br/><span style="font-size:0.85rem;font-style:normal;opacity:0.65;font-family:Inter,sans-serif;">— ICW Chapter Member, Issaquah WA</span></div>
+
+      <h2>What Goes Into a Care Package</h2>
+      <p>Every package is assembled with intention. ICW volunteers sort items by age group and include a hand-signed card written specifically for that recipient's stage of life — a coloring book and crayons for a five-year-old looks different from a journal and playlist card for a teenager. Packages for older kids often include comfort items like soft socks, a small succulents kit, or a puzzle.</p>
+
+      <p>The cards themselves are the most personal element. ICW members are encouraged to write something genuine — not just "feel better soon," but a real sentence about who they are, what they care about, why they wanted to reach out. Children and parents have written back to ICW to say these messages meant the world to them.</p>
+
+      <h2>How You Can Help</h2>
+      <p>The next card drive is open to anyone who wants to participate. You don't need to be an ICW chapter member — just a person with a pen and something genuine to say. <a href="mailto:internationalchildrenwellness@gmail.com">Email us</a> to get involved, or check our <a href="events.html">events page</a> for upcoming drives near you.</p>
+
+      <div class="post-tags">
+        <span class="ptag">Outreach</span>
+        <span class="ptag">Hospital Partnerships</span>
+        <span class="ptag">Care Packages</span>
+        <span class="ptag">Seattle Children's</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="post-related">
+  <div class="pr-inner">
+    <div class="pr-title">More Stories</div>
+    <div class="pr-grid">
+      <a href="blog-mod-pizza.html" class="pr-card">
+        <div class="pr-thumb"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&q=80" alt="MOD Pizza fundraiser"/></div>
+        <div class="pr-body"><div class="pr-tag">Community</div><div class="pr-card-title">Community Comes Together: ICW Raises Funds at MOD Pizza</div></div>
+      </a>
+      <a href="blog-healthcare-equity.html" class="pr-card">
+        <div class="pr-thumb"><img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=500&q=80" alt="Healthcare equity"/></div>
+        <div class="pr-body"><div class="pr-tag">Advocacy</div><div class="pr-card-title">Healthcare Shouldn't Be a Luxury: Fighting for Equitable Pediatric Care</div></div>
+      </a>
+      <a href="blog-leukemia-screening.html" class="pr-card">
+        <div class="pr-thumb"><img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=500&q=80" alt="Research"/></div>
+        <div class="pr-body"><div class="pr-tag">Research</div><div class="pr-card-title">The Hidden Cost: How Financial Barriers Impact Childhood Leukemia Screening</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand"><a href="index.html" class="nav-logo" style="display:inline-flex;margin-bottom:4px;"><img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" class="nav-logo-img"/><div><div class="nav-logo-text" style="color:white;font-size:1rem;">International Children's Wellness</div><div class="nav-logo-sub">Youth-Led Nonprofit</div></div></a><p>A youth-led nonprofit making pediatric cancer care accessible, compassionate, and equitable — for every child, everywhere.</p><div class="ft-social"><a href="https://instagram.com/internationalchildrenswellness" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a></div></div>
+      <div class="ft-col"><h4>Organization</h4><ul><li><a href="mission.html">Our Mission</a></li><li><a href="programs.html">Programs</a></li><li><a href="chapters.html">Chapters</a></li><li><a href="team.html">Meet the Team</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      <div class="ft-col"><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Volunteer</a></li><li><a href="chapters.html">Start a Chapter</a></li></ul></div>
+      <div class="ft-col"><h4>Contact</h4><div class="ft-contact-item">internationalchildrenwellness@gmail.com</div><div class="ft-contact-item">Issaquah / Sammamish, WA</div></div>
+    </div>
+    <div class="ft-bottom"><p>© 2026 International Children's Wellness. All rights reserved.</p><div class="ein-chip">EIN: 93-2522549</div></div>
+  </div>
+</footer>
+
+<script>
+  const btn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
+  btn.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+  window.addEventListener('scroll',()=>document.querySelector('nav').classList.toggle('scrolled',window.scrollY>20));
+  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script src="common.js" defer></script>
+</body>
+</html>

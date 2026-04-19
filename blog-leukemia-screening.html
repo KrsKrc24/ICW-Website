@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Hidden Cost: Financial Barriers to Childhood Leukemia Screening | ICW Blog</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .post-hero { padding:140px 5vw 80px; background:linear-gradient(145deg,#060D1A 0%,#0B1D3A 55%,#0d2550 100%); position:relative; overflow:hidden; }
+    .post-hero-orb-1 { position:absolute; width:500px; height:500px; border-radius:50%; background:rgba(14,165,233,0.1); filter:blur(90px); top:-120px; right:-80px; animation:orbDrift 12s ease-in-out infinite; }
+    .post-hero-orb-2 { position:absolute; width:320px; height:320px; border-radius:50%; background:rgba(249,115,22,0.07); filter:blur(70px); bottom:-60px; left:-40px; animation:orbDrift 15s ease-in-out infinite reverse; }
+    .post-hero-inner { max-width:780px; margin:0 auto; position:relative; z-index:1; }
+    .post-back { display:inline-flex; align-items:center; gap:8px; color:rgba(255,255,255,0.5); font-size:0.8rem; font-weight:600; text-decoration:none; margin-bottom:32px; transition:color 0.2s; }
+    .post-back:hover { color:var(--teal); }
+    .post-back:hover svg { transform:translateX(-3px); }
+    .post-back svg { transition:transform 0.2s; }
+    .post-tag { display:inline-block; background:rgba(14,165,233,0.18); border:1px solid rgba(14,165,233,0.35); color:var(--teal); padding:5px 14px; border-radius:100px; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:20px; }
+    .post-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:800; color:white; line-height:1.18; margin-bottom:22px; letter-spacing:-0.02em; }
+    .post-meta { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+    .post-meta-item { display:flex; align-items:center; gap:7px; color:rgba(255,255,255,0.45); font-size:0.78rem; font-weight:500; }
+    .post-author-dot { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--teal),var(--teal-dark)); display:flex; align-items:center; justify-content:center; font-size:0.62rem; font-weight:800; color:white; flex-shrink:0; }
+    .post-body { background:white; padding:72px 5vw 88px; }
+    .post-inner { max-width:720px; margin:0 auto; }
+    .post-cover { border-radius:18px; overflow:hidden; margin-bottom:52px; aspect-ratio:16/8; }
+    .post-cover img { width:100%; height:100%; object-fit:cover; display:block; }
+    .post-text h2 { font-family:'Playfair Display',serif; font-size:1.55rem; font-weight:800; color:var(--navy); margin:44px 0 18px; line-height:1.3; }
+    .post-text p { color:#4A5568; font-size:1.04rem; line-height:1.9; margin-bottom:22px; }
+    .post-text strong { color:var(--navy); font-weight:700; }
+    .post-text a { color:var(--teal); font-weight:600; }
+    .pull-quote { border-left:3px solid var(--teal); padding:6px 0 6px 28px; margin:40px 0; font-family:'Playfair Display',serif; font-style:italic; font-size:1.22rem; color:var(--navy); line-height:1.6; }
+    .research-note { background:rgba(11,29,58,0.04); border-radius:12px; padding:20px 24px; margin:28px 0; border-left:3px solid rgba(14,165,233,0.4); }
+    .research-note p { margin:0; font-size:0.9rem; color:var(--gray-700); line-height:1.72; }
+    .research-note strong { color:var(--navy); }
+    .barrier-list { list-style:none; margin:24px 0; padding:0; display:flex; flex-direction:column; gap:12px; }
+    .barrier-list li { display:flex; gap:14px; align-items:flex-start; padding:14px 18px; background:var(--off-white); border-radius:12px; }
+    .barrier-num { width:26px; height:26px; border-radius:50%; background:linear-gradient(135deg,var(--teal),var(--teal-dark)); color:white; font-size:0.72rem; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
+    .barrier-text { color:var(--gray-700); font-size:0.93rem; line-height:1.65; }
+    .barrier-text strong { color:var(--navy); }
+    .post-tags { display:flex; gap:8px; flex-wrap:wrap; margin-top:48px; padding-top:28px; border-top:1px solid var(--gray-100); }
+    .ptag { background:var(--gray-100); color:var(--gray-700); padding:5px 14px; border-radius:100px; font-size:0.76rem; font-weight:600; }
+    .post-related { background:var(--off-white); padding:72px 5vw; }
+    .pr-inner { max-width:1100px; margin:0 auto; }
+    .pr-title { font-family:'Playfair Display',serif; font-weight:800; font-size:1.6rem; color:var(--navy); margin-bottom:36px; }
+    .pr-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .pr-card { background:white; border-radius:16px; overflow:hidden; box-shadow:var(--shadow); text-decoration:none; display:block; transition:transform 0.28s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.28s; }
+    .pr-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); }
+    .pr-thumb { height:150px; overflow:hidden; }
+    .pr-thumb img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s; }
+    .pr-card:hover .pr-thumb img { transform:scale(1.05); }
+    .pr-body { padding:18px 20px; }
+    .pr-tag { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--teal); margin-bottom:8px; }
+    .pr-card-title { font-weight:700; color:var(--navy); font-size:0.9rem; line-height:1.45; }
+    @media(max-width:768px){ .pr-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" class="nav-logo-img"/><div><div class="nav-logo-text">International Children's Wellness</div><div class="nav-logo-sub">Youth-Led Nonprofit · EIN 93-2522549</div></div></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="mission.html">Mission</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="chapters.html">Chapters</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="donate.html" class="nav-cta">Donate</a></li>
+  </ul>
+  <button class="nav-menu-btn" id="menuBtn"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="post-hero">
+  <div class="post-hero-orb-1"></div>
+  <div class="post-hero-orb-2"></div>
+  <div class="post-hero-inner">
+    <a href="blog.html" class="post-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Blog
+    </a>
+    <div class="post-tag">Research</div>
+    <h1>The Hidden Cost: How Financial Barriers Impact Childhood Leukemia Screening</h1>
+    <div class="post-meta">
+      <div class="post-meta-item"><div class="post-author-dot">ICW</div> ICW Research Team</div>
+      <div class="post-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        September 28, 2025
+      </div>
+      <div class="post-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        3 min read
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="post-body">
+  <div class="post-inner">
+    <div class="post-cover reveal">
+      <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1400&q=85" alt="Cancer research laboratory"/>
+    </div>
+    <div class="post-text">
+      <p>Acute lymphoblastic leukemia (ALL) is the most common childhood cancer, representing roughly 25% of all pediatric cancer diagnoses. When caught early, survival rates in high-resource settings exceed 90%. When caught late — often because a family couldn't afford the diagnostic tests or didn't have access to a pediatric specialist — those odds drop dramatically. The disease doesn't change. The circumstances do.</p>
+
+      <p>This article examines the specific financial barriers that delay or prevent childhood leukemia screening, why those delays are deadly, and what ICW is doing to push against them both locally and globally.</p>
+
+      <div class="research-note">
+        <p><strong>A note on sources:</strong> The statistics referenced in this piece draw from published research in <em>The Lancet Oncology</em>, the WHO Global Initiative for Childhood Cancer (GICC), and the American Cancer Society's pediatric oncology reports. ICW is committed to evidence-based advocacy.</p>
+      </div>
+
+      <h2>Why Early Detection Is Everything</h2>
+      <p>In pediatric leukemia, the window between early-stage and late-stage disease can be as short as weeks. Early-stage ALL caught through a routine CBC (complete blood count) — a test that costs less than $30 in most clinical settings — is highly treatable. Late-stage disease, which may have spread to the central nervous system or other organs, requires far more aggressive treatment, carries more severe side effects, and still results in far worse outcomes.</p>
+
+      <p>The CDC estimates that each month of delayed diagnosis in pediatric ALL corresponds to a measurable reduction in five-year survival probability. Yet delays of three months, six months, or longer are common in low-resource communities — not because families don't care, but because the system puts obstacles in their path that they cannot overcome with love alone.</p>
+
+      <div class="pull-quote">"A $30 blood test standing between a child and a diagnosis shouldn't be the end of the story. But for too many families, it is."<br/><span style="font-size:0.85rem;font-style:normal;opacity:0.65;font-family:Inter,sans-serif;">— Arnav Vishwakarma, Executive Director of Chapter Outreach, ICW</span></div>
+
+      <h2>The Five Barriers ICW Has Identified</h2>
+      <ul class="barrier-list">
+        <li><div class="barrier-num">1</div><div class="barrier-text"><strong>Out-of-pocket diagnostic costs.</strong> Even with insurance, many families face co-pays and deductibles that make early testing feel financially impossible, especially when the child appears "just tired" or "just pale."</div></li>
+        <li><div class="barrier-num">2</div><div class="barrier-text"><strong>Distance to pediatric oncology specialists.</strong> In rural areas and many international settings, there are simply no pediatric cancer specialists within accessible range. General practitioners may miss the signs of early-stage leukemia that a specialist would catch immediately.</div></li>
+        <li><div class="barrier-num">3</div><div class="barrier-text"><strong>Lost wages during care.</strong> Taking a child to multiple appointments requires a parent or caregiver to miss work. For hourly workers with no paid leave, every appointment is a financial crisis.</div></li>
+        <li><div class="barrier-num">4</div><div class="barrier-text"><strong>Lack of health literacy and symptom recognition.</strong> Early leukemia symptoms — fatigue, pallor, bruising, recurrent infections — are easily attributed to other causes. Without clear public health messaging, families don't know what to watch for or when to escalate.</div></li>
+        <li><div class="barrier-num">5</div><div class="barrier-text"><strong>Distrust of the medical system.</strong> Among communities that have historically been underserved or mistreated by healthcare, there is justified wariness toward medical institutions. This distrust can delay help-seeking even when resources are available.</div></li>
+      </ul>
+
+      <h2>What ICW Is Doing</h2>
+      <p>ICW's early detection program works on two fronts. Domestically, we partner with community organizations to fund CBC screening events in underserved neighborhoods — bringing the $30 blood test to communities where $30 is a barrier. Internationally, our hospital partnerships with Sammprada Hospital in India and partner facilities in Ghana include contributions toward diagnostic equipment and training for early cancer identification.</p>
+
+      <p>We also train chapter members to be health literacy ambassadors in their communities — teaching peers and family members what symptoms to watch for, when to seek a doctor's opinion, and how to navigate the system when they find resistance. Knowledge is a form of equity, and ICW members are learning to give it away.</p>
+
+      <h2>The Research Connection</h2>
+      <p>ICW members don't just fundraise — they do research. ICW's own Arnav Vishwakarma has published work in bacterial genomics and transcriptomics presented at IEEE ICHI 2026, and has conducted research internships at the University of Washington and Fred Hutchinson Cancer Center. This culture of scientific engagement isn't incidental. ICW believes that the same students who care about a child's survival today will be the researchers, physicians, and policymakers who redesign the system tomorrow.</p>
+
+      <div class="post-tags">
+        <span class="ptag">Research</span>
+        <span class="ptag">Leukemia</span>
+        <span class="ptag">Early Detection</span>
+        <span class="ptag">Health Equity</span>
+        <span class="ptag">Global Health</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="post-related">
+  <div class="pr-inner">
+    <div class="pr-title">More Stories</div>
+    <div class="pr-grid">
+      <a href="blog-mod-pizza.html" class="pr-card">
+        <div class="pr-thumb"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&q=80" alt="MOD Pizza fundraiser"/></div>
+        <div class="pr-body"><div class="pr-tag">Community</div><div class="pr-card-title">Community Comes Together: ICW Raises Funds at MOD Pizza</div></div>
+      </a>
+      <a href="blog-seattle-childrens.html" class="pr-card">
+        <div class="pr-thumb"><img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=500&q=80" alt="Hospital cards"/></div>
+        <div class="pr-body"><div class="pr-tag">Outreach</div><div class="pr-card-title">More Than a Card: How ICW Is Spreading Joy at Seattle Children's Hospital</div></div>
+      </a>
+      <a href="blog-healthcare-equity.html" class="pr-card">
+        <div class="pr-thumb"><img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=500&q=80" alt="Healthcare equity"/></div>
+        <div class="pr-body"><div class="pr-tag">Advocacy</div><div class="pr-card-title">Healthcare Shouldn't Be a Luxury: Fighting for Equitable Pediatric Care</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand"><a href="index.html" class="nav-logo" style="display:inline-flex;margin-bottom:4px;"><img src="https://static.wixstatic.com/media/f02e73_4f334e9b3eb04595b553abc1bb4ce766~mv2.png" alt="ICW" class="nav-logo-img"/><div><div class="nav-logo-text" style="color:white;font-size:1rem;">International Children's Wellness</div><div class="nav-logo-sub">Youth-Led Nonprofit</div></div></a><p>A youth-led nonprofit making pediatric cancer care accessible, compassionate, and equitable — for every child, everywhere.</p><div class="ft-social"><a href="https://instagram.com/internationalchildrenswellness" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a></div></div>
+      <div class="ft-col"><h4>Organization</h4><ul><li><a href="mission.html">Our Mission</a></li><li><a href="programs.html">Programs</a></li><li><a href="chapters.html">Chapters</a></li><li><a href="team.html">Meet the Team</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      <div class="ft-col"><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Volunteer</a></li><li><a href="chapters.html">Start a Chapter</a></li></ul></div>
+      <div class="ft-col"><h4>Contact</h4><div class="ft-contact-item">internationalchildrenwellness@gmail.com</div><div class="ft-contact-item">Issaquah / Sammamish, WA</div></div>
+    </div>
+    <div class="ft-bottom"><p>© 2026 International Children's Wellness. All rights reserved.</p><div class="ein-chip">EIN: 93-2522549</div></div>
+  </div>
+</footer>
+
+<script>
+  const btn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
+  btn.addEventListener('click',()=>links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+  window.addEventListener('scroll',()=>document.querySelector('nav').classList.toggle('scrolled',window.scrollY>20));
+  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script src="common.js" defer></script>
+</body>
+</html>
