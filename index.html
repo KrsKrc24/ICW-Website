@@ -1117,7 +1117,12 @@ addTilt('.tt-card2', 6);
   const style = document.createElement('style');
   style.textContent = '@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}';
   document.head.appendChild(style);
-  em.after(cursor);
+  /* wrap em + cursor together so they never split across lines */
+  const wrap = document.createElement('span');
+  wrap.style.whiteSpace = 'nowrap';
+  em.parentNode.insertBefore(wrap, em);
+  wrap.appendChild(em);
+  wrap.appendChild(cursor);
 })();
 </script>
 <script src="common.js" defer></script>
