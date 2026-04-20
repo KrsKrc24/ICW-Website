@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/png" href="logos.png"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Page Not Found | International Children's Wellness</title>
+  <meta http-equiv="refresh" content="5;url=index.html"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    body { background: var(--navy); display: flex; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 40px 5vw; }
+    .err-wrap { max-width: 560px; }
+    .err-logo { margin-bottom: 36px; }
+    .err-logo img { height: 56px; }
+    .err-code { font-family: 'Playfair Display', serif; font-size: clamp(5rem,12vw,9rem); font-weight: 900; line-height: 1; color: transparent; -webkit-text-stroke: 2px rgba(14,165,233,0.4); margin-bottom: 8px; }
+    .err-title { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem,3vw,2rem); font-weight: 800; color: white; margin-bottom: 14px; }
+    .err-body { color: rgba(255,255,255,0.55); font-size: 1rem; line-height: 1.8; margin-bottom: 36px; }
+    .err-redirect { font-size: 0.8rem; color: rgba(255,255,255,0.3); margin-top: 20px; }
+    .err-redirect span { color: var(--teal); font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="err-wrap">
+    <div class="err-logo">
+      <a href="index.html">
+        <img src="logos.png" alt="ICW"/>
+      </a>
+    </div>
+    <div class="err-code">404</div>
+    <div class="err-title">This page doesn't exist</div>
+    <div class="err-body">The link you followed may be outdated or the page may have moved. You'll be taken back to our homepage in a moment.</div>
+    <a href="index.html" class="btn btn-teal">Back to Homepage</a>
+    <div class="err-redirect">Redirecting in <span>5 seconds</span>…</div>
+  </div>
+  <script>
+    let s = 5;
+    const el = document.querySelector('.err-redirect span');
+    setInterval(() => { s--; if (s > 0) el.textContent = s + ' seconds'; else el.textContent = 'now'; }, 1000);
+  </script>
+</body>
+</html>
