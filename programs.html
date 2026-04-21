@@ -359,7 +359,7 @@
     const hasPlus=raw.includes('+');
     const hasDollar=raw.includes('$');
     const hasK=raw.includes('K');
-    let target=parseFloat(raw.replace(/[$K+]/g,''));
+    let target=parseFloat(raw.replace(/[$K+,]/g,''));
     if(hasK)target*=1000;
     const prefix=hasDollar?'$':'';
     const suffix=hasPlus?'+':'';
