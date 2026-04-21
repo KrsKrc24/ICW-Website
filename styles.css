@@ -221,8 +221,6 @@ footer { background: #060D1A; padding: 64px 5vw 36px; border-top: 1px solid rgba
 }
 .reveal.in .section-title span::after { transform: scaleX(1); }
 
-/* ── Button glow on hover ── */
-.btn-teal:hover   { animation: glowPulse 1.2s ease infinite; }
 .btn-coral:hover  { box-shadow: 0 8px 28px rgba(249,115,22,0.42); }
 .btn-purple:hover { box-shadow: 0 8px 28px rgba(139,92,246,0.42); }
 
