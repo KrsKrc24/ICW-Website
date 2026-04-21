@@ -369,7 +369,7 @@
       if(!start)start=ts;
       const p=Math.min((ts-start)/dur,1);
       const v=Math.round((1-Math.pow(1-p,3))*target);
-      if(target>=1000)el.textContent=prefix+'$'+Math.round(v/1000*10)/10+'K'+suffix;
+      if(target>=1000)el.textContent=prefix+Math.round(v/1000*10)/10+'K'+suffix;
       else el.textContent=prefix+v+suffix;
       if(p<1)requestAnimationFrame(step);
       else el.textContent=raw;
