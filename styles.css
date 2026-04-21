@@ -124,23 +124,23 @@ section { padding: 88px 5vw; }
 .btn:hover::before { left: 140%; }
 .btn:active { transform: translateY(1px) scale(0.98) !important; }
 .btn-teal   { background: var(--teal); color: white; box-shadow: 0 4px 18px rgba(14,165,233,0.38); }
-.btn-teal:hover   { background: var(--teal-dark); box-shadow: 0 8px 26px rgba(14,165,233,0.48); }
+.btn-teal:hover   { background: var(--teal-dark); box-shadow: 0 8px 26px rgba(14,165,233,0.48); transform: none; }
 .btn-coral  { background: var(--coral);  color: white; box-shadow: 0 4px 18px rgba(249,115,22,0.32); }
-.btn-coral:hover  { background: #EA580C; }
+.btn-coral:hover  { background: #EA580C; transform: none; }
 .btn-purple { background: var(--purple); color: white; box-shadow: 0 4px 18px rgba(139,92,246,0.32); }
-.btn-purple:hover { background: #7C3AED; }
+.btn-purple:hover { background: #7C3AED; transform: none; }
 .btn-navy   { background: var(--navy); color: white; }
-.btn-navy:hover   { background: var(--navy-mid); }
+.btn-navy:hover   { background: var(--navy-mid); transform: none; }
 .btn-outline-dark {
   background: transparent; color: var(--navy);
   border: 1.5px solid var(--gray-300); padding: 12px 28px;
 }
-.btn-outline-dark:hover { border-color: var(--teal); color: var(--teal); }
+.btn-outline-dark:hover { border-color: var(--teal); color: var(--teal); transform: none; }
 .btn-outline-light {
   background: transparent; color: white;
   border: 1.5px solid rgba(255,255,255,0.3);
 }
-.btn-outline-light:hover { border-color: white; background: rgba(255,255,255,0.06); }
+.btn-outline-light:hover { border-color: white; background: rgba(255,255,255,0.06); transform: none; }
 
 /* ══════════════════════════════════════
    IMPACT BAR
