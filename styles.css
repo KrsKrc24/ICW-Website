@@ -124,13 +124,13 @@ section { padding: 88px 5vw; }
 .btn:hover::before { left: 140%; }
 .btn:active { transform: translateY(1px) scale(0.98) !important; }
 .btn-teal   { background: var(--teal); color: white; box-shadow: 0 4px 18px rgba(14,165,233,0.38); }
-.btn-teal:hover   { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 26px rgba(14,165,233,0.48); }
+.btn-teal:hover   { background: var(--teal-dark); box-shadow: 0 8px 26px rgba(14,165,233,0.48); }
 .btn-coral  { background: var(--coral);  color: white; box-shadow: 0 4px 18px rgba(249,115,22,0.32); }
-.btn-coral:hover  { background: #EA580C; transform: translateY(-2px); }
+.btn-coral:hover  { background: #EA580C; }
 .btn-purple { background: var(--purple); color: white; box-shadow: 0 4px 18px rgba(139,92,246,0.32); }
-.btn-purple:hover { background: #7C3AED; transform: translateY(-2px); }
+.btn-purple:hover { background: #7C3AED; }
 .btn-navy   { background: var(--navy); color: white; }
-.btn-navy:hover   { background: var(--navy-mid); transform: translateY(-2px); }
+.btn-navy:hover   { background: var(--navy-mid); }
 .btn-outline-dark {
   background: transparent; color: var(--navy);
   border: 1.5px solid var(--gray-300); padding: 12px 28px;
