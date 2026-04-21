@@ -869,7 +869,7 @@ function addTilt(selector, maxDeg = 10) {
       const r = card.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width  - 0.5;
       const y = (e.clientY - r.top)  / r.height - 0.5;
-      card.style.transform = `translateY(-6px) rotateY(${x * maxDeg}deg) rotateX(${-y * maxDeg}deg)`;
+      card.style.transform = "translateY(-6px)";
     });
     card.addEventListener('mouseleave', () => {
       card.style.transform = '';
@@ -877,8 +877,6 @@ function addTilt(selector, maxDeg = 10) {
   });
 }
 addTilt('.im-stat-card', 8);
-addTilt('.inv-card2', 7);
-addTilt('.tt-card2', 6);
 
 /* ══════════════════════════════════════
    INTERACTIVE GLOBE (D3 v7 + TopoJSON)

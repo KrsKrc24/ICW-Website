@@ -392,7 +392,7 @@
         const r=card.getBoundingClientRect();
         const x=(e.clientX-r.left)/r.width-0.5;
         const y=(e.clientY-r.top)/r.height-0.5;
-        card.style.transform=`translateY(-8px) rotateY(${x*deg}deg) rotateX(${-y*deg}deg)`;
+        card.style.transform="translateY(-8px)";
       });
       card.addEventListener('mouseleave',()=>card.style.transform='');
     });

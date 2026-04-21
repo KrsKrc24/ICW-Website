@@ -461,7 +461,7 @@
       const r = card.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width  - 0.5;
       const y = (e.clientY - r.top)  / r.height - 0.5;
-      inner.style.transform = `translateY(-6px) rotateY(${x*5}deg) rotateX(${-y*5}deg) scale(1.01)`;
+      inner.style.transform = "translateY(-6px) scale(1.01)";
     });
     card.addEventListener('mouseleave', () => {
       if (!card.classList.contains('flipped')) inner.style.transform = '';
