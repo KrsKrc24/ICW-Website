@@ -395,7 +395,7 @@
 <!-- IMPACT BAR -->
 <div class="impact-bar-section">
   <div class="impact-bar">
-    <div class="impact-cell reveal"><div class="impact-num" data-count="10000" data-suffix="+">$0+</div><div class="impact-lbl">Donated to Hospitals Globally</div></div>
+    <div class="impact-cell reveal"><div class="impact-num" data-count="10000" data-prefix="$" data-suffix="+">$10,000+</div><div class="impact-lbl">Donated to Hospitals Globally</div></div>
     <div class="impact-cell reveal"><div class="impact-num" data-count="200" data-suffix="+">0+</div><div class="impact-lbl">Care Packages &amp; Cards Delivered</div></div>
     <div class="impact-cell reveal"><div class="impact-num" data-count="21" data-suffix="+">0+</div><div class="impact-lbl">Active Chapters Worldwide</div></div>
     <div class="impact-cell reveal"><div class="impact-num" data-count="100" data-suffix="+">0+</div><div class="impact-lbl">Volunteers &amp; Growing</div></div>
@@ -818,6 +818,7 @@ const revealIO = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
     e.target.classList.add('in');
+    revealIO.unobserve(e.target);
 
     // Counter animation for impact-num (impact bar)
     e.target.querySelectorAll('.impact-num[data-count]').forEach(el => {
@@ -832,9 +833,9 @@ const revealIO = new IntersectionObserver((entries) => {
         const p = Math.min((ts - start) / duration, 1);
         const eased = 1 - Math.pow(1 - p, 3);
         const val = Math.round(eased * count);
-        el.textContent = prefix + (isK ? '$' + val.toLocaleString() : val) + suffix;
+        el.textContent = prefix + (isK ? val.toLocaleString() : val) + suffix;
         if (p < 1) requestAnimationFrame(tick);
-        else el.textContent = prefix + (isK ? '$' + count.toLocaleString() : count) + suffix;
+        else el.textContent = prefix + (isK ? count.toLocaleString() : count) + suffix;
       }
       requestAnimationFrame(tick);
     });

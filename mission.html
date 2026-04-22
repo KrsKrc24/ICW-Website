@@ -296,6 +296,7 @@
   const io = new IntersectionObserver(e => e.forEach(x => {
     if(!x.isIntersecting)return;
     x.target.classList.add('in');
+    io.unobserve(x.target);
     x.target.querySelectorAll('.sp-num[data-count]').forEach(el=>
       animateCount(el,parseInt(el.dataset.count),el.dataset.prefix||'',el.dataset.suffix||'')
     );

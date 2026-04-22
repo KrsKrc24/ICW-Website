@@ -379,6 +379,7 @@
   const io=new IntersectionObserver(e=>e.forEach(x=>{
     if(!x.isIntersecting)return;
     x.target.classList.add('in');
+    io.unobserve(x.target);
     x.target.querySelectorAll('.pi-num,.ps-num').forEach(animateCount);
   }),{threshold:0.1,rootMargin:'0px 0px -28px 0px'});
   document.querySelectorAll('.reveal').forEach((el,_,all)=>{
