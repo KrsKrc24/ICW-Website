@@ -458,45 +458,87 @@ document.querySelectorAll('.reveal').forEach((el,_,all)=>{
     {lat:24.45,lng:54.40,name:"Abu Dhabi, UAE"}
   ];
 
-  function isVisible(lat,lng){
+  function chIsVisible(lat,lng){
     const rot=projection.rotate();
     return d3.geoDistance([lng,lat],[-rot[0],-rot[1]])<Math.PI/2;
   }
 
-  let gratPath,landPath,dotsGroup,rotAngle=20,isDragging=false;
+  let gratPath,landPath,rotAngle=20,isDragging=false,inViewport=false;
+  const dotNodes=[];
+
+  /* Pause auto-rotation when globe is scrolled out of view */
+  new IntersectionObserver(entries=>{inViewport=entries[0].isIntersecting;},{threshold:0.1}).observe(container);
 
   try{
     const world=await d3.json('https://unpkg.com/world-atlas@2/countries-110m.json');
     const land=topojson.feature(world,world.objects.land);
     gratPath=svg.append('path').datum(graticule()).attr('class','globe-graticule').attr('d',pathGen);
     landPath=svg.append('path').datum(land).attr('class','globe-land').attr('d',pathGen);
-    dotsGroup=svg.append('g');
+    const pulseGroup=svg.append('g'); /* HQ pulse ring — separate so redraw never clears it */
+    const dotsGroup=svg.append('g');
 
+    /* Pre-create all dots once */
+    CHAPTERS.forEach(ch=>{
+      const[x,y]=projection([ch.lng,ch.lat]);
+      let pulseNode=null;
+      if(ch.hq){
+        pulseNode=pulseGroup.append('circle').attr('cx',x).attr('cy',y).attr('r',7)
+          .attr('fill','none').attr('stroke','#F97316').attr('stroke-width',1.5).attr('opacity',0.5);
+        (function pulsate(){
+          pulseNode.attr('r',7).attr('opacity',0.5)
+            .transition().duration(1400).ease(d3.easeLinear)
+            .attr('r',14).attr('opacity',0).on('end',pulsate);
+        })();
+      }
+      const dot=dotsGroup.append('circle')
+        .attr('cx',x).attr('cy',y)
+        .attr('r',ch.hq?5.5:3.8)
+        .attr('fill',ch.hq?'#F97316':'#0EA5E9')
+        .attr('filter','url(#chglow)')
+        .style('cursor','pointer')
+        .on('mousemove',(event)=>{
+          const rc=container.getBoundingClientRect();
+          tooltip.style.display='block';
+          tooltip.textContent=ch.name;
+          tooltip.style.left=(event.clientX-rc.left)+'px';
+          tooltip.style.top=(event.clientY-rc.top-14)+'px';
+        })
+        .on('mouseout',()=>tooltip.style.display='none');
+      dotNodes.push({ch,dot,pulseNode});
+    });
+
+    /* Update positions in-place — no DOM create/destroy per frame */
     function redraw(){
       if(landPath)landPath.attr('d',pathGen);
       if(gratPath)gratPath.attr('d',pathGen);
-      dotsGroup.selectAll('*').remove();
-      CHAPTERS.forEach(ch=>{
-        if(!isVisible(ch.lat,ch.lng))return;
-        const[x,y]=projection([ch.lng,ch.lat]);
-        if(ch.hq){
-          const pulse=dotsGroup.append('circle').attr('cx',x).attr('cy',y).attr('r',7).attr('fill','none').attr('stroke','#F97316').attr('stroke-width',1.5).attr('opacity',0.5);
-          (function pulsate(){pulse.attr('r',7).attr('opacity',0.5).transition().duration(1400).ease(d3.easeLinear).attr('r',14).attr('opacity',0).on('end',pulsate);})();
-          dotsGroup.append('circle').attr('cx',x).attr('cy',y).attr('r',5.5).attr('fill','#F97316').attr('filter','url(#chglow)').style('cursor','pointer')
-            .on('mousemove',(event)=>{const r=container.getBoundingClientRect();tooltip.style.display='block';tooltip.textContent=ch.name;tooltip.style.left=(event.clientX-r.left)+'px';tooltip.style.top=(event.clientY-r.top-14)+'px';})
-            .on('mouseout',()=>tooltip.style.display='none');
+      dotNodes.forEach(({ch,dot,pulseNode})=>{
+        const visible=chIsVisible(ch.lat,ch.lng);
+        if(visible){
+          const[x,y]=projection([ch.lng,ch.lat]);
+          dot.attr('cx',x).attr('cy',y).style('display',null);
+          if(pulseNode)pulseNode.attr('cx',x).attr('cy',y).style('display',null);
         } else {
-          dotsGroup.append('circle').attr('cx',x).attr('cy',y).attr('r',3.8).attr('fill','#0EA5E9').attr('filter','url(#chglow)').style('cursor','pointer')
-            .on('mousemove',(event)=>{const r=container.getBoundingClientRect();tooltip.style.display='block';tooltip.textContent=ch.name;tooltip.style.left=(event.clientX-r.left)+'px';tooltip.style.top=(event.clientY-r.top-14)+'px';})
-            .on('mouseout',()=>tooltip.style.display='none');
+          dot.style('display','none');
+          if(pulseNode)pulseNode.style('display','none');
         }
       });
     }
 
-    d3.timer(()=>{if(isDragging)return;rotAngle+=0.15;projection.rotate([rotAngle,-15,0]);redraw();});
+    /* Slower rotation (0.08 vs 0.15) — smoother and less CPU */
+    d3.timer(()=>{
+      if(isDragging||!inViewport)return;
+      rotAngle+=0.08;
+      projection.rotate([rotAngle,-15,0]);
+      redraw();
+    });
     svg.call(d3.drag()
       .on('start',()=>{isDragging=true;svg.style('cursor','grabbing');})
-      .on('drag',(event)=>{const r=projection.rotate();const lat=Math.max(-75,Math.min(75,r[1]-event.dy*0.4));const lng=r[0]+event.dx*0.4;projection.rotate([lng,lat,0]);rotAngle=lng;redraw();})
+      .on('drag',(event)=>{
+        const r=projection.rotate();
+        const lat=Math.max(-75,Math.min(75,r[1]-event.dy*0.4));
+        const lng=r[0]+event.dx*0.4;
+        projection.rotate([lng,lat,0]);rotAngle=lng;redraw();
+      })
       .on('end',()=>{isDragging=false;svg.style('cursor','grab');}));
     redraw();
   } catch(err){
