@@ -829,7 +829,7 @@ addTilt('.im-stat-card', 8);
     return d3.geoDistance([lng,lat], [-rot[0], -rot[1]]) < Math.PI / 2;
   }
 
-  let gratPath, landPath, dotsGroup;
+  let gratPath, landPath, dotsGroup, pulseGroup, pulseRing;
   let rotAngle = 20, isDragging = false;
 
   try {
@@ -838,30 +838,35 @@ addTilt('.im-stat-card', 8);
 
     gratPath = svg.append('path').datum(graticule()).attr('class','globe-graticule').attr('d',pathGen);
     landPath = svg.append('path').datum(land).attr('class','globe-land').attr('d',pathGen);
+    pulseGroup = svg.append('g');
     dotsGroup = svg.append('g');
+
+    // Pulse ring lives in its own group — redraw repositions it but never destroys it,
+    // so the transition loop runs exactly once instead of spawning a new one every frame.
+    pulseRing = pulseGroup.append('circle')
+      .attr('fill','none').attr('stroke','#F97316')
+      .attr('stroke-width',1.5).attr('r',7).attr('opacity',0);
+    (function pulsate() {
+      pulseRing.attr('r',7).attr('opacity',0.5)
+        .transition().duration(1400).ease(d3.easeLinear)
+        .attr('r',14).attr('opacity',0)
+        .on('end', pulsate);
+    })();
 
     function redraw() {
       if (landPath) landPath.attr('d', pathGen);
       if (gratPath) gratPath.attr('d', pathGen);
       dotsGroup.selectAll('*').remove();
 
+      let hqVisible = false;
+
       CHAPTERS.forEach(ch => {
         if (!isVisible(ch.lat, ch.lng)) return;
         const [x, y] = projection([ch.lng, ch.lat]);
 
         if (ch.hq) {
-          // Pulsing ring
-          const pulse = dotsGroup.append('circle')
-            .attr('cx',x).attr('cy',y).attr('r',7)
-            .attr('fill','none').attr('stroke','#F97316')
-            .attr('stroke-width',1.5).attr('opacity',0.5);
-          // Animate pulse using D3 transition loop
-          (function pulsate() {
-            pulse.attr('r',7).attr('opacity',0.5)
-              .transition().duration(1400).ease(d3.easeLinear)
-              .attr('r',14).attr('opacity',0)
-              .on('end', pulsate);
-          })();
+          hqVisible = true;
+          pulseRing.attr('cx', x).attr('cy', y);
 
           dotsGroup.append('circle')
             .attr('cx',x).attr('cy',y).attr('r',5.5)
@@ -890,6 +895,8 @@ addTilt('.im-stat-card', 8);
             .on('mouseout', () => tooltip.style.display = 'none');
         }
       });
+
+      pulseGroup.style('display', hqVisible ? null : 'none');
     }
 
     // Auto-rotate
