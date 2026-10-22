@@ -152,7 +152,7 @@
     <li><a href="blog.html" class="active">Blog</a></li>
     <li><a href="donate.html" class="nav-cta">Donate</a></li>
   </ul>
-  <button class="nav-menu-btn" id="menuBtn"><span></span><span></span><span></span></button>
+  <button class="nav-menu-btn" aria-label="Menu" id="menuBtn" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="page-hero">
@@ -286,11 +286,11 @@
       <h2>Get ICW Stories in Your Inbox</h2>
       <p>Follow our latest events, research, and impact stories. No spam, just meaningful updates from a mission that matters.</p>
       <form class="nl-form" id="nlForm">
-        <input type="email" class="nl-input" name="email" id="nlEmail" placeholder="your@email.com" autocomplete="email" required />
+        <input type="email" class="nl-input" name="email" id="nlEmail" aria-label="Email address" aria-describedby="nlError" placeholder="your@email.com" autocomplete="email" required />
         <button class="btn btn-teal" type="submit" id="nlBtn">Subscribe</button>
       </form>
-      <div id="nlError" style="color:#f87171;font-size:0.85rem;margin-top:8px;min-height:1.2em;"></div>
-      <div class="nl-success" id="nlSuccess">
+      <div id="nlError" role="alert" style="color:#f87171;font-size:0.85rem;margin-top:8px;min-height:1.2em;"></div>
+      <div class="nl-success" id="nlSuccess" role="status">
         <div class="nl-check">
           <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
@@ -354,6 +354,7 @@
         document.getElementById('nlError').textContent = 'Something went wrong. Try again.';
       }
     } catch {
+      document.getElementById('nlError').textContent = 'Unable to connect. Please check your connection and try again.';
       btn.disabled = false; btn.textContent = 'Subscribe';
     }
   });

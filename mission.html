@@ -114,7 +114,7 @@
     <li><a href="blog.html">Blog</a></li>
     <li><a href="donate.html" class="nav-cta">Donate</a></li>
   </ul>
-  <button class="nav-menu-btn" id="menuBtn"><span></span><span></span><span></span></button>
+  <button class="nav-menu-btn" aria-label="Menu" id="menuBtn" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- PAGE HERO -->
@@ -138,7 +138,7 @@
       <p class="mission-body">International Children's Wellness exists because childhood cancer doesn't discriminate, but access to treatment does. Every day, children around the world face delayed diagnoses, unaffordable treatment, and a lack of emotional support, not because medicine doesn't have answers, but because those answers never reach them.</p>
       <p class="mission-body">We bridge that gap. Through community fundraising, hospital partnerships, chapter networks, and youth-driven advocacy, we ensure that the progress happening in research labs actually reaches the children who need it most.</p>
       <div class="stat-pills">
-        <div class="stat-pill"><span class="sp-num" data-count="8000" data-prefix="$" data-suffix="+">$8K+</span><span class="sp-lbl">Donated globally</span></div>
+        <div class="stat-pill"><span class="sp-num" data-count="8000" data-prefix="$" data-suffix="+">$8,000+</span><span class="sp-lbl">Donated globally</span></div>
         <div class="stat-pill"><span class="sp-num" data-count="1000" data-suffix="+">1,000+</span><span class="sp-lbl">Items donated globally</span></div>
         <div class="stat-pill"><span class="sp-num" data-count="20" data-suffix="+">20+</span><span class="sp-lbl">Active chapters</span></div>
         <div class="stat-pill"><span class="sp-num" data-count="4">4</span><span class="sp-lbl">Continents reached</span></div>
@@ -235,11 +235,11 @@
       <h2>Get ICW Stories in Your Inbox</h2>
       <p>Follow our latest events, research, and impact stories. No spam, just meaningful updates from a mission that matters.</p>
       <form class="nl-form" id="nlForm">
-        <input type="email" class="nl-input" name="email" id="nlEmail" placeholder="your@email.com" autocomplete="email" required />
+        <input type="email" class="nl-input" name="email" id="nlEmail" aria-label="Email address" aria-describedby="nlError" placeholder="your@email.com" autocomplete="email" required />
         <button class="btn btn-teal" type="submit" id="nlBtn">Subscribe</button>
       </form>
-      <div id="nlError" style="color:#f87171;font-size:0.85rem;margin-top:8px;min-height:1.2em;"></div>
-      <div class="nl-success" id="nlSuccess">
+      <div id="nlError" role="alert" style="color:#f87171;font-size:0.85rem;margin-top:8px;min-height:1.2em;"></div>
+      <div class="nl-success" id="nlSuccess" role="status">
         <div class="nl-check">
           <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
@@ -332,6 +332,7 @@
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       emailInput.classList.add('nl-error'); setTimeout(() => emailInput.classList.remove('nl-error'), 500); return;
     }
+    document.getElementById('nlError').textContent = '';
     btn.disabled = true; btn.textContent = 'Sending…';
     try {
       const res = await fetch('https://formspree.io/f/xlgaldkr', {
@@ -342,8 +343,14 @@
         document.getElementById('nlForm').classList.add('hidden');
         document.getElementById('nlNote').style.display = 'none';
         setTimeout(() => document.getElementById('nlSuccess').classList.add('show'), 300);
-      } else { btn.disabled = false; btn.textContent = 'Subscribe'; }
-    } catch { btn.disabled = false; btn.textContent = 'Subscribe'; }
+      } else {
+        document.getElementById('nlError').textContent = 'We could not subscribe you. Please try again in a moment.';
+        btn.disabled = false; btn.textContent = 'Subscribe';
+      }
+    } catch {
+      document.getElementById('nlError').textContent = 'Unable to connect. Please check your connection and try again.';
+      btn.disabled = false; btn.textContent = 'Subscribe';
+    }
   });
 </script>
 </body>

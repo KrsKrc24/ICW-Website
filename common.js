@@ -45,6 +45,7 @@ document.querySelectorAll('a[href="donate.html"], .btn-teal, .btn-coral').forEac
 (function () {
   const btt = document.createElement('button');
   btt.id = 'back-to-top';
+  btt.setAttribute('aria-label', 'Back to top');
   btt.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="18 15 12 9 6 15"/></svg>`;
   btt.style.cssText = `
     position:fixed; bottom:28px; right:28px; z-index:1000;
@@ -109,3 +110,40 @@ function miniSpark(cx, cy) {
     setTimeout(() => p.remove(), 800);
   }
 }
+
+/* Keep the mobile menu state available to assistive technology. */
+(function () {
+  const button = document.getElementById('menuBtn');
+  const links = document.getElementById('navLinks');
+  if (!button || !links) return;
+  const sync = () => button.setAttribute('aria-expanded', String(links.classList.contains('open')));
+  new MutationObserver(sync).observe(links, { attributes: true, attributeFilter: ['class'] });
+  sync();
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && links.classList.contains('open')) {
+      links.classList.remove('open');
+      button.focus();
+    }
+  });
+})();
+
+/* Make team biographies available without a mouse. */
+document.querySelectorAll('.member-card, .founder-card').forEach(card => {
+  card.tabIndex = 0;
+  card.setAttribute('role', 'button');
+  card.setAttribute('aria-label', `Biography of ${card.dataset.name || 'team member'}`);
+  const sync = () => {
+    const flipped = card.classList.contains('flipped');
+    card.setAttribute('aria-pressed', String(flipped));
+    card.querySelector('.mc-front, .fc-front')?.setAttribute('aria-hidden', String(flipped));
+    card.querySelector('.mc-back, .fc-back')?.setAttribute('aria-hidden', String(!flipped));
+  };
+  new MutationObserver(sync).observe(card, { attributes: true, attributeFilter: ['class'] });
+  sync();
+  card.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      card.click();
+    }
+  });
+});
