@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -23,7 +22,7 @@
 }
 
 html { scroll-behavior: smooth; }
-body { font-family: Arial, Helvetica, sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+body { font-family: var(--font-body); color: var(--text); background: var(--white); overflow-x: hidden; }
 
 /* ══════════════════════════════════════
    NAV
@@ -40,7 +39,7 @@ nav {
   width: 40px; height: 40px; border-radius: 10px;
   background: linear-gradient(135deg, var(--teal), var(--teal-dark));
   display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 900; color: white; letter-spacing: -0.5px;
+  font-size: 11px; font-weight: 700; color: white; letter-spacing: -0.5px;
   flex-shrink: 0;
 }
 .nav-logo-text { color: white; font-weight: 700; font-size: 0.92rem; line-height: 1.2; }
@@ -77,9 +76,9 @@ nav {
   font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 24px;
 }
 .page-hero h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.2rem, 4vw, 3.4rem);
-  font-weight: 800; color: white; line-height: 1.15; margin-bottom: 18px;
+  font-weight: 700; color: white; line-height: 1.15; margin-bottom: 18px;
 }
 .page-hero h1 span { color: var(--teal); }
 .page-hero p { color: rgba(255,255,255,0.68); font-size: 1.08rem; line-height: 1.8; max-width: 600px; margin: 0 auto; }
@@ -94,9 +93,9 @@ section { padding: 88px 5vw; }
   font-size: 0.71rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px;
 }
 .section-title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.9rem, 2.8vw, 2.8rem);
-  font-weight: 800; color: var(--navy); line-height: 1.18; margin-bottom: 16px;
+  font-weight: 700; color: var(--navy); line-height: 1.18; margin-bottom: 16px;
 }
 .section-title span { color: var(--teal); }
 .section-sub { color: var(--gray-500); font-size: 1.02rem; line-height: 1.82; max-width: 580px; }
@@ -146,7 +145,7 @@ section { padding: 88px 5vw; }
 .impact-cell:last-child { border-right: none; }
 .impact-cell:hover { background: rgba(57,123,173,0.06); }
 .impact-num {
-  font-size: 3rem; font-weight: 900; line-height: 1;
+  font-size: 3rem; font-weight: 700; line-height: 1;
   background: linear-gradient(135deg, #fff 0%, var(--teal) 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
@@ -735,7 +734,7 @@ a { transition: color 0.2s, opacity 0.2s; }
 #newsletter { background: linear-gradient(145deg, var(--navy), #153e60); padding: 80px 5vw; position: relative; overflow: hidden; }
 #newsletter::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 60% at 50% 100%, rgba(57,123,173,0.07), transparent); pointer-events:none; }
 .nl-inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
-#newsletter h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 800; color: white; margin-bottom: 12px; }
+#newsletter h2 { font-family: var(--font-heading); font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 700; color: white; margin-bottom: 12px; }
 #newsletter p  { color: rgba(255,255,255,0.65); font-size: 1rem; margin-bottom: 32px; }
 .nl-form { display: flex; gap: 10px; max-width: 480px; margin: 0 auto; transition: opacity 0.4s, transform 0.4s; }
 .nl-form.hidden { opacity: 0; transform: translateY(-10px); pointer-events: none; }
@@ -751,7 +750,7 @@ a { transition: color 0.2s, opacity 0.2s; }
 .nl-check { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), #245b88); display: flex; align-items: center; justify-content: center; animation: nlCheckPulse 2.5s ease-in-out infinite; }
 @keyframes nlCheckPulse { 0%,100%{box-shadow:0 0 0 12px rgba(57,123,173,0.12),0 0 0 24px rgba(57,123,173,0.06)} 50%{box-shadow:0 0 0 16px rgba(57,123,173,0.08),0 0 0 32px rgba(57,123,173,0.03)} }
 .nl-check svg { width: 28px; height: 28px; stroke: white; stroke-width: 2.5; }
-.nl-success-text { font-weight: 800; font-size: 1.18rem; color: white; }
+.nl-success-text { font-weight: 700; font-size: 1.18rem; color: white; }
 .nl-success-sub { font-size: 0.88rem; color: rgba(255,255,255,0.55); }
 @media(max-width:768px){ .nl-form { flex-direction:column; } }
 

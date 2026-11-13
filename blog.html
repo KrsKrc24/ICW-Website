@@ -8,7 +8,10 @@
   <meta name="description" content="Stories, research, and updates from ICW covering pediatric cancer advocacy, hospital outreach, fundraising events, and healthcare equity."/>
   <meta property="og:title" content="Blog | International Children's Wellness"/>
   <meta property="og:url" content="https://www.internationalchildrenswellness.org/blog.html"/>
-  <link rel="stylesheet" href="styles.css?v=20261111-review3"/>
+  <link rel="preload" href="fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin/>
+  <link rel="preload" href="fonts/playfair-normal.woff2" as="font" type="font/woff2" crossorigin/>
+  <link rel="stylesheet" href="fonts.css?v=20261112"/>
+  <link rel="stylesheet" href="styles.css?v=20261112-type2"/>
   <style>
     /* ── BLOG GRID ── */
     #blog-main { background: var(--off-white); padding: 88px 5vw; }
@@ -36,7 +39,7 @@
     .bfc-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
     .bfc-date { font-size: 0.73rem; color: var(--gray-500); font-weight: 500; }
     .bfc-tag  { background: rgba(57,123,173,0.1); color: var(--teal-dark); padding: 3px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 700; }
-    .bfc-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.4rem; color: var(--navy); line-height: 1.35; margin-bottom: 12px; }
+    .bfc-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.4rem; color: var(--navy); line-height: 1.35; margin-bottom: 12px; }
     .bfc-excerpt { color: var(--gray-500); font-size: 0.9rem; line-height: 1.78; margin-bottom: 20px; }
     .bfc-read { display: inline-flex; align-items: center; gap: 6px; color: var(--teal); font-weight: 700; font-size: 0.85rem; text-decoration: none; transition: gap 0.2s; }
     .bfc-read:hover { gap: 10px; }
@@ -57,7 +60,7 @@
     .bsc-read  { font-size: 0.73rem; color: var(--teal); font-weight: 600; }
 
     /* all posts grid */
-    .blog-all-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.4rem; color: var(--navy); margin-bottom: 28px; padding-bottom: 16px; border-bottom: 2px solid var(--gray-100); }
+    .blog-all-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.4rem; color: var(--navy); margin-bottom: 28px; padding-bottom: 16px; border-bottom: 2px solid var(--gray-100); }
     .blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
     .blog-card {
       background:var(--white); border-radius: 18px; overflow: hidden;
@@ -95,7 +98,7 @@
     #newsletter { background: linear-gradient(145deg, var(--navy), #153e60); padding: 80px 5vw; position: relative; overflow: hidden; }
     #newsletter::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 60% at 50% 100%, rgba(57,123,173,0.07), transparent); pointer-events:none; }
     .nl-inner { max-width: 600px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
-    #newsletter h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 800; color: white; margin-bottom: 12px; }
+    #newsletter h2 { font-family: var(--font-heading); font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 700; color: white; margin-bottom: 12px; }
     #newsletter p  { color: rgba(255,255,255,0.65); font-size: 1rem; margin-bottom: 32px; }
     .nl-form { display: flex; gap: 10px; max-width: 480px; margin: 0 auto; transition: opacity 0.4s, transform 0.4s; }
     .nl-form.hidden { opacity: 0; transform: translateY(-10px); pointer-events: none; }
@@ -125,7 +128,7 @@
     }
     @keyframes nlCheckPulse { 0%,100%{box-shadow:0 0 0 12px rgba(57,123,173,0.12),0 0 0 24px rgba(57,123,173,0.06)} 50%{box-shadow:0 0 0 16px rgba(57,123,173,0.08),0 0 0 32px rgba(57,123,173,0.03)} }
     .nl-check svg { width: 28px; height: 28px; stroke: white; stroke-width: 2.5; }
-    .nl-success-text { font-weight: 800; font-size: 1.18rem; color: white; }
+    .nl-success-text { font-weight: 700; font-size: 1.18rem; color: white; }
     .nl-success-sub { font-size: 0.88rem; color: rgba(255,255,255,0.55); }
     /* topic filter */
     .topic-pill { cursor: pointer; user-select: none; }
@@ -138,7 +141,7 @@
     @media(max-width:768px){ .blog-grid { grid-template-columns:1fr 1fr; } .topics-grid { grid-template-columns:repeat(2,1fr); } .nl-form { flex-direction:column; } .blog-side-cards { grid-template-columns:1fr; } }
     @media(max-width:480px){ .blog-grid { grid-template-columns:1fr; } }
   </style>
-  <link rel="stylesheet" href="refinements.css?v=20261111-review3"/>
+  <link rel="stylesheet" href="refinements.css?v=20261112-type2"/>
 </head>
 <body>
 
@@ -357,7 +360,7 @@
   });
 
 </script>
-<script src="common.js?v=20261111-review3" defer></script>
-<script src="newsletter.js?v=20261111-review3" defer></script>
+<script src="common.js?v=20261112-type2" defer></script>
+<script src="newsletter.js?v=20261112-type2" defer></script>
 </body>
 </html>

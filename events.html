@@ -8,7 +8,10 @@
   <meta name="description" content="A timeline of every ICW event, from fundraisers and dance shows to hospital outreach and international awareness campaigns. Over $8K raised and counting."/>
   <meta property="og:title" content="Events | International Children's Wellness"/>
   <meta property="og:url" content="https://www.internationalchildrenswellness.org/events.html"/>
-  <link rel="stylesheet" href="styles.css?v=20261111-review3"/>
+  <link rel="preload" href="fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin/>
+  <link rel="preload" href="fonts/playfair-normal.woff2" as="font" type="font/woff2" crossorigin/>
+  <link rel="stylesheet" href="fonts.css?v=20261112"/>
+  <link rel="stylesheet" href="styles.css?v=20261112-type2"/>
   <style>
     /* ── IMPACT BAR override ── */
     #ev-impact { background: var(--navy); }
@@ -22,7 +25,7 @@
       margin: 0 0 40px; position: relative;
     }
     .tl-year-label {
-      background: var(--navy); color: white; font-weight: 900;
+      background: var(--navy); color: white; font-weight: 700;
       font-size: 1rem; padding: 8px 22px; border-radius: 100px;
       letter-spacing: 0.04em; z-index: 1; position: relative;
     }
@@ -77,7 +80,7 @@
       border-radius: 100px; padding: 4px 14px; font-size: 0.72rem; font-weight: 700;
       letter-spacing: 0.04em; margin-bottom: 12px; width: fit-content;
     }
-    .tl-event-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.3rem; color: var(--navy); line-height: 1.3; margin-bottom: 8px; }
+    .tl-event-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.3rem; color: var(--navy); line-height: 1.3; margin-bottom: 8px; }
     .tl-event-loc   { font-size: 0.8rem; color: var(--gray-500); font-weight: 600; margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
     .tl-event-desc  { font-size: 0.88rem; color: var(--gray-500); line-height: 1.78; margin-bottom: 16px; flex: 1; }
     .tl-tags { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -96,13 +99,13 @@
     .up-card { border: 2px dashed var(--gray-300); border-radius: 18px; padding: 28px; display: flex; gap: 18px; align-items: flex-start; transition: border-color 0.2s; }
     .up-card:hover { border-color: var(--teal); }
     .up-ico { font-size: 2.2rem; flex-shrink: 0; }
-    .up-title { font-weight: 800; color: var(--navy); font-size: 0.98rem; margin-bottom: 6px; }
+    .up-title { font-weight: 700; color: var(--navy); font-size: 0.98rem; margin-bottom: 6px; }
     .up-desc  { font-size: 0.85rem; color: var(--gray-500); line-height: 1.7; margin-bottom: 10px; }
     .up-tag   { display: inline-block; background: rgba(57,123,173,0.1); color: var(--teal-dark); padding: 3px 12px; border-radius: 100px; font-size: 0.72rem; font-weight: 700; }
 
     /* CTA */
     #vol-cta { background: linear-gradient(145deg,var(--navy),#153e60); padding: 80px 5vw; text-align:center; }
-    #vol-cta h2 { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.6rem); font-weight:800; color:white; margin-bottom:12px; }
+    #vol-cta h2 { font-family:var(--font-heading); font-size:clamp(1.8rem,3vw,2.6rem); font-weight: 700; color:white; margin-bottom:12px; }
     #vol-cta p  { color:rgba(255,255,255,0.65); font-size:1rem; margin-bottom:32px; max-width:500px; margin-left:auto; margin-right:auto; }
     .vc-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
 
@@ -118,7 +121,7 @@
       .up-card { padding: 20px 16px; gap: 14px; }
     }
   </style>
-  <link rel="stylesheet" href="refinements.css?v=20261111-review3"/>
+  <link rel="stylesheet" href="refinements.css?v=20261112-type2"/>
 </head>
 <body>
 
@@ -793,8 +796,8 @@
     io.observe(el);
   });
 </script>
-<script src="common.js?v=20261111-review3" defer></script>
-<script src="newsletter.js?v=20261111-review3" defer></script>
+<script src="common.js?v=20261112-type2" defer></script>
+<script src="newsletter.js?v=20261112-type2" defer></script>
 <script>
 
 </script>

@@ -8,13 +8,16 @@
   <meta name="description" content="ICW believes where a child is born should never determine whether they survive cancer. Learn about our mission, vision, and the values that guide every chapter and program we run."/>
   <meta property="og:title" content="Our Mission | International Children's Wellness"/>
   <meta property="og:url" content="https://www.internationalchildrenswellness.org/mission.html"/>
-  <link rel="stylesheet" href="styles.css?v=20261111-review3"/>
+  <link rel="preload" href="fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin/>
+  <link rel="preload" href="fonts/playfair-normal.woff2" as="font" type="font/woff2" crossorigin/>
+  <link rel="stylesheet" href="fonts.css?v=20261112"/>
+  <link rel="stylesheet" href="styles.css?v=20261112-type2"/>
   <style>
     /* ── MISSION STATEMENT ── */
     #mission-main { background: var(--off-white); padding: 88px 5vw; }
     .mission-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; max-width: 1200px; margin: 0 auto; }
     .big-quote {
-      font-family: 'Playfair Display', serif; font-style: italic;
+      font-family: var(--font-heading); font-style: italic;
       font-size: 1.5rem; color: var(--navy); line-height: 1.6;
       border-left: 4px solid var(--teal); padding-left: 28px; margin-bottom: 28px;
     }
@@ -25,7 +28,7 @@
       padding: 10px 20px; display: flex; align-items: center; gap: 10px;
       box-shadow: var(--shadow);
     }
-    .sp-num { font-size: 1.25rem; font-weight: 900; color: var(--navy); }
+    .sp-num { font-size: 1.25rem; font-weight: 700; color: var(--navy); }
     .sp-lbl { font-size: 0.77rem; color: var(--gray-500); font-weight: 500; }
 
     .vision-card {
@@ -43,7 +46,7 @@
       background:var(--white); border-radius: 16px; padding: 28px;
       box-shadow: var(--shadow);
     }
-    .why-card h3 { color: var(--navy); font-weight: 800; font-size: 1rem; margin-bottom: 12px; }
+    .why-card h3 { color: var(--navy); font-weight: 700; font-size: 1rem; margin-bottom: 12px; }
     .why-card p  { color: var(--gray-500); font-size: 0.9rem; line-height: 1.78; }
 
     /* ── VALUES ── */
@@ -71,7 +74,7 @@
     .vc-6 { background: linear-gradient(145deg,#edf4f9,#dceaf5); }
     .vc-6::after { background: #397bad; }
     .val-num  { font-size: 2.8rem; margin-bottom: 12px; }
-    .val-ttl  { font-weight: 800; font-size: 1.05rem; color: var(--navy); margin-bottom: 10px; }
+    .val-ttl  { font-weight: 700; font-size: 1.05rem; color: var(--navy); margin-bottom: 10px; }
     .val-desc { font-size: 0.87rem; color: var(--gray-700); line-height: 1.75; position: relative; z-index: 1; }
 
     /* ── OUR STORY ── */
@@ -83,11 +86,11 @@
       border-radius: 18px; padding: 40px 48px; margin: 48px 0;
       text-align: center;
     }
-    .story-highlight p { color: rgba(255,255,255,0.82); font-size: 1.15rem; line-height: 1.8; font-style: italic; font-family: 'Playfair Display', serif; }
+    .story-highlight p { color: rgba(255,255,255,0.82); font-size: 1.15rem; line-height: 1.8; font-style: italic; font-family: var(--font-heading); }
 
     /* ── CTA STRIP ── */
     #cta-strip { background: linear-gradient(135deg, var(--teal-dark), var(--teal)); padding: 72px 5vw; text-align: center; }
-    #cta-strip h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 800; color: white; margin-bottom: 12px; }
+    #cta-strip h2 { font-family: var(--font-heading); font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 700; color: white; margin-bottom: 12px; }
     #cta-strip p  { color: rgba(255,255,255,0.8); font-size: 1.05rem; margin-bottom: 32px; }
     .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
     .btn-white { background:var(--white); color: var(--teal-dark); font-weight: 700; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
@@ -97,7 +100,7 @@
     @media(max-width:768px){ .values-grid { grid-template-columns:1fr 1fr; } }
     @media(max-width:480px){ .values-grid { grid-template-columns:1fr; } }
   </style>
-  <link rel="stylesheet" href="refinements.css?v=20261111-review3"/>
+  <link rel="stylesheet" href="refinements.css?v=20261112-type2"/>
 </head>
 <body>
 
@@ -280,8 +283,8 @@
   window.addEventListener('scroll',()=>document.querySelector('nav').classList.toggle('scrolled',window.scrollY>20));
 
 </script>
-<script src="common.js?v=20261111-review3" defer></script>
-<script src="newsletter.js?v=20261111-review3" defer></script>
+<script src="common.js?v=20261112-type2" defer></script>
+<script src="newsletter.js?v=20261112-type2" defer></script>
 <script>
 
 </script>

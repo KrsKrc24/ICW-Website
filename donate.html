@@ -8,7 +8,10 @@
   <meta name="description" content="Donate to ICW and help fund care packages, cancer screening technology, and hospital support for children in need. ICW is a registered 501(c)(3) nonprofit (EIN 93-2522549)."/>
   <meta property="og:title" content="Donate | International Children's Wellness"/>
   <meta property="og:url" content="https://www.internationalchildrenswellness.org/donate.html"/>
-  <link rel="stylesheet" href="styles.css?v=20261111-review3"/>
+  <link rel="preload" href="fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin/>
+  <link rel="preload" href="fonts/playfair-normal.woff2" as="font" type="font/woff2" crossorigin/>
+  <link rel="stylesheet" href="fonts.css?v=20261112"/>
+  <link rel="stylesheet" href="styles.css?v=20261112-type2"/>
   <style>
     #donate-hero {
       padding: 140px 5vw 80px;
@@ -22,7 +25,7 @@
     .dh-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(57,123,173,0.12); border:1px solid rgba(57,123,173,0.28); color:var(--teal); padding:7px 18px; border-radius:100px; font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:24px; }
     .dh-tag-dot { width:7px; height:7px; background:var(--teal); border-radius:50%; animation:blink 2s infinite; }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.35} }
-    #donate-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,4vw,3.2rem); font-weight:800; color:white; line-height:1.15; margin-bottom:16px; }
+    #donate-hero h1 { font-family:var(--font-heading); font-size:clamp(2.2rem,4vw,3.2rem); font-weight: 700; color:white; line-height:1.15; margin-bottom:16px; }
     #donate-hero h1 span { color:var(--teal); }
     #donate-hero p { color:rgba(255,255,255,0.68); font-size:1.05rem; line-height:1.8; }
 
@@ -30,7 +33,7 @@
     .donate-stats { display:flex; justify-content:center; gap:0; margin-top:40px; border:1px solid rgba(255,255,255,0.1); border-radius:14px; overflow:hidden; max-width:520px; margin-left:auto; margin-right:auto; }
     .ds-cell { flex:1; text-align:center; padding:16px 12px; background:rgba(255,255,255,0.05); border-right:1px solid rgba(255,255,255,0.08); }
     .ds-cell:last-child { border-right:none; }
-    .ds-num { font-size:1.5rem; font-weight:900; color:white; }
+    .ds-num { font-size:1.5rem; font-weight: 700; color:white; }
     .ds-lbl { font-size:0.65rem; color:rgba(255,255,255,0.48); margin-top:3px; font-weight:500; }
 
     /* main donate section */
@@ -38,7 +41,7 @@
     .dm-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:48px; max-width:1000px; margin:0 auto; align-items:start; }
 
     .paypal-card { background:var(--white); border-radius:24px; padding:40px 36px; box-shadow:var(--shadow-lg); }
-    .paypal-card h2 { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:800; color:var(--navy); margin-bottom:8px; }
+    .paypal-card h2 { font-family:var(--font-heading); font-size:1.6rem; font-weight: 700; color:var(--navy); margin-bottom:8px; }
     .paypal-card .pc-sub { color:var(--gray-500); font-size:0.9rem; line-height:1.7; margin-bottom:28px; }
     .paypal-divider { height:1px; background:var(--gray-100); margin:24px 0; }
     .paypal-note { font-size:0.77rem; color:var(--gray-500); text-align:center; margin-top:20px; line-height:1.65; }
@@ -63,7 +66,7 @@
     .ow-card { border-radius:18px; padding:28px 24px; text-align:center; border:1.5px solid var(--gray-100); transition:border-color 0.2s; }
     .ow-card:hover { border-color:var(--teal); }
     .ow-ico { font-size:2.2rem; margin-bottom:12px; }
-    .ow-title { font-weight:800; color:var(--navy); font-size:0.98rem; margin-bottom:8px; }
+    .ow-title { font-weight: 700; color:var(--navy); font-size:0.98rem; margin-bottom:8px; }
     .ow-desc  { font-size:0.83rem; color:var(--gray-500); line-height:1.7; margin-bottom:18px; }
 
     @media(max-width:768px){ .dm-grid { grid-template-columns:1fr; } .ow-grid { grid-template-columns:1fr; } .donate-stats { flex-wrap:wrap; } }
@@ -77,7 +80,7 @@
       .ow-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
-  <link rel="stylesheet" href="refinements.css?v=20261111-review3"/>
+  <link rel="stylesheet" href="refinements.css?v=20261112-type2"/>
 </head>
 <body>
 
@@ -124,7 +127,7 @@
       <!-- PayPal Hosted Button -->
       <div id="payment-status" class="payment-status" role="status">Loading secure donation options…<div class="payment-loading-bar" aria-hidden="true"></div></div>
       <div id="paypal-container-76GK5SGT6BGU4"></div>
-      <script src="donation.js?v=20261111-review3" defer></script>
+      <script src="donation.js?v=20261112-type2" defer></script>
       <noscript><p>Please enable JavaScript to use PayPal checkout, or <a href="mailto:internationalchildrenwellness@gmail.com">contact ICW</a> for donation help.</p></noscript>
 
       <div class="paypal-note">International Children's Wellness is a registered 501(c)(3) nonprofit organization. Your donation may be tax-deductible to the extent permitted by law.</div>
@@ -266,8 +269,8 @@
     card.addEventListener('mouseleave',()=>card.style.transform='');
   });
 </script>
-<script src="common.js?v=20261111-review3" defer></script>
-<script src="newsletter.js?v=20261111-review3" defer></script>
+<script src="common.js?v=20261112-type2" defer></script>
+<script src="newsletter.js?v=20261112-type2" defer></script>
 <script>
 
 </script>
