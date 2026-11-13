@@ -8,12 +8,12 @@
   <meta name="description" content="ICW's four programs: care packages for hospitalized children, early cancer detection advocacy, vaccine outreach, and partnerships with Fred Hutch, Seattle Children's, and Swedish Medical Center."/>
   <meta property="og:title" content="Programs | International Children's Wellness"/>
   <meta property="og:url" content="https://www.internationalchildrenswellness.org/programs.html"/>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="styles.css?v=20261111-review3"/>
   <style>
     /* ── PROGRAM SECTIONS ── */
     .prog-section { padding: 88px 5vw; }
     .prog-section:nth-child(even) { background: var(--off-white); }
-    .prog-section:nth-child(odd)  { background: white; }
+    .prog-section:nth-child(odd)  { background:var(--white); }
 
     .prog-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; max-width: 1200px; margin: 0 auto; }
     .prog-layout.flip { direction: rtl; }
@@ -23,16 +23,16 @@
       display: inline-flex; align-items: center; gap: 10px;
       border-radius: 14px; padding: 12px 20px; margin-bottom: 24px;
     }
-    .pb-1 { background: rgba(14,165,233,0.1); }
-    .pb-2 { background: rgba(249,115,22,0.1); }
-    .pb-3 { background: rgba(139,92,246,0.1); }
-    .pb-4 { background: rgba(16,185,129,0.1); }
+    .pb-1 { background: rgba(57,123,173,0.1); }
+    .pb-2 { background: rgba(57,123,173,0.1); }
+    .pb-3 { background: rgba(57,123,173,0.1); }
+    .pb-4 { background: rgba(57,123,173,0.1); }
     .prog-badge-ico { font-size: 1.8rem; }
     .prog-badge-txt { font-weight: 800; font-size: 1.1rem; }
     .pb-1 .prog-badge-txt { color: var(--teal-dark); }
-    .pb-2 .prog-badge-txt { color: #C2410C; }
-    .pb-3 .prog-badge-txt { color: #6D28D9; }
-    .pb-4 .prog-badge-txt { color: #047857; }
+    .pb-2 .prog-badge-txt { color: #245b88; }
+    .pb-3 .prog-badge-txt { color: #245b88; }
+    .pb-4 .prog-badge-txt { color: #245b88; }
 
     .prog-body { color: var(--gray-500); line-height: 1.88; font-size: 1rem; margin-bottom: 16px; }
     .prog-points { list-style: none; margin: 20px 0 28px; display: flex; flex-direction: column; gap: 12px; }
@@ -46,7 +46,7 @@
     }
     .prog-stat-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 32px; }
     .prog-stat {
-      background: white; border: 1px solid var(--gray-100); border-radius: 14px;
+      background:var(--white); border: 1px solid var(--gray-100); border-radius: 14px;
       padding: 16px 22px; box-shadow: var(--shadow); text-align: center; min-width: 110px;
     }
     .ps-num { font-size: 1.6rem; font-weight: 900; color: var(--navy); line-height: 1; }
@@ -64,15 +64,15 @@
       content:''; position:absolute; right:-30px; top:-30px;
       width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,0.1);
     }
-    .pv-1 { background: linear-gradient(145deg,#0EA5E9,#0369A1); }
-    .pv-2 { background: linear-gradient(145deg,#F97316,#C2410C); }
-    .pv-3 { background: linear-gradient(145deg,#8B5CF6,#6D28D9); }
-    .pv-4 { background: linear-gradient(145deg,#10B981,#047857); }
+    .pv-1 { background: linear-gradient(145deg,#397bad,#245b88); }
+    .pv-2 { background: linear-gradient(145deg,#397bad,#245b88); }
+    .pv-3 { background: linear-gradient(145deg,#397bad,#245b88); }
+    .pv-4 { background: linear-gradient(145deg,#397bad,#245b88); }
     .pv-emoji { display: block; margin-bottom: 20px; width: 52px; height: 52px; background: rgba(255,255,255,0.15); border-radius: 14px; display: flex; align-items: center; justify-content: center; }
     .pv-emoji svg { width: 28px; height: 28px; flex-shrink: 0; }
     .pv-title  { color: white; font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.6rem; margin-bottom: 10px; }
     .pv-sub    { color: rgba(255,255,255,0.78); font-size: 0.9rem; line-height: 1.6; }
-    .pv-body { background: white; padding: 32px 40px; }
+    .pv-body { background:var(--white); padding: 32px 40px; }
     .pv-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; }
     .pv-item:last-child { margin-bottom: 0; }
     .pv-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
@@ -94,7 +94,7 @@
       border-radius: 16px; padding: 32px 20px; text-align: center;
       transition: background 0.2s;
     }
-    .pi-cell:hover { background: rgba(14,165,233,0.1); }
+    .pi-cell:hover { background: rgba(57,123,173,0.1); }
     .pi-num { font-size: 2.4rem; font-weight: 900; color: white; line-height: 1; margin-bottom: 8px; }
     .pi-lbl { color: rgba(255,255,255,0.52); font-size: 0.8rem; font-weight: 500; }
 
@@ -110,6 +110,7 @@
       .prog-layout { gap: 32px; }
     }
   </style>
+  <link rel="stylesheet" href="refinements.css?v=20261111-review3"/>
 </head>
 <body>
 
@@ -128,8 +129,6 @@
 </nav>
 
 <div class="page-hero">
-  <div class="page-hero-orb page-hero-orb-1"></div>
-  <div class="page-hero-orb page-hero-orb-2"></div>
   <div class="page-hero-inner">
     <div class="page-hero-tag">What We Do</div>
     <h1>Our <span>Programs</span></h1>
@@ -167,7 +166,7 @@
       <div class="pv-header pv-1">
         <span class="pv-emoji"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="32" height="32"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
         <div class="pv-title">Compassion in Action</div>
-        <div class="pv-sub">Because healing isn't just physical; it's emotional. Every card carries a message that someone out there cares.</div>
+        <div class="pv-sub">Every card offers encouragement and reminds a child that someone cares.</div>
       </div>
       <div class="pv-body">
         <div class="pv-item"><div class="pv-dot dot-1"></div><div><div class="pv-item-ttl">Ronald McDonald House</div><div class="pv-item-txt">4,300+ cutlery pieces, 300+ pairs of socks, and 100+ coloring kits donated.</div></div></div>
@@ -274,7 +273,7 @@
       <div class="prog-stat-row">
         <div class="prog-stat"><div class="ps-num">25+</div><div class="ps-lbl">Chapters</div></div>
         <div class="prog-stat"><div class="ps-num">4</div><div class="ps-lbl">Continents</div></div>
-        <div class="prog-stat"><div class="ps-num">75+</div><div class="ps-lbl">Volunteers</div></div>
+        <div class="prog-stat"><div class="ps-num">100</div><div class="ps-lbl">Volunteers</div></div>
       </div>
       <a href="team.html" class="btn btn-navy">Meet the Team</a>
     </div>
@@ -304,7 +303,7 @@
       <div class="pi-cell reveal"><div class="pi-num">$8K+</div><div class="pi-lbl">Donated to hospitals globally</div></div>
       <div class="pi-cell reveal"><div class="pi-num">1,000+</div><div class="pi-lbl">Items donated globally</div></div>
       <div class="pi-cell reveal"><div class="pi-num">25+</div><div class="pi-lbl">Active chapters worldwide</div></div>
-      <div class="pi-cell reveal"><div class="pi-num">75+</div><div class="pi-lbl">Volunteers &amp; growing</div></div>
+      <div class="pi-cell reveal"><div class="pi-num">100</div><div class="pi-lbl">Volunteers &amp; growing</div></div>
     </div>
   </div>
 </section>
@@ -316,10 +315,11 @@
       <div class="section-label" style="color:var(--teal);opacity:1;transform:none;">Stay Connected</div>
       <h2>Get ICW Stories in Your Inbox</h2>
       <p>Follow our latest events, research, and impact stories. No spam, just meaningful updates from a mission that matters.</p>
-      <form class="nl-form" id="nlForm">
+      <form class="nl-form" id="nlForm" action="https://formspree.io/f/xlgaldkr" method="POST">
         <input type="email" class="nl-input" name="email" id="nlEmail" aria-label="Email address" aria-describedby="nlError" placeholder="your@email.com" autocomplete="email" required />
         <button class="btn btn-teal" type="submit" id="nlBtn">Subscribe</button>
       </form>
+      <p class="nl-privacy">Your email is used for ICW updates. <a href="privacy.html">Privacy Policy</a> · <a href="mailto:internationalchildrenwellness@gmail.com?subject=Unsubscribe%20from%20ICW%20updates">Request unsubscribe</a></p>
       <div id="nlError" role="alert" style="color:#f87171;font-size:0.85rem;margin-top:8px;min-height:1.2em;"></div>
       <div class="nl-success" id="nlSuccess" role="status">
         <div class="nl-check">
@@ -341,7 +341,7 @@
       <div class="ft-col"><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Volunteer</a></li><li><a href="chapters.html">Start a Chapter</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Partner with Us</a></li><li><a href="events.html">Past Events</a></li></ul></div>
       <div class="ft-col"><h4>Contact</h4><div class="ft-contact-item">internationalchildrenwellness@gmail.com</div><div class="ft-contact-item">Issaquah / Sammamish, WA</div><div class="ft-contact-item">@internationalchildrenswellness</div></div>
     </div>
-    <div class="ft-bottom"><p>© 2026 International Children's Wellness. All rights reserved.</p><div class="ein-chip">EIN: 93-2522549</div></div>
+    <div class="ft-bottom"><div class="ft-policy"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Website Terms</a></div><p>© 2026 International Children's Wellness. All rights reserved.</p><div class="ein-chip">EIN: 93-2522549</div></div>
   </div>
 </footer>
 
@@ -353,83 +353,11 @@
   /* nav scroll */
   window.addEventListener('scroll',()=>document.querySelector('nav').classList.toggle('scrolled',window.scrollY>20));
 
-  /* counter animation */
-  function animateCount(el){
-    const raw=el.textContent.trim();
-    const hasPlus=raw.includes('+');
-    const hasDollar=raw.includes('$');
-    const hasK=raw.includes('K');
-    let target=parseFloat(raw.replace(/[$K+,]/g,''));
-    if(hasK)target*=1000;
-    const prefix=hasDollar?'$':'';
-    const suffix=hasPlus?'+':'';
-    const dur=1600;
-    let start=null;
-    (function step(ts){
-      if(!start)start=ts;
-      const p=Math.min((ts-start)/dur,1);
-      const v=Math.round((1-Math.pow(1-p,3))*target);
-      if(target>=1000)el.textContent=prefix+Math.round(v/1000*10)/10+'K'+suffix;
-      else el.textContent=prefix+v+suffix;
-      if(p<1)requestAnimationFrame(step);
-      else el.textContent=raw;
-    })(performance.now());
-  }
-
-  const io=new IntersectionObserver(e=>e.forEach(x=>{
-    if(!x.isIntersecting)return;
-    x.target.classList.add('in');
-    io.unobserve(x.target);
-    x.target.querySelectorAll('.pi-num,.ps-num').forEach(animateCount);
-  }),{threshold:0.1,rootMargin:'0px 0px -28px 0px'});
-  document.querySelectorAll('.reveal').forEach((el,_,all)=>{
-    const p=el.parentElement;const s=[...p.children].filter(c=>c.classList.contains('reveal'));const i=s.indexOf(el);if(i>0)el.style.transitionDelay=`${i*0.09}s`;io.observe(el);
-  });
-
-  /* 3D tilt */
-  function addTilt(sel,deg=7){
-    document.querySelectorAll(sel).forEach(card=>{
-      card.addEventListener('mousemove',e=>{
-        const r=card.getBoundingClientRect();
-        const x=(e.clientX-r.left)/r.width-0.5;
-        const y=(e.clientY-r.top)/r.height-0.5;
-        card.style.transform="translateY(-8px)";
-      });
-      card.addEventListener('mouseleave',()=>card.style.transform='');
-    });
-  }
-  addTilt('.prog-visual',4);
 </script>
-<script src="common.js" defer></script>
+<script src="common.js?v=20261111-review3" defer></script>
+<script src="newsletter.js?v=20261111-review3" defer></script>
 <script>
-  document.getElementById('nlForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const emailInput = document.getElementById('nlEmail');
-    const btn = document.getElementById('nlBtn');
-    const email = emailInput.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      emailInput.classList.add('nl-error'); setTimeout(() => emailInput.classList.remove('nl-error'), 500); return;
-    }
-    document.getElementById('nlError').textContent = '';
-    btn.disabled = true; btn.textContent = 'Sending…';
-    try {
-      const res = await fetch('https://formspree.io/f/xlgaldkr', {
-        method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ email })
-      });
-      if (res.ok) {
-        document.getElementById('nlForm').classList.add('hidden');
-        document.getElementById('nlNote').style.display = 'none';
-        setTimeout(() => document.getElementById('nlSuccess').classList.add('show'), 300);
-      } else {
-        document.getElementById('nlError').textContent = 'We could not subscribe you. Please try again in a moment.';
-        btn.disabled = false; btn.textContent = 'Subscribe';
-      }
-    } catch {
-      document.getElementById('nlError').textContent = 'Unable to connect. Please check your connection and try again.';
-      btn.disabled = false; btn.textContent = 'Subscribe';
-    }
-  });
+
 </script>
 </body>
 </html>

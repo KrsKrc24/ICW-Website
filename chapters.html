@@ -8,7 +8,7 @@
   <meta name="description" content="ICW has 25+ chapters across the US and internationally. Find your local chapter or learn how to start one and bring pediatric cancer advocacy to your community."/>
   <meta property="og:title" content="Chapters | International Children's Wellness"/>
   <meta property="og:url" content="https://www.internationalchildrenswellness.org/chapters.html"/>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="styles.css?v=20261111-review3"/>
   <style>
     /* ══ KEYFRAMES ══ */
     @keyframes fadeUp   { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:none} }
@@ -24,7 +24,7 @@
     .ch-ov-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
     .ch-ov-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .ch-stat-box {
-      background: white; border-radius: 18px; padding: 32px 24px; text-align: center;
+      background:var(--white); border-radius: 18px; padding: 32px 24px; text-align: center;
       box-shadow: var(--shadow); transition: transform 0.2s;
     }
     .ch-stat-box:hover { transform: translateY(-3px); }
@@ -37,7 +37,7 @@
     .ch-body { color: var(--gray-500); font-size: 1rem; line-height: 1.85; margin-bottom: 20px; }
 
     /* ── CHAPTER DIRECTORY ── */
-    #ch-directory { background: white; padding: 88px 5vw; }
+    #ch-directory { background:var(--white); padding: 88px 5vw; }
     .ch-dir-inner { max-width: 1100px; margin: 0 auto; }
     .ch-region-title {
       font-weight: 800; font-size: 1.1rem; color: var(--navy);
@@ -47,7 +47,7 @@
     .ch-region-title span { font-size: 1.4rem; }
     .ch-cards-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-bottom: 52px; }
     .ch-card {
-      background: white; border: 1px solid var(--gray-100); border-radius: 16px; padding: 24px;
+      background:var(--white); border: 1px solid var(--gray-100); border-radius: 16px; padding: 24px;
       box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s;
     }
     .ch-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
@@ -59,9 +59,9 @@
       display: inline-block; padding: 3px 10px; border-radius: 100px;
       font-size: 0.7rem; font-weight: 700; margin-bottom: 12px;
     }
-    .cb-hq     { background: rgba(14,165,233,0.1); color: var(--teal-dark); }
-    .cb-active { background: rgba(16,185,129,0.1); color: #047857; }
-    .cb-grow   { background: rgba(249,115,22,0.1); color: #C2410C; }
+    .cb-hq     { background: rgba(57,123,173,0.1); color: var(--teal-dark); }
+    .cb-active { background: rgba(57,123,173,0.1); color: #245b88; }
+    .cb-grow   { background: rgba(57,123,173,0.1); color: #245b88; }
     .ch-members { font-size: 0.82rem; color: var(--gray-700); line-height: 1.65; }
     .ch-members strong { color: var(--navy); }
 
@@ -72,7 +72,7 @@
     .sc-steps { display: flex; flex-direction: column; gap: 20px; }
     .sc-step {
       display: flex; gap: 20px; align-items: flex-start;
-      background: white; border-radius: 14px; padding: 22px 24px; box-shadow: var(--shadow);
+      background:var(--white); border-radius: 14px; padding: 22px 24px; box-shadow: var(--shadow);
     }
     .sc-step-num {
       width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
@@ -83,7 +83,7 @@
     .sc-step h3 { font-weight: 700; color: var(--navy); font-size: 0.93rem; margin-bottom: 5px; }
     .sc-step p  { font-size: 0.83rem; color: var(--gray-500); line-height: 1.65; }
     .sc-cta-card {
-      background: linear-gradient(145deg, var(--navy), #0f2d5c);
+      background: linear-gradient(145deg, var(--navy), #153e60);
       border-radius: 24px; padding: 48px 40px; text-align: center;
     }
     .sc-cta-card h3 { color: white; font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 14px; }
@@ -91,8 +91,8 @@
     .sc-cta-card .btn { display: block; margin-bottom: 12px; text-align: center; }
 
     /* ── GLOBE SECTION ── */
-    #ch-globe { background:#040b18; padding:110px 5vw; position:relative; overflow:hidden; }
-    #ch-globe::before { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 70% 60% at 60% 50%,rgba(14,165,233,0.06),transparent); }
+    #ch-globe { background:#153e60; padding:110px 5vw; position:relative; overflow:hidden; }
+    #ch-globe::before { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 70% 60% at 60% 50%,rgba(57,123,173,0.06),transparent); }
     .chg-inner { max-width:1300px; margin:0 auto; display:grid; grid-template-columns:1fr 1.1fr; gap:80px; align-items:center; }
     .chg-overline { display:flex; align-items:center; gap:12px; font-size:0.7rem; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:0.16em; margin-bottom:20px; }
     .chg-overline::before { content:''; display:block; width:28px; height:1px; background:var(--teal); }
@@ -100,19 +100,19 @@
     .chg-title em { color:var(--teal); font-style:normal; }
     .chg-body { color:rgba(255,255,255,0.46); font-size:1rem; line-height:1.88; margin-bottom:36px; }
     .chg-stats { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:36px; }
-    .chg-stat { background:rgba(255,255,255,0.04); border:1px solid rgba(14,165,233,0.12); border-radius:14px; padding:20px 22px; }
+    .chg-stat { background:rgba(255,255,255,0.04); border:1px solid rgba(57,123,173,0.12); border-radius:14px; padding:20px 22px; }
     .chg-stat-num { font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; color:white; line-height:1; }
     .chg-stat-lbl { font-size:0.72rem; color:rgba(255,255,255,0.38); margin-top:5px; font-weight:500; }
     #chGlobeViz { position:relative; }
-    #chGlobeViz svg { filter:drop-shadow(0 0 44px rgba(14,165,233,0.22)); cursor:grab; display:block; }
+    #chGlobeViz svg { filter:drop-shadow(0 0 44px rgba(57,123,173,0.22)); cursor:grab; display:block; }
     #chGlobeViz svg:active { cursor:grabbing; }
-    #chGlobeTooltip { position:absolute; background:rgba(11,29,58,0.96); border:1px solid rgba(14,165,233,0.35); border-radius:9px; padding:8px 15px; font-size:0.78rem; color:white; font-weight:600; pointer-events:none; white-space:nowrap; display:none; z-index:20; transform:translate(-50%,-100%); margin-top:-10px; }
+    #chGlobeTooltip { position:absolute; background:rgba(11,29,58,0.96); border:1px solid rgba(57,123,173,0.35); border-radius:9px; padding:8px 15px; font-size:0.78rem; color:white; font-weight:600; pointer-events:none; white-space:nowrap; display:none; z-index:20; transform:translate(-50%,-100%); margin-top:-10px; }
     .chg-hint { font-size:0.7rem; color:rgba(255,255,255,0.2); text-align:center; margin-top:12px; letter-spacing:0.04em; }
     .chg-legend { display:flex; flex-wrap:wrap; gap:14px; }
     .chg-leg-item { display:flex; align-items:center; gap:8px; font-size:0.75rem; color:rgba(255,255,255,0.55); font-weight:600; }
     .chg-leg-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
-    .chg-leg-hq { background:#F97316; box-shadow:0 0 7px rgba(249,115,22,0.7); }
-    .chg-leg-ch { background:#0EA5E9; box-shadow:0 0 7px rgba(14,165,233,0.7); }
+    .chg-leg-hq { background:#397bad; box-shadow:0 0 7px rgba(57,123,173,0.7); }
+    .chg-leg-ch { background:#397bad; box-shadow:0 0 7px rgba(57,123,173,0.7); }
 
     /* ── STAT BOX ANIMATIONS ── */
     .ch-stat-box { animation: floatUp 5s ease-in-out infinite; }
@@ -124,7 +124,7 @@
 
     /* ── PILL HOVER ── */
     .ch-pill { transition: border-color 0.2s, transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.22s; }
-    .ch-pill:hover { border-color: var(--teal); transform: translateY(-4px) scale(1.03); box-shadow: 0 12px 28px rgba(14,165,233,0.14); }
+    .ch-pill:hover { border-color: var(--teal); transform: translateY(-4px) scale(1.03); box-shadow: 0 12px 28px rgba(57,123,173,0.14); }
 
     @media(max-width:1100px){ .chg-inner { grid-template-columns:1fr; } }
     @media(max-width:1024px){
@@ -134,6 +134,7 @@
     @media(max-width:768px){ .ch-cards-grid { grid-template-columns:1fr 1fr; } }
     @media(max-width:480px){ .ch-cards-grid { grid-template-columns:1fr; } .ch-ov-stats { grid-template-columns:1fr 1fr; } }
   </style>
+  <link rel="stylesheet" href="refinements.css?v=20261111-review3"/>
 </head>
 <body>
 
@@ -152,8 +153,6 @@
 </nav>
 
 <div class="page-hero">
-  <div class="page-hero-orb page-hero-orb-1"></div>
-  <div class="page-hero-orb page-hero-orb-2"></div>
   <div class="page-hero-inner">
     <div class="page-hero-tag">Global Network</div>
     <h1>25+ Chapters <span>Worldwide</span></h1>
@@ -175,7 +174,7 @@
       <div class="ch-ov-stats reveal">
         <div class="ch-stat-box csb-1"><div class="csb-num">25+</div><div class="csb-lbl">Active Chapters</div></div>
         <div class="ch-stat-box csb-2"><div class="csb-num">4</div><div class="csb-lbl">Continents</div></div>
-        <div class="ch-stat-box csb-3"><div class="csb-num">75+</div><div class="csb-lbl">Volunteers</div></div>
+        <div class="ch-stat-box csb-3"><div class="csb-num">100</div><div class="csb-lbl">Volunteers</div></div>
         <div class="ch-stat-box csb-4"><div class="csb-num">2023</div><div class="csb-lbl">Founded</div></div>
       </div>
     </div>
@@ -199,7 +198,7 @@
           <div class="chg-stat-lbl">Continents</div>
         </div>
         <div class="chg-stat">
-          <div class="chg-stat-num" data-target="75" data-suffix="+">75+</div>
+          <div class="chg-stat-num" data-target="100">100</div>
           <div class="chg-stat-lbl">Volunteers</div>
         </div>
         <div class="chg-stat">
@@ -215,8 +214,9 @@
     <div class="reveal">
       <div id="chGlobeViz">
         <div id="chGlobeTooltip"></div>
+        <p class="globe-status" role="status">Loading chapter map…</p>
       </div>
-      <p class="chg-hint">Drag to rotate · Hover to explore</p>
+      <p class="chg-hint">Drag to rotate · Tap a dot or choose a chapter</p>
     </div>
   </div>
 </section>
@@ -233,7 +233,7 @@
     <style>
       .ch-all-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 40px; }
       .ch-pill {
-        background: white; border: 1px solid var(--gray-100); border-radius: 12px;
+        background:var(--white); border: 1px solid var(--gray-100); border-radius: 12px;
         padding: 14px 16px; box-shadow: var(--shadow);
         transition: border-color 0.2s, transform 0.2s;
       }
@@ -241,9 +241,9 @@
       .ch-pill-loc { font-weight: 700; font-size: 0.85rem; color: var(--navy); margin-bottom: 2px; }
       .ch-pill-region { font-size: 0.72rem; color: var(--gray-500); font-weight: 500; }
       .ch-pill-badge { display: inline-block; margin-top: 8px; padding: 2px 10px; border-radius: 100px; font-size: 0.67rem; font-weight: 700; }
-      .cpb-hq { background: rgba(14,165,233,0.1); color: var(--teal-dark); }
-      .cpb-active { background: rgba(16,185,129,0.1); color: #047857; }
-      .cpb-grow { background: rgba(249,115,22,0.1); color: #C2410C; }
+      .cpb-hq { background: rgba(57,123,173,0.1); color: var(--teal-dark); }
+      .cpb-active { background: rgba(57,123,173,0.1); color: #245b88; }
+      .cpb-grow { background: rgba(57,123,173,0.1); color: #245b88; }
       @media(max-width:1024px){ .ch-all-grid { grid-template-columns: repeat(3,1fr); } }
       @media(max-width:768px){ .ch-all-grid { grid-template-columns: repeat(2,1fr); } }
       @media(max-width:480px){ .ch-all-grid { grid-template-columns: 1fr; } }
@@ -295,8 +295,7 @@
 </section>
 
 <!-- GHANA SPOTLIGHT -->
-<section id="ghana-spotlight" style="background:#040b18;padding:96px 5vw;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 70% 50%,rgba(14,165,233,0.07),transparent);"></div>
+<section id="ghana-spotlight" style="background:#153e60;padding:96px 5vw;position:relative;overflow:hidden;">
   <div style="max-width:1100px;margin:0 auto;position:relative;">
     <div class="reveal" style="margin-bottom:52px;">
       <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px;">
@@ -309,10 +308,7 @@
 
     <div class="reveal ghana-cards">
       <!-- School Outreach -->
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:20px;overflow:hidden;transition:border-color 0.2s,transform 0.2s;" onmouseover="this.style.borderColor='rgba(14,165,233,0.4)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.09)';this.style.transform=''">
-        <div style="height:200px;overflow:hidden;background:linear-gradient(135deg,#064e3b,#065f46);">
-          <img src="images/ghana/school-outreach.jpg" alt="ICW Ghana school outreach" style="width:100%;height:100%;object-fit:cover;opacity:0.85;" onerror="this.style.display='none'"/>
-        </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:20px;overflow:hidden;transition:border-color 0.2s,transform 0.2s;" onmouseover="this.style.borderColor='rgba(57,123,173,0.4)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.09)';this.style.transform=''">
         <div style="padding:24px;">
           <div style="font-size:0.68rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">School Outreach</div>
           <h3 style="font-family:'Playfair Display',serif;font-weight:800;font-size:1.1rem;color:white;line-height:1.35;margin-bottom:10px;">Awareness, in a language kids understand</h3>
@@ -320,10 +316,7 @@
         </div>
       </div>
       <!-- Orphanage Visits -->
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:20px;overflow:hidden;transition:border-color 0.2s,transform 0.2s;" onmouseover="this.style.borderColor='rgba(14,165,233,0.4)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.09)';this.style.transform=''">
-        <div style="height:200px;overflow:hidden;background:linear-gradient(135deg,#1e3a5f,#0f2d5c);">
-          <img src="images/ghana/orphanage-visits.jpg" alt="ICW Ghana orphanage visits" style="width:100%;height:100%;object-fit:cover;opacity:0.85;" onerror="this.style.display='none'"/>
-        </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:20px;overflow:hidden;transition:border-color 0.2s,transform 0.2s;" onmouseover="this.style.borderColor='rgba(57,123,173,0.4)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.09)';this.style.transform=''">
         <div style="padding:24px;">
           <div style="font-size:0.68rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">Orphanage Visits</div>
           <h3 style="font-family:'Playfair Display',serif;font-weight:800;font-size:1.1rem;color:white;line-height:1.35;margin-bottom:10px;">Consistent presence, not one-off charity</h3>
@@ -331,10 +324,7 @@
         </div>
       </div>
       <!-- Hospital Visits -->
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:20px;overflow:hidden;transition:border-color 0.2s,transform 0.2s;" onmouseover="this.style.borderColor='rgba(14,165,233,0.4)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.09)';this.style.transform=''">
-        <div style="height:200px;overflow:hidden;background:linear-gradient(135deg,#0c2340,#0a1929);">
-          <img src="images/ghana/hospital-visits.jpg" alt="ICW Ghana hospital outreach at Korle Bu" style="width:100%;height:100%;object-fit:cover;opacity:0.85;" onerror="this.style.display='none'"/>
-        </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:20px;overflow:hidden;transition:border-color 0.2s,transform 0.2s;" onmouseover="this.style.borderColor='rgba(57,123,173,0.4)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.09)';this.style.transform=''">
         <div style="padding:24px;">
           <div style="font-size:0.68rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">Hospital Visits &amp; Early Detection</div>
           <h3 style="font-family:'Playfair Display',serif;font-weight:800;font-size:1.1rem;color:white;line-height:1.35;margin-bottom:10px;">Company, awareness, and advocacy on the wards</h3>
@@ -345,9 +335,9 @@
 
     <div style="text-align:center;" class="reveal">
       <a href="https://internationalchildrenswellnessghana.site.je/" target="_blank" rel="noopener"
-         style="display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:white;padding:15px 34px;border-radius:100px;font-weight:700;font-size:0.95rem;text-decoration:none;letter-spacing:0.01em;box-shadow:0 4px 20px rgba(14,165,233,0.3);transition:box-shadow 0.2s,transform 0.2s;"
-         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 32px rgba(14,165,233,0.45)'"
-         onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(14,165,233,0.3)'">
+         style="display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:white;padding:15px 34px;border-radius:100px;font-weight:700;font-size:0.95rem;text-decoration:none;letter-spacing:0.01em;box-shadow:0 4px 20px rgba(57,123,173,0.3);transition:box-shadow 0.2s,transform 0.2s;"
+         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 32px rgba(57,123,173,0.45)'"
+         onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(57,123,173,0.3)'">
         Visit ICW Ghana Website
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       </a>
@@ -408,10 +398,11 @@
       <div class="section-label" style="color:var(--teal);opacity:1;transform:none;">Stay Connected</div>
       <h2>Get ICW Stories in Your Inbox</h2>
       <p>Follow our latest events, research, and impact stories. No spam, just meaningful updates from a mission that matters.</p>
-      <form class="nl-form" id="nlForm">
+      <form class="nl-form" id="nlForm" action="https://formspree.io/f/xlgaldkr" method="POST">
         <input type="email" class="nl-input" name="email" id="nlEmail" aria-label="Email address" aria-describedby="nlError" placeholder="your@email.com" autocomplete="email" required />
         <button class="btn btn-teal" type="submit" id="nlBtn">Subscribe</button>
       </form>
+      <p class="nl-privacy">Your email is used for ICW updates. <a href="privacy.html">Privacy Policy</a> · <a href="mailto:internationalchildrenwellness@gmail.com?subject=Unsubscribe%20from%20ICW%20updates">Request unsubscribe</a></p>
       <div id="nlError" role="alert" style="color:#f87171;font-size:0.85rem;margin-top:8px;min-height:1.2em;"></div>
       <div class="nl-success" id="nlSuccess" role="status">
         <div class="nl-check">
@@ -433,12 +424,12 @@
       <div class="ft-col"><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Volunteer</a></li><li><a href="chapters.html">Start a Chapter</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Partner with Us</a></li><li><a href="events.html">Past Events</a></li></ul></div>
       <div class="ft-col"><h4>Contact</h4><div class="ft-contact-item">internationalchildrenwellness@gmail.com</div><div class="ft-contact-item">Issaquah / Sammamish, WA</div><div class="ft-contact-item">@internationalchildrenswellness</div></div>
     </div>
-    <div class="ft-bottom"><p>© 2026 International Children's Wellness. All rights reserved.</p><div class="ein-chip">EIN: 93-2522549</div></div>
+    <div class="ft-bottom"><div class="ft-policy"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Website Terms</a></div><p>© 2026 International Children's Wellness. All rights reserved.</p><div class="ein-chip">EIN: 93-2522549</div></div>
   </div>
 </footer>
 
-<script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
+<script src="vendor/d3.v7.min.js"></script>
+<script src="vendor/topojson-client.min.js"></script>
 <script>
 /* ── NAV ── */
 const btn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
@@ -446,200 +437,14 @@ btn.addEventListener('click',()=>links.classList.toggle('open'));
 links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
 window.addEventListener('scroll',()=>document.querySelector('nav').classList.toggle('scrolled',window.scrollY>20));
 
-/* ── REVEAL ── */
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting) return;
-    e.target.classList.add('in');
-    e.target.querySelectorAll('.chg-stat-num[data-target]').forEach(el=>{
-      const t=parseInt(el.dataset.target,10), sfx=el.dataset.suffix||'', dur=1600;
-      let s=null;
-      (function tick(ts){
-        if(!s)s=ts;
-        const p=Math.min((ts-s)/dur,1), v=Math.round((1-Math.pow(1-p,3))*t);
-        el.textContent=v+sfx;
-        if(p<1)requestAnimationFrame(tick); else el.textContent=t+sfx;
-      })(performance.now());
-    });
-  });
-},{threshold:0.1,rootMargin:'0px 0px -28px 0px'});
-document.querySelectorAll('.reveal').forEach((el,_,all)=>{
-  const p=el.parentElement;
-  const s=[...p.children].filter(c=>c.classList.contains('reveal'));
-  const i=s.indexOf(el);
-  if(i>0)el.style.transitionDelay=`${i*0.09}s`;
-  io.observe(el);
-});
-
 /* ── CHAPTERS GLOBE ── */
-(async function initChGlobe(){
-  const container=document.getElementById('chGlobeViz');
-  const tooltip=document.getElementById('chGlobeTooltip');
-  if(!container||!tooltip) return;
-  const W=Math.min(560,container.parentElement.offsetWidth||560), H=W, R=W*0.435;
 
-  const svg=d3.select(container).append('svg').attr('viewBox',`0 0 ${W} ${H}`).attr('width','100%');
-  const defs=svg.append('defs');
-  const glow=defs.append('filter').attr('id','chglow').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
-  glow.append('feGaussianBlur').attr('stdDeviation','2.8').attr('result','blur');
-  const fm=glow.append('feMerge');fm.append('feMergeNode').attr('in','blur');fm.append('feMergeNode').attr('in','SourceGraphic');
-  defs.append('radialGradient').attr('id','chocean').attr('cx','50%').attr('cy','40%').attr('r','50%')
-    .html('<stop offset="0%" stop-color="#0d2040"/><stop offset="100%" stop-color="#060d1e"/>');
-
-  const projection=d3.geoOrthographic().scale(R).translate([W/2,H/2]).rotate([20,-15,0]);
-  const pathGen=d3.geoPath().projection(projection);
-  const graticule=d3.geoGraticule();
-
-  svg.append('circle').attr('cx',W/2).attr('cy',H/2).attr('r',R).attr('fill','url(#chocean)');
-  svg.append('circle').attr('cx',W/2).attr('cy',H/2).attr('r',R).attr('fill','none').attr('stroke','rgba(14,165,233,0.18)').attr('stroke-width',1.5);
-
-  const CHAPTERS=[
-    {lat:47.52,lng:-122.05,name:"Issaquah, WA (HQ)",hq:true},
-    {lat:37.33,lng:-121.89,name:"San Jose, CA"},
-    {lat:38.68,lng:-121.17,name:"Folsom, CA"},
-    {lat:37.55,lng:-122.05,name:"Fremont, CA"},
-    {lat:36.17,lng:-115.14,name:"California (General)"},
-    {lat:27.95,lng:-82.46,name:"Tampa, FL"},
-    {lat:28.54,lng:-81.38,name:"Orlando, FL"},
-    {lat:34.05,lng:-84.07,name:"Suwanee, GA"},
-    {lat:33.75,lng:-84.39,name:"Georgia (General)"},
-    {lat:41.88,lng:-87.63,name:"Chicago, IL"},
-    {lat:42.36,lng:-71.06,name:"Massachusetts"},
-    {lat:40.71,lng:-74.01,name:"New York City, NY"},
-    {lat:35.79,lng:-78.78,name:"Cary, NC"},
-    {lat:30.51,lng:-97.68,name:"Round Rock, TX"},
-    {lat:47.82,lng:-122.28,name:"Lynwood, WA"},
-    {lat:47.62,lng:-122.04,name:"Sammamish, WA"},
-    {lat:47.52,lng:-121.83,name:"Snoqualmie, WA"},
-    {lat:28.63,lng:77.22,name:"Delhi, India"},
-    {lat:12.97,lng:77.59,name:"Bangalore, India"},
-    {lat:27.71,lng:85.31,name:"Kathmandu, Nepal"},
-    {lat:27.90,lng:84.00,name:"Nepal (General)"},
-    {lat:5.56,lng:-0.20,name:"Accra/Tema, Ghana"},
-    {lat:30.38,lng:69.35,name:"Pakistan Chapter"},
-    {lat:25.29,lng:51.53,name:"Doha, Qatar"},
-    {lat:24.69,lng:46.72,name:"Saudi Arabia"},
-    {lat:24.45,lng:54.40,name:"Abu Dhabi, UAE"}
-  ];
-
-  function chIsVisible(lat,lng){
-    const rot=projection.rotate();
-    return d3.geoDistance([lng,lat],[-rot[0],-rot[1]])<Math.PI/2;
-  }
-
-  let gratPath,landPath,rotAngle=20,isDragging=false,inViewport=false;
-  const dotNodes=[];
-
-  /* Pause auto-rotation when globe is scrolled out of view */
-  new IntersectionObserver(entries=>{inViewport=entries[0].isIntersecting;},{threshold:0.1}).observe(container);
-
-  try{
-    const world=await d3.json('https://unpkg.com/world-atlas@2/countries-110m.json');
-    const land=topojson.feature(world,world.objects.land);
-    gratPath=svg.append('path').datum(graticule()).attr('class','globe-graticule').attr('d',pathGen);
-    landPath=svg.append('path').datum(land).attr('class','globe-land').attr('d',pathGen);
-    const pulseGroup=svg.append('g'); /* HQ pulse ring — separate so redraw never clears it */
-    const dotsGroup=svg.append('g');
-
-    /* Pre-create all dots once */
-    CHAPTERS.forEach(ch=>{
-      const[x,y]=projection([ch.lng,ch.lat]);
-      let pulseNode=null;
-      if(ch.hq){
-        pulseNode=pulseGroup.append('circle').attr('cx',x).attr('cy',y).attr('r',7)
-          .attr('fill','none').attr('stroke','#F97316').attr('stroke-width',1.5).attr('opacity',0.5);
-        (function pulsate(){
-          pulseNode.attr('r',7).attr('opacity',0.5)
-            .transition().duration(1400).ease(d3.easeLinear)
-            .attr('r',14).attr('opacity',0).on('end',pulsate);
-        })();
-      }
-      const dot=dotsGroup.append('circle')
-        .attr('cx',x).attr('cy',y)
-        .attr('r',ch.hq?5.5:3.8)
-        .attr('fill',ch.hq?'#F97316':'#0EA5E9')
-        .attr('filter','url(#chglow)')
-        .style('cursor','pointer')
-        .on('mousemove',(event)=>{
-          const rc=container.getBoundingClientRect();
-          tooltip.style.display='block';
-          tooltip.textContent=ch.name;
-          tooltip.style.left=(event.clientX-rc.left)+'px';
-          tooltip.style.top=(event.clientY-rc.top-14)+'px';
-        })
-        .on('mouseout',()=>tooltip.style.display='none');
-      dotNodes.push({ch,dot,pulseNode});
-    });
-
-    /* Update positions in-place — no DOM create/destroy per frame */
-    function redraw(){
-      if(landPath)landPath.attr('d',pathGen);
-      if(gratPath)gratPath.attr('d',pathGen);
-      dotNodes.forEach(({ch,dot,pulseNode})=>{
-        const visible=chIsVisible(ch.lat,ch.lng);
-        if(visible){
-          const[x,y]=projection([ch.lng,ch.lat]);
-          dot.attr('cx',x).attr('cy',y).style('display',null);
-          if(pulseNode)pulseNode.attr('cx',x).attr('cy',y).style('display',null);
-        } else {
-          dot.style('display','none');
-          if(pulseNode)pulseNode.style('display','none');
-        }
-      });
-    }
-
-    /* Slower rotation (0.08 vs 0.15) — smoother and less CPU */
-    d3.timer(()=>{
-      if(isDragging||!inViewport)return;
-      rotAngle+=0.08;
-      projection.rotate([rotAngle,-15,0]);
-      redraw();
-    });
-    svg.call(d3.drag()
-      .on('start',()=>{isDragging=true;svg.style('cursor','grabbing');})
-      .on('drag',(event)=>{
-        const r=projection.rotate();
-        const lat=Math.max(-75,Math.min(75,r[1]-event.dy*0.4));
-        const lng=r[0]+event.dx*0.4;
-        projection.rotate([lng,lat,0]);rotAngle=lng;redraw();
-      })
-      .on('end',()=>{isDragging=false;svg.style('cursor','grab');}));
-    redraw();
-  } catch(err){
-    container.innerHTML='<div style="text-align:center;padding:60px 20px;color:rgba(255,255,255,0.3);font-size:0.9rem;">Globe requires internet connection.</div>';
-  }
-})();
 </script>
-<script src="common.js" defer></script>
+<script src="common.js?v=20261111-review3" defer></script>
+<script src="newsletter.js?v=20261111-review3" defer></script>
+<script src="globe.js?v=20261111-review3" defer></script>
 <script>
-  document.getElementById('nlForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const emailInput = document.getElementById('nlEmail');
-    const btn = document.getElementById('nlBtn');
-    const email = emailInput.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      emailInput.classList.add('nl-error'); setTimeout(() => emailInput.classList.remove('nl-error'), 500); return;
-    }
-    document.getElementById('nlError').textContent = '';
-    btn.disabled = true; btn.textContent = 'Sending…';
-    try {
-      const res = await fetch('https://formspree.io/f/xlgaldkr', {
-        method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ email })
-      });
-      if (res.ok) {
-        document.getElementById('nlForm').classList.add('hidden');
-        document.getElementById('nlNote').style.display = 'none';
-        setTimeout(() => document.getElementById('nlSuccess').classList.add('show'), 300);
-      } else {
-        document.getElementById('nlError').textContent = 'We could not subscribe you. Please try again in a moment.';
-        btn.disabled = false; btn.textContent = 'Subscribe';
-      }
-    } catch {
-      document.getElementById('nlError').textContent = 'Unable to connect. Please check your connection and try again.';
-      btn.disabled = false; btn.textContent = 'Subscribe';
-    }
-  });
+
 </script>
 </body>
 </html>

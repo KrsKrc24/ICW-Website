@@ -5,22 +5,22 @@
   <link rel="icon" type="image/png" href="logos.png"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>More Than a Card: ICW at Seattle Children's Hospital | ICW Blog</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="styles.css?v=20261111-review3"/>
   <style>
-    .post-hero { padding:140px 5vw 80px; background:linear-gradient(145deg,#0B1D3A 0%,#0d2347 55%,#112060 100%); position:relative; overflow:hidden; }
-    .post-hero-orb-1 { position:absolute; width:500px; height:500px; border-radius:50%; background:rgba(14,165,233,0.1); filter:blur(90px); top:-120px; right:-80px; animation:orbDrift 12s ease-in-out infinite; }
-    .post-hero-orb-2 { position:absolute; width:320px; height:320px; border-radius:50%; background:rgba(16,185,129,0.08); filter:blur(70px); bottom:-60px; left:-40px; animation:orbDrift 15s ease-in-out infinite reverse; }
+    .post-hero { padding:140px 5vw 80px; background:linear-gradient(145deg,#153e60 0%,#153e60 55%,#153e60 100%); position:relative; overflow:hidden; }
+    .post-hero-orb-1 { position:absolute; width:500px; height:500px; border-radius:50%; background:rgba(57,123,173,0.1); filter:blur(90px); top:-120px; right:-80px; animation:orbDrift 12s ease-in-out infinite; }
+    .post-hero-orb-2 { position:absolute; width:320px; height:320px; border-radius:50%; background:rgba(57,123,173,0.08); filter:blur(70px); bottom:-60px; left:-40px; animation:orbDrift 15s ease-in-out infinite reverse; }
     .post-hero-inner { max-width:780px; margin:0 auto; position:relative; z-index:1; }
     .post-back { display:inline-flex; align-items:center; gap:8px; color:rgba(255,255,255,0.5); font-size:0.8rem; font-weight:600; text-decoration:none; margin-bottom:32px; transition:color 0.2s; }
     .post-back:hover { color:var(--teal); }
     .post-back svg { transition:transform 0.2s; }
     .post-back:hover svg { transform:translateX(-3px); }
-    .post-tag { display:inline-block; background:rgba(16,185,129,0.18); border:1px solid rgba(16,185,129,0.35); color:#34D399; padding:5px 14px; border-radius:100px; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:20px; }
+    .post-tag { display:inline-block; background:rgba(57,123,173,0.18); border:1px solid rgba(57,123,173,0.35); color:#9bc8e5; padding:5px 14px; border-radius:100px; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:20px; }
     .post-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:800; color:white; line-height:1.18; margin-bottom:22px; letter-spacing:-0.02em; }
     .post-meta { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
     .post-meta-item { display:flex; align-items:center; gap:7px; color:rgba(255,255,255,0.45); font-size:0.78rem; font-weight:500; }
-    .post-author-dot { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--green),#059669); display:flex; align-items:center; justify-content:center; font-size:0.62rem; font-weight:800; color:white; flex-shrink:0; }
-    .post-body { background:white; padding:72px 5vw 88px; }
+    .post-author-dot { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--green),#245b88); display:flex; align-items:center; justify-content:center; font-size:0.62rem; font-weight:800; color:white; flex-shrink:0; }
+    .post-body { background:var(--white); padding:72px 5vw 88px; }
     .post-inner { max-width:720px; margin:0 auto; }
     .post-cover { border-radius:18px; overflow:hidden; margin-bottom:52px; aspect-ratio:16/8; }
     .post-cover img { width:100%; height:100%; object-fit:cover; display:block; }
@@ -29,7 +29,7 @@
     .post-text strong { color:var(--navy); font-weight:700; }
     .post-text a { color:var(--teal); font-weight:600; }
     .pull-quote { border-left:3px solid var(--green); padding:6px 0 6px 28px; margin:40px 0; font-family:'Playfair Display',serif; font-style:italic; font-size:1.22rem; color:var(--navy); line-height:1.6; }
-    .stat-callout { background:rgba(14,165,233,0.05); border:1px solid rgba(14,165,233,0.15); border-radius:16px; padding:28px 32px; margin:36px 0; display:flex; gap:32px; align-items:center; flex-wrap:wrap; }
+    .stat-callout { background:rgba(57,123,173,0.05); border:1px solid rgba(57,123,173,0.15); border-radius:16px; padding:28px 32px; margin:36px 0; display:flex; gap:32px; align-items:center; flex-wrap:wrap; }
     .stat-callout-num { font-family:'Playfair Display',serif; font-size:3rem; font-weight:900; color:var(--teal); line-height:1; flex-shrink:0; }
     .stat-callout-text { color:var(--gray-700); font-size:0.95rem; line-height:1.7; }
     .post-tags { display:flex; gap:8px; flex-wrap:wrap; margin-top:48px; padding-top:28px; border-top:1px solid var(--gray-100); }
@@ -38,7 +38,7 @@
     .pr-inner { max-width:1100px; margin:0 auto; }
     .pr-title { font-family:'Playfair Display',serif; font-weight:800; font-size:1.6rem; color:var(--navy); margin-bottom:36px; }
     .pr-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-    .pr-card { background:white; border-radius:16px; overflow:hidden; box-shadow:var(--shadow); text-decoration:none; display:block; transition:transform 0.28s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.28s; }
+    .pr-card { background:var(--white); border-radius:16px; overflow:hidden; box-shadow:var(--shadow); text-decoration:none; display:block; transition:transform 0.28s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.28s; }
     .pr-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); }
     .pr-thumb { height:150px; overflow:hidden; }
     .pr-thumb img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s; }
@@ -55,6 +55,7 @@
       .pr-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
+  <link rel="stylesheet" href="refinements.css?v=20261111-review3"/>
 </head>
 <body>
 
@@ -73,8 +74,6 @@
 </nav>
 
 <div class="post-hero">
-  <div class="post-hero-orb-1"></div>
-  <div class="post-hero-orb-2"></div>
   <div class="post-hero-inner">
     <a href="blog.html" class="post-back">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -114,9 +113,9 @@
       <h2>Why Cards Matter in a Hospital Setting</h2>
       <p>For a child spending weeks or months in treatment, the hospital can start to feel like the whole world. The routine of IV lines, vitals checks, and medication schedules can blur into a kind of institutional sameness that strips away the feeling of being seen as a person, not just a patient. That's where a handwritten card can do something medicine cannot.</p>
 
-      <p>Research in pediatric oncology has consistently shown that emotional well-being directly affects treatment outcomes. Patients with strong social support, a sense of belonging, and positive emotional engagement tend to tolerate treatment better and recover more quickly. ICW's card campaigns are designed with this in mind: the goal isn't just to make a child smile; it's to remind them that they exist in a larger web of care that extends far beyond the hospital walls.</p>
+      <p>Research in pediatric oncology has consistently shown that emotional well-being directly affects treatment outcomes. Patients with strong social support, a sense of belonging, and positive emotional engagement tend to tolerate treatment better and recover more quickly. ICW’s card campaigns remind children that a wider community is thinking of them during treatment.</p>
 
-      <div class="pull-quote">"When we hand the bundle to a nurse and she says 'these kids are going to love this.' That's the whole reason we do this."<br/><span style="font-size:0.85rem;font-style:normal;opacity:0.65;font-family:Inter,sans-serif;">ICW Chapter Member, Issaquah WA</span></div>
+      <p>Cards and care packages connect volunteers with children and families during treatment.</p>
 
       <h2>What Goes Into a Care Package</h2>
       <p>Every package is assembled with intention. ICW volunteers sort items by age group and include a hand-signed card written specifically for that recipient's stage of life: a coloring book and crayons for a five-year-old looks different from a journal and playlist card for a teenager. Packages for older kids often include comfort items like soft socks, a small succulents kit, or a puzzle.</p>
@@ -163,10 +162,11 @@
       <div class="section-label" style="color:var(--teal);opacity:1;transform:none;">Stay Connected</div>
       <h2>Get ICW Stories in Your Inbox</h2>
       <p>Follow our latest events, research, and impact stories. No spam, just meaningful updates from a mission that matters.</p>
-      <form class="nl-form" id="nlForm">
+      <form class="nl-form" id="nlForm" action="https://formspree.io/f/xlgaldkr" method="POST">
         <input type="email" class="nl-input" name="email" id="nlEmail" aria-label="Email address" aria-describedby="nlError" placeholder="your@email.com" autocomplete="email" required />
         <button class="btn btn-teal" type="submit" id="nlBtn">Subscribe</button>
       </form>
+      <p class="nl-privacy">Your email is used for ICW updates. <a href="privacy.html">Privacy Policy</a> · <a href="mailto:internationalchildrenwellness@gmail.com?subject=Unsubscribe%20from%20ICW%20updates">Request unsubscribe</a></p>
       <div id="nlError" role="alert" style="color:#f87171;font-size:0.85rem;margin-top:8px;min-height:1.2em;"></div>
       <div class="nl-success" id="nlSuccess" role="status">
         <div class="nl-check">
@@ -188,7 +188,7 @@
       <div class="ft-col"><h4>Get Involved</h4><ul><li><a href="donate.html">Donate</a></li><li><a href="mailto:internationalchildrenwellness@gmail.com">Volunteer</a></li><li><a href="chapters.html">Start a Chapter</a></li></ul></div>
       <div class="ft-col"><h4>Contact</h4><div class="ft-contact-item">internationalchildrenwellness@gmail.com</div><div class="ft-contact-item">Issaquah / Sammamish, WA</div></div>
     </div>
-    <div class="ft-bottom"><p>© 2026 International Children's Wellness. All rights reserved.</p><div class="ein-chip">EIN: 93-2522549</div></div>
+    <div class="ft-bottom"><div class="ft-policy"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Website Terms</a></div><p>© 2026 International Children's Wellness. All rights reserved.</p><div class="ein-chip">EIN: 93-2522549</div></div>
   </div>
 </footer>
 
@@ -200,36 +200,10 @@
   const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:0.08});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
-<script src="common.js" defer></script>
+<script src="common.js?v=20261111-review3" defer></script>
+<script src="newsletter.js?v=20261111-review3" defer></script>
 <script>
-  document.getElementById('nlForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const emailInput = document.getElementById('nlEmail');
-    const btn = document.getElementById('nlBtn');
-    const email = emailInput.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      emailInput.classList.add('nl-error'); setTimeout(() => emailInput.classList.remove('nl-error'), 500); return;
-    }
-    document.getElementById('nlError').textContent = '';
-    btn.disabled = true; btn.textContent = 'Sending…';
-    try {
-      const res = await fetch('https://formspree.io/f/xlgaldkr', {
-        method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ email })
-      });
-      if (res.ok) {
-        document.getElementById('nlForm').classList.add('hidden');
-        document.getElementById('nlNote').style.display = 'none';
-        setTimeout(() => document.getElementById('nlSuccess').classList.add('show'), 300);
-      } else {
-        document.getElementById('nlError').textContent = 'We could not subscribe you. Please try again in a moment.';
-        btn.disabled = false; btn.textContent = 'Subscribe';
-      }
-    } catch {
-      document.getElementById('nlError').textContent = 'Unable to connect. Please check your connection and try again.';
-      btn.disabled = false; btn.textContent = 'Subscribe';
-    }
-  });
+
 </script>
 </body>
 </html>

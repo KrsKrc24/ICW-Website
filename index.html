@@ -10,13 +10,13 @@
   <meta property="og:title" content="International Children's Wellness | ICW"/>
   <meta property="og:description" content="Student-led. Hospital-partnered. Care packages, screening advocacy, and hospital outreach for children who need it most."/>
   <meta property="og:url" content="https://www.internationalchildrenswellness.org/"/>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="styles.css?v=20261111-review3"/>
   <style>
     /* ══ KEYFRAME ANIMATIONS ══ */
     @keyframes fadeSlideUp { from{opacity:0;transform:translateY(36px)} to{opacity:1;transform:none} }
     @keyframes pulseRing { 0%{transform:scale(1);opacity:0.7} 100%{transform:scale(2.4);opacity:0} }
     @keyframes barShine { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
-    @keyframes floatGlow { 0%,100%{box-shadow:0 0 28px rgba(14,165,233,0.2)} 50%{box-shadow:0 0 56px rgba(14,165,233,0.45)} }
+    @keyframes floatGlow { 0%,100%{box-shadow:0 0 28px rgba(57,123,173,0.2)} 50%{box-shadow:0 0 56px rgba(57,123,173,0.45)} }
     @keyframes scrollBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
     @keyframes gradientShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
     @keyframes marqueeScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
@@ -33,7 +33,7 @@
     /* ══ ANIMATED IMPACT BAR ══ */
     .impact-bar-section { position:relative; overflow:hidden; }
     .impact-cell { position:relative; }
-    .impact-num { background:linear-gradient(135deg,var(--teal) 0%,#38BDF8 50%,var(--teal) 100%); background-size:200%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:borderFlow 3s linear infinite; }
+    .impact-num { background:linear-gradient(135deg,var(--teal) 0%,#9bc8e5 50%,var(--teal) 100%); background-size:200%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:borderFlow 3s linear infinite; }
 
     /* ══ STAT CARD HOVER TILT ══ */
     .im-stat-card { perspective:600px; }
@@ -117,7 +117,7 @@
     .scroll-line { width:36px; height:1px; background:rgba(255,255,255,0.2); }
 
     /* ══ MISSION ══ */
-    #mission-strip { background:white; padding:130px 5vw; }
+    #mission-strip { background:var(--white); padding:130px 5vw; }
     .ms-grid { display:grid; grid-template-columns:1fr 1fr; gap:100px; align-items:center; max-width:1280px; margin:0 auto; }
     .ms-overline { display:flex; align-items:center; gap:12px; font-size:0.71rem; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:0.16em; margin-bottom:22px; }
     .ms-overline::before { content:''; display:block; width:28px; height:1px; background:var(--teal); }
@@ -127,7 +127,7 @@
     .ms-quote { border-left:3px solid var(--teal); padding:4px 0 4px 22px; margin-bottom:38px; font-style:italic; opacity:0.75; font-size:1.04rem; color:var(--navy); line-height:1.78; }
     .ms-pills { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:44px; }
     .ms-pill { background:transparent; color:#374151; border:1px solid rgba(11,29,58,0.16); border-radius:100px; padding:7px 18px; font-size:0.8rem; font-weight:600; transition:background 0.2s, border-color 0.2s; }
-    .ms-pill:hover { background:rgba(14,165,233,0.06); border-color:rgba(14,165,233,0.3); }
+    .ms-pill:hover { background:rgba(57,123,173,0.06); border-color:rgba(57,123,173,0.3); }
     .ms-photo-wrap { position:relative; border-radius:20px; overflow:hidden; aspect-ratio:4/5; box-shadow:0 28px 64px rgba(11,29,58,0.14); }
     .ms-photo-wrap img { width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block; }
     .ms-photo-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(11,29,58,0.84) 0%,transparent 55%); }
@@ -139,12 +139,12 @@
     #impact-metrics { background:var(--navy); padding:120px 5vw; position:relative; overflow:hidden; }
     #impact-metrics::before {
       content:''; position:absolute; inset:0; pointer-events:none;
-      background-image:radial-gradient(circle,rgba(14,165,233,0.038) 1px,transparent 1px);
+      background-image:radial-gradient(circle,rgba(57,123,173,0.038) 1px,transparent 1px);
       background-size:44px 44px;
     }
     #impact-metrics::after {
       content:''; position:absolute; inset:0; pointer-events:none;
-      background:radial-gradient(ellipse 60% 80% at 50% 0%,rgba(14,165,233,0.07),transparent);
+      background:radial-gradient(ellipse 60% 80% at 50% 0%,rgba(57,123,173,0.07),transparent);
     }
     .im-inner { max-width:1200px; margin:0 auto; position:relative; z-index:1; }
     .im-header { text-align:center; margin-bottom:76px; }
@@ -155,7 +155,7 @@
 
     .im-stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-bottom:48px; }
     .im-stat-card {
-      background:rgba(255,255,255,0.04); border:1px solid rgba(14,165,233,0.14);
+      background:rgba(255,255,255,0.04); border:1px solid rgba(57,123,173,0.14);
       border-radius:20px; padding:40px 28px 34px; text-align:center;
       position:relative; overflow:hidden;
       transition:border-color 0.3s, background 0.3s, transform 0.3s, opacity 0.7s cubic-bezier(0.4,0,0.2,1);
@@ -164,11 +164,11 @@
       content:''; position:absolute; top:0; left:0; right:0; height:3px;
       opacity:0; transition:opacity 0.3s;
     }
-    .isc-1::before { background:linear-gradient(90deg,#0EA5E9,#38BDF8); }
-    .isc-2::before { background:linear-gradient(90deg,#F97316,#FB923C); }
-    .isc-3::before { background:linear-gradient(90deg,#8B5CF6,#A78BFA); }
-    .isc-4::before { background:linear-gradient(90deg,#10B981,#34D399); }
-    .im-stat-card:hover { border-color:rgba(14,165,233,0.35); background:rgba(255,255,255,0.07); transform:translateY(-4px); }
+    .isc-1::before { background:linear-gradient(90deg,#397bad,#9bc8e5); }
+    .isc-2::before { background:linear-gradient(90deg,#397bad,#9bc8e5); }
+    .isc-3::before { background:linear-gradient(90deg,#397bad,#9bc8e5); }
+    .isc-4::before { background:linear-gradient(90deg,#397bad,#9bc8e5); }
+    .im-stat-card:hover { border-color:rgba(57,123,173,0.35); background:rgba(255,255,255,0.07); transform:translateY(-4px); }
     .im-stat-card:hover::before { opacity:1; }
     .im-stat-num {
       font-size:clamp(2.8rem,4.2vw,4rem); font-weight:900;
@@ -186,28 +186,28 @@
       transition:transform 1.6s cubic-bezier(0.16,1,0.3,1);
     }
     .im-bar.animate { transform:scaleX(1); }
-    .imb-1 { background:linear-gradient(90deg,#0EA5E9,#38BDF8); width:52%; }
-    .imb-2 { background:linear-gradient(90deg,#F97316,#FB923C); width:80%; }
-    .imb-3 { background:linear-gradient(90deg,#8B5CF6,#A78BFA); width:70%; }
-    .imb-4 { background:linear-gradient(90deg,#10B981,#34D399); width:42%; }
+    .imb-1 { background:linear-gradient(90deg,#397bad,#9bc8e5); width:52%; }
+    .imb-2 { background:linear-gradient(90deg,#397bad,#9bc8e5); width:80%; }
+    .imb-3 { background:linear-gradient(90deg,#397bad,#9bc8e5); width:70%; }
+    .imb-4 { background:linear-gradient(90deg,#397bad,#9bc8e5); width:42%; }
 
     /* Featured row */
     .im-featured { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,0.07); border-radius:20px; overflow:hidden; }
-    .im-feat-cell { background:#0d1f3a; padding:40px 36px; display:flex; align-items:center; gap:22px; transition:background 0.25s; }
-    .im-feat-cell:hover { background:#112248; }
+    .im-feat-cell { background:#153e60; padding:40px 36px; display:flex; align-items:center; gap:22px; transition:background 0.25s; }
+    .im-feat-cell:hover { background:#153e60; }
     .im-feat-icon { width:52px; height:52px; border-radius:14px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
     .im-feat-icon svg { width:24px; height:24px; }
-    .ifi-1 { background:rgba(14,165,233,0.18); }
-    .ifi-2 { background:rgba(249,115,22,0.18); }
-    .ifi-3 { background:rgba(139,92,246,0.18); }
+    .ifi-1 { background:rgba(57,123,173,0.18); }
+    .ifi-2 { background:rgba(57,123,173,0.18); }
+    .ifi-3 { background:rgba(57,123,173,0.18); }
     .im-feat-num { font-family:'Playfair Display',serif; font-size:2.8rem; font-weight:900; color:white; line-height:1; }
     .im-feat-lbl { font-size:0.8rem; color:rgba(255,255,255,0.42); font-weight:500; margin-top:7px; }
 
     /* ══ GLOBE SECTION ══ */
-    #globe-section { background:#040b18; padding:120px 5vw; position:relative; overflow:hidden; }
+    #globe-section { background:#153e60; padding:120px 5vw; position:relative; overflow:hidden; }
     #globe-section::before {
       content:''; position:absolute; inset:0; pointer-events:none;
-      background:radial-gradient(ellipse 80% 60% at 70% 50%,rgba(14,165,233,0.045),transparent);
+      background:radial-gradient(ellipse 80% 60% at 70% 50%,rgba(57,123,173,0.045),transparent);
     }
     .gs-inner { max-width:1300px; margin:0 auto; display:grid; grid-template-columns:1fr 1.1fr; gap:80px; align-items:center; }
     .gs-overline { display:flex; align-items:center; gap:12px; font-size:0.71rem; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:0.16em; margin-bottom:22px; }
@@ -217,24 +217,24 @@
     .gs-body { color:rgba(255,255,255,0.48); font-size:1.02rem; line-height:1.88; margin-bottom:44px; }
     .gs-regions { display:flex; flex-direction:column; gap:10px; margin-bottom:44px; }
     .gs-region { display:flex; align-items:center; gap:14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:14px 18px; transition:border-color 0.2s, background 0.2s; }
-    .gs-region:hover { border-color:rgba(14,165,233,0.25); background:rgba(14,165,233,0.05); }
+    .gs-region:hover { border-color:rgba(57,123,173,0.25); background:rgba(57,123,173,0.05); }
     .gs-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
-    .gsd-na { background:#0EA5E9; box-shadow:0 0 8px rgba(14,165,233,0.7); }
-    .gsd-as { background:#F97316; box-shadow:0 0 8px rgba(249,115,22,0.7); }
-    .gsd-af { background:#10B981; box-shadow:0 0 8px rgba(16,185,129,0.7); }
-    .gsd-me { background:#8B5CF6; box-shadow:0 0 8px rgba(139,92,246,0.7); }
+    .gsd-na { background:#397bad; box-shadow:0 0 8px rgba(57,123,173,0.7); }
+    .gsd-as { background:#397bad; box-shadow:0 0 8px rgba(57,123,173,0.7); }
+    .gsd-af { background:#397bad; box-shadow:0 0 8px rgba(57,123,173,0.7); }
+    .gsd-me { background:#397bad; box-shadow:0 0 8px rgba(57,123,173,0.7); }
     .gs-rname { font-weight:700; font-size:0.9rem; color:rgba(255,255,255,0.85); flex:1; }
     .gs-rcount { font-size:0.78rem; color:rgba(255,255,255,0.32); font-weight:600; background:rgba(255,255,255,0.06); padding:3px 10px; border-radius:100px; }
 
     #globeWrap { position:relative; }
     #globeViz { width:100%; max-width:580px; margin:0 auto; position:relative; }
-    #globeViz svg { filter:drop-shadow(0 0 52px rgba(14,165,233,0.2)); cursor:grab; display:block; }
+    #globeViz svg { filter:drop-shadow(0 0 52px rgba(57,123,173,0.2)); cursor:grab; display:block; }
     #globeViz svg:active { cursor:grabbing; }
-    .globe-ocean { fill:#060d1e; }
-    .globe-land { fill:#1a3558; stroke:rgba(14,165,233,0.28); stroke-width:0.45; }
-    .globe-graticule { fill:none; stroke:rgba(14,165,233,0.055); stroke-width:0.5; }
+    .globe-ocean { fill:#153e60; }
+    .globe-land { fill:#244f73; stroke:rgba(57,123,173,0.28); stroke-width:0.45; }
+    .globe-graticule { fill:none; stroke:rgba(57,123,173,0.055); stroke-width:0.5; }
     #globeTooltip {
-      position:absolute; background:rgba(11,29,58,0.96); border:1px solid rgba(14,165,233,0.35);
+      position:absolute; background:rgba(11,29,58,0.96); border:1px solid rgba(57,123,173,0.35);
       border-radius:9px; padding:8px 15px; font-size:0.78rem; color:white; font-weight:600;
       pointer-events:none; white-space:nowrap; display:none; z-index:20;
       transform:translate(-50%,-100%); margin-top:-10px;
@@ -242,18 +242,18 @@
     .gs-hint { font-size:0.72rem; color:rgba(255,255,255,0.2); text-align:center; margin-top:14px; letter-spacing:0.04em; }
 
     /* ══ QUOTE BAND ══ */
-    #quote-band { background:#040b16; padding:130px 5vw; text-align:center; position:relative; overflow:hidden; }
-    #quote-band::before { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(14,165,233,0.055),transparent); }
+    #quote-band { background:#153e60; padding:130px 5vw; text-align:center; position:relative; overflow:hidden; }
+    #quote-band::before { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(57,123,173,0.055),transparent); }
     .qb-inner { max-width:800px; margin:0 auto; position:relative; z-index:1; }
-    .qb-rule { width:44px; height:1px; background:rgba(14,165,233,0.38); margin:0 auto 52px; }
+    .qb-rule { width:44px; height:1px; background:rgba(57,123,173,0.38); margin:0 auto 52px; }
     .qb-text { font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(1.9rem,3.1vw,2.9rem); font-weight:600; color:white; line-height:1.48; margin-bottom:36px; }
-    .qb-rule-b { width:44px; height:1px; background:rgba(14,165,233,0.38); margin:0 auto 26px; }
+    .qb-rule-b { width:44px; height:1px; background:rgba(57,123,173,0.38); margin:0 auto 26px; }
     .qb-attr { font-size:0.73rem; color:rgba(255,255,255,0.32); font-weight:600; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:52px; }
     .qb-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
     .qb-btns .btn { padding:16px 44px; }
 
     /* ══ TEAM TEASER ══ */
-    #team-teaser { background:white; padding:130px 5vw; }
+    #team-teaser { background:var(--white); padding:130px 5vw; }
     .tt-inner2 { max-width:1160px; margin:0 auto; }
     .tt-header { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:end; margin-bottom:64px; }
     .tt-overline { display:flex; align-items:center; gap:12px; font-size:0.71rem; font-weight:700; color:var(--teal); text-transform:uppercase; letter-spacing:0.16em; margin-bottom:18px; }
@@ -281,11 +281,11 @@
     .inv-header2 h2 em { color:var(--teal); font-style:normal; }
     .inv-header2 p { color:#6B7280; font-size:1.04rem; max-width:500px; margin:0 auto; line-height:1.88; }
     .inv-grid2 { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-    .inv-card2 { background:white; border:1px solid rgba(11,29,58,0.07); border-radius:22px; padding:48px 38px; box-shadow:0 2px 16px rgba(11,29,58,0.04); transition:transform 0.28s cubic-bezier(0.4,0,0.2,1), box-shadow 0.28s, border-color 0.28s; }
-    .inv-card2:hover { transform:translateY(-6px); box-shadow:0 22px 50px rgba(11,29,58,0.11); border-color:rgba(14,165,233,0.22); }
+    .inv-card2 { background:var(--white); border:1px solid rgba(11,29,58,0.07); border-radius:22px; padding:48px 38px; box-shadow:0 2px 16px rgba(11,29,58,0.04); transition:transform 0.28s cubic-bezier(0.4,0,0.2,1), box-shadow 0.28s, border-color 0.28s; }
+    .inv-card2:hover { transform:translateY(-6px); box-shadow:0 22px 50px rgba(11,29,58,0.11); border-color:rgba(57,123,173,0.22); }
     .inv-icon { width:58px; height:58px; border-radius:14px; margin-bottom:28px; display:flex; align-items:center; justify-content:center; }
     .inv-icon svg { width:26px; height:26px; }
-    .ii-1 { background:rgba(14,165,233,0.1); } .ii-2 { background:rgba(249,115,22,0.1); } .ii-3 { background:rgba(139,92,246,0.1); }
+    .ii-1 { background:rgba(57,123,173,0.1); } .ii-2 { background:rgba(57,123,173,0.1); } .ii-3 { background:rgba(57,123,173,0.1); }
     .inv-card2 h3 { color:var(--navy); font-weight:800; font-size:1.22rem; margin-bottom:14px; }
     .inv-card2 p { color:#6B7280; font-size:0.92rem; line-height:1.82; margin-bottom:34px; }
     .inv-card2 .btn { display:block; text-align:center; }
@@ -317,6 +317,7 @@
       .ms-photo-wrap { aspect-ratio: 4/3; }
     }
   </style>
+  <link rel="stylesheet" href="refinements.css?v=20261111-review3"/>
 </head>
 <body>
 
@@ -372,7 +373,7 @@
     <div class="impact-cell reveal"><div class="impact-num" data-count="8000" data-prefix="$" data-suffix="+">$8,000+</div><div class="impact-lbl">Donated to Hospitals Globally</div></div>
     <div class="impact-cell reveal"><div class="impact-num" data-count="1000" data-suffix="+">1,000+</div><div class="impact-lbl">Care Packages &amp; Cards Delivered</div></div>
     <div class="impact-cell reveal"><div class="impact-num" data-count="25" data-suffix="+">25+</div><div class="impact-lbl">Active Chapters Worldwide</div></div>
-    <div class="impact-cell reveal"><div class="impact-num" data-count="75" data-suffix="+">75+</div><div class="impact-lbl">Volunteers &amp; Growing</div></div>
+    <div class="impact-cell reveal"><div class="impact-num" data-count="100">100</div><div class="impact-lbl">Volunteers &amp; Growing</div></div>
   </div>
 </div>
 
@@ -429,7 +430,7 @@
         <div class="im-bar-wrap"><div class="im-bar imb-3"></div></div>
       </div>
       <div class="im-stat-card isc-4 reveal">
-        <div class="im-stat-num" data-target="75" data-suffix="+">75+</div>
+        <div class="im-stat-num" data-target="100">100</div>
         <div class="im-stat-lbl">Volunteers Across All Chapters</div>
         <div class="im-bar-wrap"><div class="im-bar imb-4"></div></div>
       </div>
@@ -438,7 +439,7 @@
     <div class="im-featured reveal">
       <div class="im-feat-cell">
         <div class="im-feat-icon ifi-1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#397bad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         </div>
         <div>
           <div class="im-feat-num">4</div>
@@ -447,7 +448,7 @@
       </div>
       <div class="im-feat-cell">
         <div class="im-feat-icon ifi-2">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#397bad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
         <div>
           <div class="im-feat-num">7</div>
@@ -456,7 +457,7 @@
       </div>
       <div class="im-feat-cell">
         <div class="im-feat-icon ifi-3">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#397bad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
         <div>
           <div class="im-feat-num">15+</div>
@@ -501,8 +502,9 @@
     <div id="globeWrap" class="reveal">
       <div id="globeViz">
         <div id="globeTooltip"></div>
+        <p class="globe-status" role="status">Loading chapter map…</p>
       </div>
-      <p class="gs-hint">Drag to rotate · Hover dots to explore</p>
+      <p class="gs-hint">Drag to rotate · Tap a dot or choose a chapter</p>
     </div>
   </div>
 </section>
@@ -519,7 +521,6 @@
 
 <!-- QUOTE BAND -->
 <section id="quote-band">
-  <canvas id="sparkles-canvas"></canvas>
   <div class="qb-inner reveal">
     <div class="qb-rule"></div>
     <p class="qb-text">Being young isn't a reason to wait.<br/>It's a reason to start.</p>
@@ -579,7 +580,7 @@
     <div class="inv-grid2">
       <div class="inv-card2 reveal">
         <div class="inv-icon ii-1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#397bad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         </div>
         <h3>Donate</h3>
         <p>Your gift directly funds care packages, cancer screening technology, and hospital donations in underserved communities worldwide.</p>
@@ -587,7 +588,7 @@
       </div>
       <div class="inv-card2 reveal">
         <div class="inv-icon ii-2">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#397bad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
         <h3>Volunteer</h3>
         <p>Write a card, help at an event, or join a care package campaign. Every act of compassion creates real impact for a real child.</p>
@@ -595,11 +596,24 @@
       </div>
       <div class="inv-card2 reveal">
         <div class="inv-icon ii-3">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#397bad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
         <h3>Start a Chapter</h3>
         <p>Bring ICW to your school or city. Join 25+ chapters worldwide. We provide the framework; you bring the passion.</p>
         <a href="chapters.html" class="btn btn-purple">Learn More</a>
+      </div>
+    </div>
+    <div class="card-workshop">
+      <div>
+        <div class="section-label">Small words. Real care.</div>
+        <h3>What would you put in a card?</h3>
+        <p>Our volunteers write handwritten cards for children receiving treatment. Try a little encouragement here, then join us to make one of your own.</p>
+        <p class="card-caption">A preview of our card-writing activity. Nothing is sent from this page.</p>
+      </div>
+      <div class="encouragement-card">
+        <p class="card-message" id="card-message" aria-live="polite" aria-atomic="true">Thinking of you and sending a little sunshine your way today.</p>
+        <p class="card-signoff">With care, an ICW volunteer</p>
+        <button class="card-next" id="card-next" type="button" aria-controls="card-message">Try another message</button>
       </div>
     </div>
   </div>
@@ -612,10 +626,11 @@
       <div class="section-label" style="color:var(--teal);opacity:1;transform:none;">Stay Connected</div>
       <h2>Get ICW Stories in Your Inbox</h2>
       <p>Follow our latest events, research, and impact stories. No spam, just meaningful updates from a mission that matters.</p>
-      <form class="nl-form" id="nlForm">
+      <form class="nl-form" id="nlForm" action="https://formspree.io/f/xlgaldkr" method="POST">
         <input type="email" class="nl-input" name="email" id="nlEmail" aria-label="Email address" aria-describedby="nlError" placeholder="your@email.com" autocomplete="email" required />
         <button class="btn btn-teal" type="submit" id="nlBtn">Subscribe</button>
       </form>
+      <p class="nl-privacy">Your email is used for ICW updates. <a href="privacy.html">Privacy Policy</a> · <a href="mailto:internationalchildrenwellness@gmail.com?subject=Unsubscribe%20from%20ICW%20updates">Request unsubscribe</a></p>
       <div id="nlError" role="alert" style="color:#f87171;font-size:0.85rem;margin-top:8px;min-height:1.2em;"></div>
       <div class="nl-success" id="nlSuccess" role="status">
         <div class="nl-check">
@@ -656,13 +671,13 @@
         <div class="ft-contact-item">@internationalchildrenswellness</div>
       </div>
     </div>
-    <div class="ft-bottom"><p>© 2026 International Children's Wellness. All rights reserved.</p><div class="ein-chip">EIN: 93-2522549</div></div>
+    <div class="ft-bottom"><div class="ft-policy"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Website Terms</a></div><p>© 2026 International Children's Wellness. All rights reserved.</p><div class="ein-chip">EIN: 93-2522549</div></div>
   </div>
 </footer>
 
 <!-- D3 + TopoJSON for globe -->
-<script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://unpkg.com/topojson-client@3/dist/topojson-client.min.js"></script>
+<script src="vendor/d3.v7.min.js"></script>
+<script src="vendor/topojson-client.min.js"></script>
 
 <script>
 /* ══════════════════════════════════════
@@ -675,412 +690,18 @@ navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => na
 window.addEventListener('scroll',()=>document.querySelector('nav').classList.toggle('scrolled',window.scrollY>20));
 
 /* ══════════════════════════════════════
-   SCROLL REVEAL + COUNTER TRIGGER
-══════════════════════════════════════ */
-function animateCount(el) {
-  const target = parseInt(el.dataset.target, 10);
-  const prefix = el.dataset.prefix || '';
-  const suffix = el.dataset.suffix || '';
-  const duration = 1800;
-  let start = null;
-
-  function step(ts) {
-    if (!start) start = ts;
-    const p = Math.min((ts - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - p, 3);
-    const val = Math.round(eased * target);
-    if (target >= 1000) {
-      el.textContent = prefix + val.toLocaleString() + suffix;
-    } else {
-      el.textContent = prefix + val + suffix;
-    }
-    if (p < 1) requestAnimationFrame(step);
-    else el.textContent = prefix + target.toLocaleString() + suffix;
-  }
-  requestAnimationFrame(step);
-}
-
-const revealIO = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.classList.add('in');
-    revealIO.unobserve(e.target);
-
-    // Counter animation for impact-num (impact bar)
-    e.target.querySelectorAll('.impact-num[data-count]').forEach(el => {
-      const count = parseInt(el.dataset.count, 10);
-      const suffix = el.dataset.suffix || '';
-      const prefix = el.dataset.prefix || '';
-      const isK = count >= 1000;
-      const duration = 1600;
-      let start = null;
-      function tick(ts) {
-        if (!start) start = ts;
-        const p = Math.min((ts - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - p, 3);
-        const val = Math.round(eased * count);
-        el.textContent = prefix + (isK ? val.toLocaleString() : val) + suffix;
-        if (p < 1) requestAnimationFrame(tick);
-        else el.textContent = prefix + (isK ? count.toLocaleString() : count) + suffix;
-      }
-      requestAnimationFrame(tick);
-    });
-
-    // Counter animation for im-stat-num
-    e.target.querySelectorAll('.im-stat-num[data-target]').forEach(el => animateCount(el));
-
-    // Animate progress bars
-    e.target.querySelectorAll('.im-bar').forEach((bar, i) => {
-      setTimeout(() => bar.classList.add('animate'), i * 150);
-    });
-  });
-}, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
-
-document.querySelectorAll('.reveal').forEach((el) => {
-  const sibs = [...el.parentElement.children].filter(c => c.classList.contains('reveal'));
-  const i = sibs.indexOf(el);
-  if (i > 0) el.style.transitionDelay = `${i * 0.1}s`;
-  revealIO.observe(el);
-});
-
-// Also observe reveal-left / reveal-right / reveal-scale
-const dirIO = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -24px 0px' });
-document.querySelectorAll('.reveal-left,.reveal-right,.reveal-scale').forEach(el => dirIO.observe(el));
-
-/* ══ 3D CARD TILT ON HOVER ══ */
-function addTilt(selector, maxDeg = 10) {
-  document.querySelectorAll(selector).forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width  - 0.5;
-      const y = (e.clientY - r.top)  / r.height - 0.5;
-      card.style.transform = "translateY(-6px)";
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
-}
-addTilt('.im-stat-card', 8);
-
-/* ══════════════════════════════════════
    INTERACTIVE GLOBE (D3 v7 + TopoJSON)
 ══════════════════════════════════════ */
-(async function initGlobe() {
-  const container = document.getElementById('globeViz');
-  const tooltip  = document.getElementById('globeTooltip');
-  const W = Math.min(580, container.parentElement.offsetWidth || 580);
-  const H = W;
-  const R = W * 0.435;
-
-  const svg = d3.select(container)
-    .append('svg')
-    .attr('viewBox', `0 0 ${W} ${H}`)
-    .attr('width', '100%');
-
-  // SVG defs: glow filter
-  const defs = svg.append('defs');
-  const glow = defs.append('filter').attr('id', 'g-glow').attr('x','-60%').attr('y','-60%').attr('width','220%').attr('height','220%');
-  glow.append('feGaussianBlur').attr('stdDeviation','2.8').attr('result','blur');
-  const fm = glow.append('feMerge');
-  fm.append('feMergeNode').attr('in','blur');
-  fm.append('feMergeNode').attr('in','SourceGraphic');
-
-  // Ocean ring glow
-  defs.append('radialGradient').attr('id','oceanGrad').attr('cx','50%').attr('cy','40%').attr('r','50%')
-    .html('<stop offset="0%" stop-color="#0d2040"/><stop offset="100%" stop-color="#060d1e"/>');
-
-  const projection = d3.geoOrthographic()
-    .scale(R)
-    .translate([W/2, H/2])
-    .rotate([20, -15, 0]);
-
-  const pathGen = d3.geoPath().projection(projection);
-  const graticule = d3.geoGraticule();
-
-  // Ocean
-  svg.append('circle').attr('cx',W/2).attr('cy',H/2).attr('r',R).attr('fill','url(#oceanGrad)');
-  // Outer glow ring
-  svg.append('circle').attr('cx',W/2).attr('cy',H/2).attr('r',R)
-    .attr('fill','none').attr('stroke','rgba(14,165,233,0.18)').attr('stroke-width',1.5);
-
-  // Chapter data
-  const CHAPTERS = [
-    {lat:47.52,lng:-122.05,name:"Issaquah, WA (HQ)",hq:true},
-    {lat:37.33,lng:-121.89,name:"San Jose, CA"},
-    {lat:38.68,lng:-121.17,name:"Folsom, CA"},
-    {lat:37.55,lng:-122.05,name:"Fremont, CA"},
-    {lat:27.95,lng:-82.46,name:"Tampa, FL"},
-    {lat:28.54,lng:-81.38,name:"Orlando, FL"},
-    {lat:34.05,lng:-84.07,name:"Suwanee, GA"},
-    {lat:33.75,lng:-84.39,name:"Atlanta, GA"},
-    {lat:41.88,lng:-87.63,name:"Chicago, IL"},
-    {lat:42.36,lng:-71.06,name:"Massachusetts"},
-    {lat:40.71,lng:-74.01,name:"New York City, NY"},
-    {lat:35.79,lng:-78.78,name:"Cary, NC"},
-    {lat:30.51,lng:-97.68,name:"Round Rock, TX"},
-    {lat:47.82,lng:-122.28,name:"Lynwood, WA"},
-    {lat:47.62,lng:-122.04,name:"Sammamish, WA"},
-    {lat:47.52,lng:-121.83,name:"Snoqualmie, WA"},
-    {lat:28.63,lng:77.22,name:"Delhi, India"},
-    {lat:12.97,lng:77.59,name:"Bangalore, India"},
-    {lat:27.71,lng:85.31,name:"Kathmandu, Nepal"},
-    {lat:27.90,lng:84.00,name:"Nepal"},
-    {lat:5.56,lng:-0.20,name:"Accra/Tema, Ghana"},
-    {lat:30.38,lng:69.35,name:"Pakistan Chapter"},
-    {lat:25.29,lng:51.53,name:"Doha, Qatar"},
-    {lat:24.69,lng:46.72,name:"Saudi Arabia"},
-    {lat:24.45,lng:54.40,name:"Abu Dhabi, UAE"}
-  ];
-
-  function isVisible(lat, lng) {
-    const rot = projection.rotate();
-    return d3.geoDistance([lng,lat], [-rot[0], -rot[1]]) < Math.PI / 2;
-  }
-
-  let gratPath, landPath, dotsGroup, pulseGroup, pulseRing;
-  let rotAngle = 20, isDragging = false;
-
-  try {
-    const world = await d3.json('https://unpkg.com/world-atlas@2/countries-110m.json');
-    const land = topojson.feature(world, world.objects.land);
-
-    gratPath = svg.append('path').datum(graticule()).attr('class','globe-graticule').attr('d',pathGen);
-    landPath = svg.append('path').datum(land).attr('class','globe-land').attr('d',pathGen);
-    pulseGroup = svg.append('g');
-    dotsGroup = svg.append('g');
-
-    // Pulse ring lives in its own group — redraw repositions it but never destroys it,
-    // so the transition loop runs exactly once instead of spawning a new one every frame.
-    pulseRing = pulseGroup.append('circle')
-      .attr('fill','none').attr('stroke','#F97316')
-      .attr('stroke-width',1.5).attr('r',7).attr('opacity',0);
-    (function pulsate() {
-      pulseRing.attr('r',7).attr('opacity',0.5)
-        .transition().duration(1400).ease(d3.easeLinear)
-        .attr('r',14).attr('opacity',0)
-        .on('end', pulsate);
-    })();
-
-    function redraw() {
-      if (landPath) landPath.attr('d', pathGen);
-      if (gratPath) gratPath.attr('d', pathGen);
-      dotsGroup.selectAll('*').remove();
-
-      let hqVisible = false;
-
-      CHAPTERS.forEach(ch => {
-        if (!isVisible(ch.lat, ch.lng)) return;
-        const [x, y] = projection([ch.lng, ch.lat]);
-
-        if (ch.hq) {
-          hqVisible = true;
-          pulseRing.attr('cx', x).attr('cy', y);
-
-          dotsGroup.append('circle')
-            .attr('cx',x).attr('cy',y).attr('r',5.5)
-            .attr('fill','#F97316').attr('filter','url(#g-glow)')
-            .style('cursor','pointer')
-            .on('mousemove', (event) => {
-              const rect = container.getBoundingClientRect();
-              tooltip.style.display = 'block';
-              tooltip.textContent = ch.name;
-              tooltip.style.left = (event.clientX - rect.left) + 'px';
-              tooltip.style.top  = (event.clientY - rect.top - 14) + 'px';
-            })
-            .on('mouseout', () => tooltip.style.display = 'none');
-        } else {
-          dotsGroup.append('circle')
-            .attr('cx',x).attr('cy',y).attr('r',3.8)
-            .attr('fill','#0EA5E9').attr('filter','url(#g-glow)')
-            .style('cursor','pointer')
-            .on('mousemove', (event) => {
-              const rect = container.getBoundingClientRect();
-              tooltip.style.display = 'block';
-              tooltip.textContent = ch.name;
-              tooltip.style.left = (event.clientX - rect.left) + 'px';
-              tooltip.style.top  = (event.clientY - rect.top - 14) + 'px';
-            })
-            .on('mouseout', () => tooltip.style.display = 'none');
-        }
-      });
-
-      pulseGroup.style('display', hqVisible ? null : 'none');
-    }
-
-    // Auto-rotate
-    const rotTimer = d3.timer(() => {
-      if (isDragging) return;
-      rotAngle += 0.18;
-      projection.rotate([rotAngle, -15, 0]);
-      redraw();
-    });
-
-    // Drag
-    svg.call(d3.drag()
-      .on('start', () => { isDragging = true; svg.style('cursor','grabbing'); })
-      .on('drag', (event) => {
-        const r = projection.rotate();
-        const newLat = Math.max(-75, Math.min(75, r[1] - event.dy * 0.4));
-        const newLng = r[0] + event.dx * 0.4;
-        projection.rotate([newLng, newLat, 0]);
-        rotAngle = newLng;
-        redraw();
-      })
-      .on('end', () => { isDragging = false; svg.style('cursor','grab'); })
-    );
-
-    redraw();
-
-  } catch(err) {
-    container.innerHTML = '<div style="text-align:center;padding:80px 20px;color:rgba(255,255,255,0.3);font-size:0.9rem;">Globe requires internet connection to load.</div>';
-  }
-})();
 
 
 
-/* ══════════════════════════════════════
-   SPARKLES CANVAS (quote-band background)
-══════════════════════════════════════ */
-(function initSparkles() {
-  const canvas = document.getElementById('sparkles-canvas');
-  if (!canvas) return;
-  const section = canvas.parentElement;
-  const ctx = canvas.getContext('2d');
-  let W, H, particles = [], animId;
 
-  function resize() {
-    W = canvas.width  = section.offsetWidth;
-    H = canvas.height = section.offsetHeight;
-  }
-
-  function rand(min, max) { return Math.random() * (max - min) + min; }
-
-  function createParticles() {
-    const count = Math.floor((W * H) / 5000);
-    particles = Array.from({ length: count }, () => ({
-      x: rand(0, W), y: rand(0, H),
-      r: rand(0.8, 2.2),
-      opacity: rand(0.1, 0.55),
-      speed: rand(0.15, 0.55),
-      phase: rand(0, Math.PI * 2),
-      twinkleSpeed: rand(0.008, 0.022),
-    }));
-  }
-
-  let frame = 0;
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    frame++;
-    particles.forEach(p => {
-      p.phase += p.twinkleSpeed;
-      const alpha = p.opacity * (0.5 + 0.5 * Math.sin(p.phase));
-      p.y -= p.speed * 0.25;
-      if (p.y < -4) p.y = H + 4;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(14,165,233,${alpha})`;
-      ctx.fill();
-    });
-    animId = requestAnimationFrame(draw);
-  }
-
-  function init() {
-    resize();
-    createParticles();
-    if (animId) cancelAnimationFrame(animId);
-    draw();
-  }
-
-  // Only run when in view
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { if (!animId) init(); }
-      else { if (animId) { cancelAnimationFrame(animId); animId = null; } }
-    });
-  }, { threshold: 0.05 });
-  io.observe(section);
-
-  window.addEventListener('resize', () => { resize(); createParticles(); });
-})();
-
-/* ══ HERO PARALLAX ══ */
-(function() {
-  const heroBg = document.querySelector('.hero-bg');
-  if (!heroBg) return;
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    if (y < window.innerHeight * 1.5) {
-      heroBg.style.transform = `translateY(${y * 0.28}px)`;
-    }
-  }, { passive: true });
-})();
-
-/* ══ HERO TYPEWRITER ON EM ══ */
-(function() {
-  const em = document.querySelector('.hero-title em');
-  if (!em) return;
-  const words = ['Human Right.', 'Global Mission.', 'Shared Responsibility.'];
-  let wi = 0, ci = 0, deleting = false;
-  const delay = { type: 70, delete: 38, pause: 2200, pauseAfterDelete: 420 };
-  function tick() {
-    const word = words[wi];
-    if (!deleting) {
-      em.textContent = word.slice(0, ++ci);
-      if (ci === word.length) { deleting = true; setTimeout(tick, delay.pause); return; }
-    } else {
-      em.textContent = word.slice(0, --ci);
-      if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; setTimeout(tick, delay.pauseAfterDelete); return; }
-    }
-    setTimeout(tick, deleting ? delay.delete : delay.type);
-  }
-  setTimeout(tick, 1400);
-  /* cursor blink */
-  const cursor = document.createElement('span');
-  cursor.style.cssText = 'display:inline-block;width:3px;background:var(--teal);margin-left:2px;animation:blink 1s step-end infinite;vertical-align:baseline;height:0.85em;border-radius:2px;';
-  const style = document.createElement('style');
-  style.textContent = '@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}';
-  document.head.appendChild(style);
-  /* Allow long phrases to wrap on narrow screens. */
-  const wrap = document.createElement('span');
-  wrap.style.whiteSpace = 'normal';
-  em.parentNode.insertBefore(wrap, em);
-  wrap.appendChild(em);
-  wrap.appendChild(cursor);
-})();
 </script>
-<script src="common.js" defer></script>
+<script src="common.js?v=20261111-review3" defer></script>
+<script src="newsletter.js?v=20261111-review3" defer></script>
+<script src="globe.js?v=20261111-review3" defer></script>
 <script>
-  document.getElementById('nlForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const emailInput = document.getElementById('nlEmail');
-    const btn = document.getElementById('nlBtn');
-    const email = emailInput.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      emailInput.classList.add('nl-error'); setTimeout(() => emailInput.classList.remove('nl-error'), 500); return;
-    }
-    document.getElementById('nlError').textContent = '';
-    btn.disabled = true; btn.textContent = 'Sending…';
-    try {
-      const res = await fetch('https://formspree.io/f/xlgaldkr', {
-        method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ email })
-      });
-      if (res.ok) {
-        document.getElementById('nlForm').classList.add('hidden');
-        document.getElementById('nlNote').style.display = 'none';
-        setTimeout(() => document.getElementById('nlSuccess').classList.add('show'), 300);
-      } else {
-        document.getElementById('nlError').textContent = 'We could not subscribe you. Please try again in a moment.';
-        btn.disabled = false; btn.textContent = 'Subscribe';
-      }
-    } catch {
-      document.getElementById('nlError').textContent = 'Unable to connect. Please check your connection and try again.';
-      btn.disabled = false; btn.textContent = 'Subscribe';
-    }
-  });
+
 </script>
 </body>
 </html>
