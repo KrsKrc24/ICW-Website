@@ -318,6 +318,11 @@
     }
   </style>
   <link rel="stylesheet" href="refinements.css?v=20261111-review3"/>
+  <style>
+    .hero-rotating { display: grid; }
+    .hero-rotating > span { grid-area: 1 / 1; white-space: normal; }
+    .hero-phrase-space { visibility: hidden; }
+  </style>
 </head>
 <body>
 
@@ -353,7 +358,7 @@
       <div class="eyebrow-rule"></div>
       Youth-Led &nbsp;·&nbsp; Globally Driven &nbsp;·&nbsp; Since 2023
     </div>
-    <h1 class="hero-title">Access to Pediatric<br/>Cancer Care Is a<br/><em>Human Right.</em></h1>
+    <h1 class="hero-title" aria-label="Access to Pediatric Cancer Care Is a Human Right.">Access to Pediatric<br/>Cancer Care Is a<br/><em class="hero-rotating" aria-hidden="true"><span class="hero-phrase-space">Shared Responsibility.</span><span id="hero-phrase">Human Right.</span></em></h1>
     <p class="hero-sub">ICW is a youth-led nonprofit putting pediatric cancer care within reach of children who need it most, from Seattle to Bangalore, no matter what they can afford.</p>
     <div class="hero-actions">
       <a href="donate.html" class="btn btn-teal">Support Our Mission</a>
@@ -698,6 +703,7 @@ window.addEventListener('scroll',()=>document.querySelector('nav').classList.tog
 
 </script>
 <script src="common.js?v=20261111-review3" defer></script>
+<script src="hero-headline.js?v=20261112" defer></script>
 <script src="newsletter.js?v=20261111-review3" defer></script>
 <script src="globe.js?v=20261111-review3" defer></script>
 <script>
